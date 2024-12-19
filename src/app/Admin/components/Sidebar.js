@@ -15,12 +15,12 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
 
   // Data for list items and their sublists
   const menuItems = [
-    { title: "Dashboard", icon: <MdDashboard />, subList: ["Overview", "Stats"] },
-    { title: "College", icon: <MdOutlineAccountBalance />, subList: ["Staff", "Students"] },
-    { title: "Accommodation", icon: <FaBuilding />, subList: ["Hostels", "Rooms"] },
-    { title: "Department", icon: <FaSection />, subList: ["Science", "Commerce", "Arts"] },
-    { title: "Program", icon: <FiBook />, subList: ["B.Tech", "M.Tech"] },
-    { title: "Stream", icon: <FaStream />, subList: ["CSE", "ECE", "IT"] },
+    { title: "Dashboard", icon: <MdDashboard />, subList: [] },
+    { title: "College", icon: <MdOutlineAccountBalance />, subList: ["Add College", "List Of Colleges"] },
+    { title: "Accommodation", icon: <FaBuilding />, subList: ["Add Accomodations", "List Of Accomodatons"] },
+    { title: "Department", icon: <FaSection />, subList: ["Add Dapartment", "List Of Department"] },
+    { title: "Program", icon: <FiBook />, subList: ["Add Program", "List Of Programmes"] },
+    { title: "Stream", icon: <FaStream />, subList: ["Add Stream", "List Of Streams",] },
   ];
 
   const toggleSublist = (index) => {
@@ -29,20 +29,20 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
 
   return (
     <div
-      className={`fixed top-0 left-0 h-screen bg-gray-800 text-white w-56 transform ${
+      className={`fixed top-0 left-0 h-screen bg-[#1c2333] text-white w-60 transform ${
         isOpen ? "translate-x-0" : "-translate-x-full"
       } transition-transform duration-300 md:translate-x-0 z-50`}
     >
       {/* Logo */}
-      <div className="p-4 text-lg flex font-bold border-b border-gray-700">
-        <div className="p-1 bg-blue-600 text-white ml-1 rounded-lg">
+      <div className="p-4 text-lg flex font-bold ">
+        <div className="p-1 bg-blue-600 text-white me-2 ms-1  rounded-lg">
             <GiNetworkBars/>
             </div>
         TailAdmin
       </div>
 
       {/* Menu Items */}
-      <ul className="mt-4">
+      <ul className="mt-8 px-4">
         {menuItems.map((item, index) => (
           <li key={index}>
             <button
@@ -61,12 +61,13 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
             </button>
             {/* Sublist */}
             {activeItem === index && (
-              <ul className="pl-8 bg-gray-700">
+              <ul className="pl-8 bg-[#1c2333]">
                 {item.subList.map((subItem, i) => (
                   <li
                     key={i}
-                    className="p-2 hover:bg-gray-600 transition cursor-pointer"
+                    className="p-2 text-sm hover:bg-gray-700 transition cursor-pointer"
                   >
+                    
                     {subItem}
                   </li>
                 ))}

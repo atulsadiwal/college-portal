@@ -3,14 +3,14 @@ import { FiSearch, FiBell, FiMenu } from "react-icons/fi";
 
 const Header = ({ toggleSidebar }) => {
   return (
-    <div className="flex justify-between items-center bg-white shadow p-2 md:pl-72">
+    <div className="flex justify-between items-center bg-white shadow p-2 md:pl-64">
       {/* Left: Search */}
       <div className="flex items-center space-x-2">
         <FiSearch className="text-gray-500" />
         <input
           type="text"
           placeholder="Search..."
-          className="border-b border-gray-300 focus:outline-none"
+          className=" focus:outline-none"
         />
       </div>
 

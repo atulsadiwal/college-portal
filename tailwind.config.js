@@ -8,6 +8,7 @@ export const content = [
   "./src/**/*.{js,ts,jsx,tsx,mdx}",
 ];
 export const theme = {
-  extend: {},
+  extend: {
+  },
 };
 export const plugins = [];
