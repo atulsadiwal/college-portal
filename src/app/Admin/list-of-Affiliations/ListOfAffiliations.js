@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 
-const ListOfProgrammes = () => {
+const ListOfAffiliations = () => {
   const [data, setData] = useState([]);
   const [search, setSearch] = useState("");
   const [filteredData, setFilteredData] = useState([]);
@@ -12,7 +12,7 @@ const ListOfProgrammes = () => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          "https://college-portal-backend-y8d9.onrender.com/api/program/"
+          "https://college-portal-backend-y8d9.onrender.com/api/affiliation/all-affiliation"
         );
         const result = await response.json();
 
@@ -82,11 +82,11 @@ const ListOfProgrammes = () => {
           </thead>
           <tbody>
             {Array.isArray(filteredData) && filteredData.length > 0 ? (
-              filteredData.map((program) => (
-                <tr key={program.id} className="border-t">
-                  <td className="px-4 py-2">{program.name}</td>
-                  <td className="px-4 py-2">{program.short_name}</td>
-                  <td className="px-4 py-2">{program.description}</td>
+              filteredData.map((affiliation) => (
+                <tr key={affiliation.id} className="border-t">
+                  <td className="px-4 py-2">{affiliation.name}</td>
+                  <td className="px-4 py-2">{affiliation.short_name}</td>
+                  <td className="px-4 py-2">{affiliation.description}</td>
                   <td className="px-4 py-2 text-center">
                     <button className="bg-blue-500 text-white px-2 py-1 rounded-lg flex items-center">
                       <span className="material-icons">edit</span>
@@ -97,7 +97,7 @@ const ListOfProgrammes = () => {
             ) : (
               <tr>
                 <td colSpan="10" className="text-center py-4">
-                  No program found.
+                  No Affiliation found.
                 </td>
               </tr>
             )}
@@ -108,4 +108,4 @@ const ListOfProgrammes = () => {
   );
 };
 
-export default ListOfProgrammes;
+export default ListOfAffiliations;

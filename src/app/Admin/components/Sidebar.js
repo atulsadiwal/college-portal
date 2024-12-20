@@ -38,7 +38,7 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
         <div className="p-1 bg-blue-600 text-white me-2 ms-1  rounded-lg">
             <GiNetworkBars/>
             </div>
-        TailAdmin
+        PortalAdmin
       </div>
 
       {/* Menu Items */}
@@ -53,11 +53,13 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
                 {item.icon}
                 <span>{item.title}</span>
               </div>
-              <FiChevronDown
-                className={`transition-transform ${
-                  activeItem === index ? "rotate-180" : "rotate-0"
-                }`}
-              />
+              {item.subList.length > 0 && (
+                <FiChevronDown
+                  className={`transition-transform ${
+                    activeItem === index ? "rotate-180" : "rotate-0"
+                  }`}
+                />
+              )}
             </button>
             {/* Sublist */}
             {activeItem === index && (

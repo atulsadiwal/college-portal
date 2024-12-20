@@ -1,7 +1,7 @@
 "use client"; // For Next.js app directory support
 
 import React, { useState } from "react";
-import { toast } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 function AddCollege() {
@@ -104,6 +104,7 @@ function AddCollege() {
 
   return (
     <div className="container  p-4">
+      <ToastContainer/>
       <h1 className="text-2xl font-bold mb-4 text-start ">Add New College</h1>
       <form
         onSubmit={handleSubmit}

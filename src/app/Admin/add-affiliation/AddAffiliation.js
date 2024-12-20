@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-function AddDepartment() {
+function AddAffiliation() {
   const [formData, setFormData] = useState({
     name: "",
     short_name:"",
@@ -46,7 +46,7 @@ function AddDepartment() {
 
     try {
       const response = await fetch(
-        "https://college-portal-backend-y8d9.onrender.com/api/departments/department",
+        "https://college-portal-backend-y8d9.onrender.com/api/affiliation/add-affiliation",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -85,7 +85,7 @@ function AddDepartment() {
   return (
     <div className="container  p-4">
       <ToastContainer />
-      <h1 className="text-2xl font-bold mb-4 text-start ">Add New Department - </h1>
+      <h1 className="text-2xl font-bold mb-4 text-start ">Add New Affiliation - </h1>
       <form
         onSubmit={handleSubmit}
         className="bg-white shadow-lg rounded-lg p-6 space-y-4 w-full  "
@@ -143,4 +143,4 @@ function AddDepartment() {
   );
 }
 
-export default AddDepartment;
+export default AddAffiliation;
