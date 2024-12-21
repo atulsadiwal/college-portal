@@ -1,8 +1,8 @@
 
-import ListOfStreams from "./ListOfStreams";
+import ListOfAffiliations from "./ListOfAffiliations";
 
 export default function Home() {
   return (
-    <ListOfStreams />
+    <ListOfAffiliations />
   );
 }

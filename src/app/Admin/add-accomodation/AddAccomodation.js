@@ -5,6 +5,9 @@ import React, { useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL
+
+
 function AddAccomodation() {
   const [formData, setFormData] = useState({
     name: "",
@@ -57,7 +60,7 @@ function AddAccomodation() {
 
     try {
       const response = await fetch(
-        "https://college-portal-backend-y8d9.onrender.com/api/accommodation/add-accommodation",
+        `${BASE_URL}/accommodation/add-accomodation`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -94,197 +97,194 @@ function AddAccomodation() {
   };
 
   return (
-    <div className="container  p-4">
-    <ToastContainer/>
-      <h1 className="text-2xl font-bold mb-4 text-start ">Add New Accomodation</h1>
-      <form
-        onSubmit={handleSubmit}
-        className="bg-white shadow-lg rounded-lg p-6 space-y-4 w-full  "
-      >
-        {/* Name */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div>
-          <label className="block mb-1 font-semibold">Accomodation Name</label>
-          <input
-            type="text"
-            name="name"
-            onChange={handleChange}
-            className="w-full p-2 border rounded"
-            placeholder="Enter Accomodation name"
-            required
-          />
-        </div>
-        <div>
-            <label className="block mb-1 font-semibold">Type</label>
-            <select
-              name="type"
-              onChange={handleChange}
-              className="w-full p-2 border rounded"
-              required
-            >
-              <option value="Hostel">Hostel</option>
-              <option value="Pg">Pg</option>
-              <option value="Apartment">Apartment</option>
-            </select>
-          </div>
-        </div>
-
-        {/* City and State */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          
-          <div>
-            <label className="block mb-1 font-semibold">Address</label>
-            <input
-              type="text"
-              name="address"
-              onChange={handleChange}
-              className="w-full p-2 border rounded"
-              placeholder="Enter Address"
-              required
-            />
-          </div>
-          <div>
-            <label className="block mb-1 font-semibold">City</label>
-            <input
-              type="text"
-              name="city"
-              onChange={handleChange}
-              className="w-full p-2 border rounded"
-              placeholder="Enter City"
-              required
-            />
-          </div>
-        </div>
-
-        {/* */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div>
-            <label className="block mb-1 font-semibold">Country</label>
-            <input
-              type="text"
-              name="country"
-              onChange={handleChange}
-              className="w-full p-2 border rounded"
-              placeholder="Enter Country Name"
-              required
-            />
-          </div>
-          <div>
-            <label className="block mb-1 font-semibold">Pincode</label>
-            <input
-              type="text"
-              name="pincode"
-              onChange={handleChange}
-              className="w-full p-2 border rounded"
-              placeholder="Enter Pincode"
-              required
-            />
-          </div>
-          
-        </div>
-
-        {/* latitude and longitude */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div>
-          <label className="block mb-1 font-semibold">Latitude</label>
-          <input
-            type="number"
-            name="latitude"
-            onChange={handleChange}
-            className="w-full p-2 border rounded"
-            placeholder="Enter Latitude"
-          />
-        </div>
-
-        <div>
-          <label className="block mb-1 font-semibold">Longitude</label>
-          <input
-            type="number"
-            name="longitude"
-            onChange={handleChange}
-            className="w-full p-2 border rounded"
-            placeholder="Enter Longitude"
-          />
-        </div>
-       </div>
-
-        {/* Highest and Average Package */}
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div>
-            <label className="block mb-1 font-semibold">Price</label>
-            <input
-              type="text"
-              name="price"
-              onChange={handleChange}
-              className="w-full p-2 border rounded"
-              placeholder="Enter highest package"
-              required
-            />
-          </div>
-          <div>
-            <label className="block mb-1 font-semibold">Amenities</label>
-            <input
-              type="text"
-              name="amenities"
-              onChange={handleChange}
-              className="w-full p-2 border rounded"
-              placeholder="Enter Amenities"
-              required
-            />
-          </div>
-        </div>
-
-        
-         {/* phone, email and images */}
-        <div className = "grid grid-cols-1 md:grid-cols-3 gap-4">
-        <div>
-            <label className="block mb-1 font-semibold">Phone</label>
-            <input
-              type="text"
-              name="phone"
-              onChange={handleChange}
-              className="w-full p-2 border rounded"
-              placeholder="Enter phone number"
-              required
-            />
-          </div>
-          <div>
-            <label className="block mb-1 font-semibold">Email</label>
-            <input
-              type="email"
-              name="email"
-              onChange={handleChange}
-              className="w-full p-2 border rounded"
-              placeholder="Enter email"
-              required
-            />
-          </div>
-         <div >
-          <label className ="block mb-1 font-semibold">Image URL</label>
-          <input
-           type="text"
-           name= "images"
-           onChange= {handleChange}
-           className = "w-full p-2 border rounded"
-           placeholder = "Enter Image URL"
-           required
-          />
-         </div>
-        </div>
-
-
-        {/* Submit Button */}
-        <div className="text-center">
-          <button
-            type="submit"
-            className="bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-6 rounded"
-          >
-            Submit
-          </button>
-        </div>
-      </form>
+    <div className="container p-4">
+  <ToastContainer />
+  <h1 className="text-2xl font-bold mb-4 text-start">Add New Accommodation</h1>
+  <form
+    onSubmit={handleSubmit}
+    className="bg-white shadow-lg rounded-lg p-6 space-y-4 w-full"
+  >
+    {/* Name */}
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div>
+        <label className="block text-sm mb-2 font-medium text-gray-700">
+          Accommodation Name
+        </label>
+        <input
+          type="text"
+          name="name"
+          onChange={handleChange}
+          className="w-full p-2 border border-gray-300 text-xs rounded-lg focus:ring focus:ring-blue-300 text-base placeholder-gray-400"
+          placeholder="Enter Accommodation name"
+          required
+        />
+      </div>
+      <div>
+        <label className="block text-sm mb-2 font-medium text-gray-700">Type</label>
+        <select
+          name="type"
+          onChange={handleChange}
+          className="w-full p-2 border border-gray-300 text-xs rounded-lg focus:ring focus:ring-blue-300 text-base placeholder-gray-400"
+          required
+        >
+          <option value="Hostel">Hostel</option>
+          <option value="Pg">Pg</option>
+          <option value="Apartment">Apartment</option>
+        </select>
+      </div>
     </div>
+
+    {/* Address and City */}
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div>
+        <label className="block text-sm mb-2 font-medium text-gray-700">Address</label>
+        <input
+          type="text"
+          name="address"
+          onChange={handleChange}
+          className="w-full p-2 border border-gray-300 text-xs rounded-lg focus:ring focus:ring-blue-300 text-base placeholder-gray-400"
+          placeholder="Enter Address"
+          required
+        />
+      </div>
+      <div>
+        <label className="block text-sm mb-2 font-medium text-gray-700">City</label>
+        <input
+          type="text"
+          name="city"
+          onChange={handleChange}
+          className="w-full p-2 border border-gray-300 text-xs rounded-lg focus:ring focus:ring-blue-300 text-base placeholder-gray-400"
+          placeholder="Enter City"
+          required
+        />
+      </div>
+    </div>
+
+    {/* Country and Pincode */}
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div>
+        <label className="block text-sm mb-2 font-medium text-gray-700">Country</label>
+        <input
+          type="text"
+          name="country"
+          onChange={handleChange}
+          className="w-full p-2 border border-gray-300 text-xs rounded-lg focus:ring focus:ring-blue-300 text-base placeholder-gray-400"
+          placeholder="Enter Country Name"
+          required
+        />
+      </div>
+      <div>
+        <label className="block text-sm mb-2 font-medium text-gray-700">Pincode</label>
+        <input
+          type="text"
+          name="pincode"
+          onChange={handleChange}
+          className="w-full p-2 border border-gray-300 text-xs rounded-lg focus:ring focus:ring-blue-300 text-base placeholder-gray-400"
+          placeholder="Enter Pincode"
+          required
+        />
+      </div>
+    </div>
+
+    {/* Latitude and Longitude */}
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div>
+        <label className="block text-sm mb-2 font-medium text-gray-700">Latitude</label>
+        <input
+          type="number"
+          name="latitude"
+          onChange={handleChange}
+          className="w-full p-2 border border-gray-300 text-xs rounded-lg focus:ring focus:ring-blue-300 text-base placeholder-gray-400"
+          placeholder="Enter Latitude"
+        />
+      </div>
+      <div>
+        <label className="block text-sm mb-2 font-medium text-gray-700">Longitude</label>
+        <input
+          type="number"
+          name="longitude"
+          onChange={handleChange}
+          className="w-full p-2 border border-gray-300 text-xs rounded-lg focus:ring focus:ring-blue-300 text-base placeholder-gray-400"
+          placeholder="Enter Longitude"
+        />
+      </div>
+    </div>
+
+    {/* Price and Amenities */}
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div>
+        <label className="block text-sm mb-2 font-medium text-gray-700">Price</label>
+        <input
+          type="text"
+          name="price"
+          onChange={handleChange}
+          className="w-full p-2 border border-gray-300 text-xs rounded-lg focus:ring focus:ring-blue-300 text-base placeholder-gray-400"
+          placeholder="Enter Price"
+          required
+        />
+      </div>
+      <div>
+        <label className="block text-sm mb-2 font-medium text-gray-700">Amenities</label>
+        <input
+          type="text"
+          name="amenities"
+          onChange={handleChange}
+          className="w-full p-2 border border-gray-300 text-xs rounded-lg focus:ring focus:ring-blue-300 text-base placeholder-gray-400"
+          placeholder="Enter Amenities"
+          required
+        />
+      </div>
+    </div>
+
+    {/* Phone, Email, and Images */}
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div>
+        <label className="block text-sm mb-2 font-medium text-gray-700">Phone</label>
+        <input
+          type="text"
+          name="phone"
+          onChange={handleChange}
+          className="w-full p-2 border border-gray-300 text-xs rounded-lg focus:ring focus:ring-blue-300 text-base placeholder-gray-400"
+          placeholder="Enter phone number"
+          required
+        />
+      </div>
+      <div>
+        <label className="block text-sm mb-2 font-medium text-gray-700">Email</label>
+        <input
+          type="email"
+          name="email"
+          onChange={handleChange}
+          className="w-full p-2 border border-gray-300 text-xs rounded-lg focus:ring focus:ring-blue-300 text-base placeholder-gray-400"
+          placeholder="Enter email"
+          required
+        />
+      </div>
+      <div>
+        <label className="block text-sm mb-2 font-medium text-gray-700">Image URL</label>
+        <input
+          type="text"
+          name="images"
+          onChange={handleChange}
+          className="w-full p-2 border border-gray-300 text-xs rounded-lg focus:ring focus:ring-blue-300 text-base placeholder-gray-400"
+          placeholder="Enter Image URL"
+          required
+        />
+      </div>
+    </div>
+
+    {/* Submit Button */}
+    <div className="text-center">
+      <button
+        type="submit"
+        className="bg-[#1c2333] hover:bg-opacity-90 text-white font-semibold py-2 px-6 rounded shadow-md"
+      >
+        Submit
+      </button>
+    </div>
+  </form>
+</div>
+
   );
 }
 

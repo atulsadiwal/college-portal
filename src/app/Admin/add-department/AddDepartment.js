@@ -4,6 +4,9 @@ import React, { useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL
+
+
 function AddDepartment() {
   const [formData, setFormData] = useState({
     name: "",
@@ -46,7 +49,7 @@ function AddDepartment() {
 
     try {
       const response = await fetch(
-        "https://college-portal-backend-y8d9.onrender.com/api/departments/department",
+        `${BASE_URL}/departments/add-departments`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -83,63 +86,61 @@ function AddDepartment() {
   };
 
   return (
-    <div className="container  p-4">
-      <ToastContainer />
-      <h1 className="text-2xl font-bold mb-4 text-start ">Add New Department - </h1>
-      <form
-        onSubmit={handleSubmit}
-        className="bg-white shadow-lg rounded-lg p-6 space-y-4 w-full  "
-      >
-        {/* College Name */}
-        <div className="grid grid-cols-1 gap-4">
-        <div>
-          <label className="block mb-1 font-semibold"> Name</label>
-          <input
-            type="text"
-            name="name"
-            onChange={handleChange}
-            className="w-full p-2 border rounded"
-            placeholder="Enter college name"
-            required
-          />
-        </div>
-        <div>
-            <label className="block mb-1 font-semibold">Short Name</label>
-            <input
-              type="text"
-              name="short_name"
-              onChange={handleChange}
-              className="w-full p-2 border rounded"
-              placeholder="Enter city"
-              required
-            />
-          </div>
-          <div>
-            <label className="block mb-1 font-semibold">Description</label>
-            <input
-              type="text"
-              name="description"
-              onChange={handleChange}
-              className="w-full p-2 border rounded"
-              placeholder="Enter city"
-            />
-          </div>
-        </div>
-
-        
-
-
-        {/* Submit Button */}
-        <div className="text-center">
-          <button
-            type="submit"
-            className="bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-6 rounded"
-          >
-            Submit
-          </button>
-        </div>
-      </form>
+    <div className="container p-4">
+  <ToastContainer />
+  <h1 className="text-2xl text[#1c2333] font-bold mb-4 text-start">Add New Department -</h1>
+  <form
+    onSubmit={handleSubmit}
+    className="bg-white shadow-lg rounded-lg p-6 space-y-4 w-full"
+  >
+    {/* Department Name */}
+    <div className="grid grid-cols-1 gap-4">
+      <div>
+        <label className="block text-sm mb-2 font-medium text-gray-700">Name</label>
+        <input
+          type="text"
+          name="name"
+          onChange={handleChange}
+          className="w-full p-2 border border-gray-300 text-xs rounded-lg focus:ring focus:ring-blue-300 text-base placeholder-gray-400"
+          placeholder="Enter Department name"
+          required
+        />
+      </div>
+      <div>
+        <label className="block text-sm mb-2 font-medium text-gray-700">Short Name</label>
+        <input
+          type="text"
+          name="short_name"
+          onChange={handleChange}
+          className="w-full p-2 border border-gray-300 text-xs rounded-lg focus:ring focus:ring-blue-300 text-base placeholder-gray-400"
+          placeholder="Enter Short Name"
+          required
+        />
+      </div>
+      <div>
+        <label className="block text-sm mb-2 font-medium text-gray-700">Description</label>
+        <input
+          type="text"
+          name="description"
+          onChange={handleChange}
+          className="w-full p-2 border border-gray-300 text-xs rounded-lg focus:ring focus:ring-blue-300 text-base placeholder-gray-400"
+          placeholder="Enter Description"
+        />
+      </div>
     </div>
+
+    {/* Submit Button */}
+    <div className="text-center">
+      <button
+        type="submit"
+        className="bg-[#1c2333] hover:bg-opacity-90 text-white font-semibold py-2 px-6 rounded shadow-md"
+      >
+        Submit
+      </button>
+    </div>
+  </form>
+</div>
+
   );
 }
 

@@ -1,30 +1,77 @@
 "use client";
 import { useState } from "react";
-import { FiChevronDown, FiBook,} from "react-icons/fi";
+import { useRouter } from "next/navigation";
+import { FiChevronDown, FiBook } from "react-icons/fi";
 import { MdOutlineAccountBalance } from "react-icons/md";
 import { MdDashboard } from "react-icons/md";
 import { FaBuilding, FaStream } from "react-icons/fa";
 import { FaSection } from "react-icons/fa6";
 import { GiNetworkBars } from "react-icons/gi";
 
-
-
-
-const Sidebar = ({ isOpen, toggleSidebar }) => {
+const Sidebar = ({ isOpen }) => {
   const [activeItem, setActiveItem] = useState(null);
+  const router = useRouter();
 
   // Data for list items and their sublists
   const menuItems = [
-    { title: "Dashboard", icon: <MdDashboard />, subList: [] },
-    { title: "College", icon: <MdOutlineAccountBalance />, subList: ["Add College", "List Of Colleges"] },
-    { title: "Accommodation", icon: <FaBuilding />, subList: ["Add Accomodations", "List Of Accomodatons"] },
-    { title: "Department", icon: <FaSection />, subList: ["Add Dapartment", "List Of Department"] },
-    { title: "Program", icon: <FiBook />, subList: ["Add Program", "List Of Programmes"] },
-    { title: "Stream", icon: <FaStream />, subList: ["Add Stream", "List Of Streams",] },
+    { title: "Dashboard", icon: <MdDashboard />, route: "/Admin", subList: [] },
+    {
+      title: "College",
+      icon: <MdOutlineAccountBalance />,
+      subList: [
+        { name: "Add College", route: "/Admin/add-college" },
+        { name: "List Of Colleges", route: "/Admin/list-of-colleges" },
+      ],
+    },
+    {
+      title: "Accommodation",
+      icon: <FaBuilding />,
+      subList: [
+        { name: "Add Accommodations", route: "/Admin/add-accomodation" },
+        { name: "List Of Accommodations", route: "/Admin/list-of-accomodations" },
+      ],
+    },
+    {
+      title: "Department",
+      icon: <FaSection />,
+      subList: [
+        { name: "Add Department", route: "/Admin/add-department" },
+        { name: "List Of Departments", route: "/Admin/list-of-departments" },
+      ],
+    },
+    {
+      title: "Program",
+      icon: <FiBook />,
+      subList: [
+        { name: "Add Program", route: "/Admin/add-program" },
+        { name: "List Of Programs", route: "/Admin/list-of-programmes" },
+      ],
+    },
+    {
+      title: "Stream",
+      icon: <FaStream />,
+      subList: [
+        { name: "Add Stream", route: "/Admin/add-stream" },
+        { name: "List Of Streams", route: "/Admin/list-of-streams" },
+      ],
+    },
+    {
+      title: "Affiliation",
+      icon: <FaStream />,
+      subList: [
+        { name: "Add Affiliation", route: "/Admin/add-affiliation" },
+        { name: "List Of Affiliations", route: "/Admin/list-of-affiliations" },
+      ],
+    },
+    { title: "Mapping", icon: <MdDashboard />, route: "/Admin/mapping", subList: [] },
   ];
 
   const toggleSublist = (index) => {
     setActiveItem(activeItem === index ? null : index);
+  };
+
+  const navigateTo = (route) => {
+    router.push(route);
   };
 
   return (
@@ -34,10 +81,10 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
       } transition-transform duration-300 md:translate-x-0 z-50`}
     >
       {/* Logo */}
-      <div className="p-4 text-lg flex font-bold ">
-        <div className="p-1 bg-blue-600 text-white me-2 ms-1  rounded-lg">
-            <GiNetworkBars/>
-            </div>
+      <div className="p-4 text-lg flex font-bold">
+        <div className="p-1 bg-blue-600 text-white me-2 ms-1 rounded-lg">
+          <GiNetworkBars />
+        </div>
         PortalAdmin
       </div>
 
@@ -46,8 +93,10 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
         {menuItems.map((item, index) => (
           <li key={index}>
             <button
+              onClick={() => {
+                item.route ? navigateTo(item.route) : toggleSublist(index);
+              }}
               className="w-full flex justify-between items-center p-3 hover:bg-gray-700 transition"
-              onClick={() => toggleSublist(index)}
             >
               <div className="flex items-center space-x-2">
                 {item.icon}
@@ -67,10 +116,10 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
                 {item.subList.map((subItem, i) => (
                   <li
                     key={i}
+                    onClick={() => navigateTo(subItem.route)}
                     className="p-2 text-sm hover:bg-gray-700 transition cursor-pointer"
                   >
-                    
-                    {subItem}
+                    {subItem.name}
                   </li>
                 ))}
               </ul>
