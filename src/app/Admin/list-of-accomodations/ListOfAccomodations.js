@@ -1,5 +1,5 @@
 "use client"; // Add this directive at the top of the file
-
+import Link from "next/link";  
 import { useState, useEffect } from "react";
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL
 
@@ -116,9 +116,11 @@ const ListOfAccomodations = () => {
                 />
               </td>
               <td className="px-4 py-2 text-sm text-center">
-                <button className="bg-blue-500 text-white px-2 py-1 rounded-lg flex items-center">
-                  <span className="material-icons">edit</span>
-                </button>
+              <Link href={`/Admin/edit-accomodation/${Accomo.id}`}>
+                      <button className="bg-blue-500 text-white px-2 py-1 mx-auto rounded-lg flex items-center">
+                        <span className="material-icons"><FaEdit/></span>
+                      </button>
+                    </Link>
               </td>
             </tr>
           ))

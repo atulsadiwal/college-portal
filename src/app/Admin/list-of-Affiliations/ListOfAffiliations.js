@@ -1,6 +1,8 @@
 "use client"; // Add this directive at the top of the file
 
 import { useState, useEffect } from "react";
+import { FaEdit } from "react-icons/fa";
+import Link from "next/link";  // Import Link for file-based navigation
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL
 
 
@@ -78,19 +80,21 @@ const ListOfAffiliations = () => {
                 index % 2 === 0 ? "bg-gray-50" : "bg-white"
               }`}
             >
-              <td className="px-4 py-2 text-sm font-medium text-gray-700 truncate">
+              <td className="px-4 py-1 text-sm font-medium text-gray-700 truncate">
                 {affiliation.name}
               </td>
-              <td className="px-4 py-2 text-sm text-gray-600 truncate">
+              <td className="px-4 py-1 text-sm text-gray-600 truncate">
                 {affiliation.short_name}
               </td>
-              <td className="px-4 py-2 text-sm text-gray-600 truncate">
+              <td className="px-4 py-1 text-sm text-gray-600 truncate">
                 {affiliation.description}
               </td>
-              <td className="px-4 py-2 text-sm text-center">
-                <button className="bg-blue-500 text-white px-2 py-1 rounded-lg flex items-center">
-                  <span className="material-icons">edit</span>
-                </button>
+              <td className="px-4 py-1 text-sm text-center">
+              <Link href={`/Admin/edit-affiliation/${affiliation.id}`}>
+                      <button className="bg-blue-500 text-white px-2 py-1 mx-auto rounded-lg flex items-center">
+                        <span className="material-icons"><FaEdit/></span>
+                      </button>
+                    </Link>
               </td>
             </tr>
           ))

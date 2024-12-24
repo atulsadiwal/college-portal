@@ -2,11 +2,13 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { FiChevronDown, FiBook } from "react-icons/fi";
-import { MdOutlineAccountBalance } from "react-icons/md";
+import { MdOutlineAccountBalance, MdOutlineAppRegistration } from "react-icons/md";
 import { MdDashboard } from "react-icons/md";
 import { FaBuilding, FaStream } from "react-icons/fa";
 import { FaSection } from "react-icons/fa6";
 import { GiNetworkBars } from "react-icons/gi";
+import { PiMapPinSimpleBold } from "react-icons/pi";
+
 
 const Sidebar = ({ isOpen }) => {
   const [activeItem, setActiveItem] = useState(null);
@@ -57,13 +59,13 @@ const Sidebar = ({ isOpen }) => {
     },
     {
       title: "Affiliation",
-      icon: <FaStream />,
+      icon: <MdOutlineAppRegistration />,
       subList: [
         { name: "Add Affiliation", route: "/Admin/add-affiliation" },
         { name: "List Of Affiliations", route: "/Admin/list-of-affiliations" },
       ],
     },
-    { title: "Mapping", icon: <MdDashboard />, route: "/Admin/mapping", subList: [] },
+    { title: "Mapping", icon: <PiMapPinSimpleBold />, route: "/Admin/mapping", subList: [] },
   ];
 
   const toggleSublist = (index) => {
