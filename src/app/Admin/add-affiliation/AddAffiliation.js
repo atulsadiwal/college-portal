@@ -46,7 +46,8 @@ function AddAffiliation() {
   // Submit form data
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    console.log("Submitting formData:", formData);
+  
     try {
       const response = await fetch(
         `${BASE_URL}/affiliation/add-affiliation`,
@@ -56,35 +57,28 @@ function AddAffiliation() {
           body: JSON.stringify(formData),
         }
       );
-
-      const result = await response.json();
-
-      if (response.ok) {
-        toast.success("College data uploaded successfully!", {
-          position: "top-right",
-          autoClose: 3000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
-        console.log(result);
-      } else {
-        toast.error(result.message || "Error uploading data.", {
-          position: "top-right",
-          autoClose: 3000,
-        });
+  
+      if (!response.ok) {
+        const errorText = await response.text(); // Get the raw response
+        throw new Error(
+          `Server error: ${response.status} - ${response.statusText}\n${errorText}`
+        );
       }
+  
+      const result = await response.json();
+      toast.success("College data uploaded successfully!", {
+        position: "top-right",
+        autoClose: 3000,
+      });
+      console.log("Success:", result);
     } catch (error) {
-      console.error("Error:", error);
-      toast.error("An error occurred while uploading data.", {
+      console.error("Error submitting form:", error);
+      toast.error(error.message || "An error occurred while uploading data.", {
         position: "top-right",
         autoClose: 3000,
       });
     }
   };
-
   return (
     <div className="container p-4">
   <ToastContainer />

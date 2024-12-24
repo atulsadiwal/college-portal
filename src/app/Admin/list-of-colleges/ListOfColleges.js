@@ -1,6 +1,7 @@
-"use client"; // Add this directive at the top of the file
+"use client"; 
 
 import { useState, useEffect } from "react";
+import Link from "next/link";  
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL
 
 
@@ -14,15 +15,14 @@ const ListOfColleges = () => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-         `${BASE_URL}/college/all-colleges`,
+         `${BASE_URL}/college/colleges`,
         );
         const result = await response.json();
-        console.log(result);
-        
-        if (result.status) {
-          setData(result.data);
-          setFilteredData(result.data);
+        if (Array.isArray(result)) {
+          setData(result);
+          setFilteredData(result);
         } else {
+          console.error("Unexpected response format:", result);
           setData([]);
           setFilteredData([]);
         }
@@ -112,9 +112,11 @@ const ListOfColleges = () => {
                 />
               </td>
               <td className="px-4 py-3 text-center text-sm text-gray-700 align-middle border border-gray-300">
-                <button className="bg-blue-500 text-white px-2 py-1 rounded-md flex items-center text-xs font-medium">
-                  <span className="material-icons">edit</span>
-                </button>
+              <Link href={`/Admin/edit-college/${college.id}`}>
+                      <button className="bg-blue-500 text-white px-2 py-1 mx-auto rounded-lg flex items-center">
+                        <span className="material-icons"><FaEdit/></span>
+                      </button>
+                    </Link>
               </td>
             </tr>
           ))

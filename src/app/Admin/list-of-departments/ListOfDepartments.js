@@ -3,6 +3,8 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";  // Import Link for file-based navigation
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
+import { FaEdit } from "react-icons/fa";
+
 
 const ListOfDepartments = () => {
   const [data, setData] = useState([]);
@@ -78,7 +80,7 @@ const ListOfDepartments = () => {
                   <td className="px-4 py-2 text-sm text-center">
                     <Link href={`/Admin/edit-department/${dept.id}`}>
                       <button className="bg-blue-500 text-white px-2 py-1 rounded-lg flex items-center">
-                        <span className="material-icons">edit</span>
+                        <span className="material-icons"><FaEdit/></span>
                       </button>
                     </Link>
                   </td>
