@@ -1,10 +1,8 @@
-
-import React from 'react'
-
-function Admin() {
+export default function Admin() {
   return (
-    <div>Admin</div>
-  )
+    <div>
+      <h1 className="text-2xl font-bold">Welcome to the Admin Dashboard</h1>
+      <p>Use the sidebar to navigate through different sections.</p>
+    </div>
+  );
 }
-
-export default Admin
