@@ -88,7 +88,7 @@ function AddDepartment() {
   return (
     <div className="container p-4">
   <ToastContainer />
-  <h1 className="text-2xl text[#1c2333] font-bold mb-4 text-start">Add New Department -</h1>
+  <h1 className="text-2xl text[#1c2333] font-bold mb-4 text-start">Add New Department</h1>
   <form
     onSubmit={handleSubmit}
     className="bg-white shadow-lg rounded-lg p-6 space-y-4 w-full"
@@ -101,7 +101,7 @@ function AddDepartment() {
           type="text"
           name="name"
           onChange={handleChange}
-          className="w-full p-2 border border-gray-300 text-xs rounded-lg focus:ring focus:ring-blue-300 text-base placeholder-gray-400"
+          className="w-full p-2 border border-gray-300 text-xs rounded-lg focus:ring focus:ring-blue-300 placeholder-gray-400"
           placeholder="Enter Department name"
           required
         />
@@ -112,7 +112,7 @@ function AddDepartment() {
           type="text"
           name="short_name"
           onChange={handleChange}
-          className="w-full p-2 border border-gray-300 text-xs rounded-lg focus:ring focus:ring-blue-300 text-base placeholder-gray-400"
+          className="w-full p-2 border border-gray-300 text-xs rounded-lg focus:ring focus:ring-blue-300 placeholder-gray-400"
           placeholder="Enter Short Name"
           required
         />
@@ -123,7 +123,7 @@ function AddDepartment() {
           type="text"
           name="description"
           onChange={handleChange}
-          className="w-full p-2 border border-gray-300 text-xs rounded-lg focus:ring focus:ring-blue-300 text-base placeholder-gray-400"
+          className="w-full p-2 border border-gray-300 text-xs rounded-lg focus:ring focus:ring-blue-300 placeholder-gray-400"
           placeholder="Enter Description"
         />
       </div>
@@ -131,12 +131,12 @@ function AddDepartment() {
 
     {/* Submit Button */}
     <div className="text-center">
-      <button
-        type="submit"
-        className="bg-[#1c2333] hover:bg-opacity-90 text-white font-semibold py-2 px-6 rounded shadow-md"
+      <a
+        href="#"
+        className="bg-[#1c2333] hover:bg-opacity-90 text-white font-semibold py-2 px-6 rounded-lg shadow-md"
       >
         Submit
-      </button>
+      </a>
     </div>
   </form>
 </div>
