@@ -47,14 +47,14 @@ function AuthPage() {
     if (isLogin) {
       // Login API endpoint based on role
       if (formData.role === "user") {
-        apiEndpoint = "https://college-portal-backend-y8d9.onrender.com/./api/user/login";
+        apiEndpoint = "https://college-portal-backend-y8d9.onrender.com/api/user/login";
       } else {
         apiEndpoint = "https://college-portal-backend-y8d9.onrender.com/api/admin/login";
       }
     } else {
       // Register API endpoint based on role
       if (formData.role === "user") {
-        apiEndpoint = "https://college-portal-backend-y8d9.onrender.com/./api/user/register";
+        apiEndpoint = "https://college-portal-backend-y8d9.onrender.com/api/user/register";
       } else {
         apiEndpoint = "https://college-portal-backend-y8d9.onrender.com/api/admin/register";
       }
