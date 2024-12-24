@@ -88,10 +88,10 @@ function AddAffiliation() {
   return (
     <div className="container p-4">
       <ToastContainer />
-      <h1 className="text-xl font-semibold mb-6  text-[#1c2333]">Add New Affiliation</h1>
+      <h1 className="text-2xl font-bold px-4 mb-6 text-[#1c2333]">Add New Affiliation</h1>
       <form
         onSubmit={handleSubmit}
-        className="bg-white shadow-lg rounded-lg p-6 space-y-4 w-full"
+        className="bg-white shadow-lg rounded-lg p-4 space-y-4 w-full"
       >
         {/* Affiliation Name */}
         <div className="grid grid-cols-1 gap-4">

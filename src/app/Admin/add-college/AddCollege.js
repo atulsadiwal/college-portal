@@ -107,10 +107,10 @@ function AddCollege() {
   return (
     <div className="container p-4">
       <ToastContainer />
-      <h1 className="text-2xl font-bold mb-4 text-start">Add New College</h1>
+      <h1 className="text-2xl font-bold mb-4 text-start px-4">Add New College</h1>
       <form
         onSubmit={handleSubmit}
-        className="bg-white shadow-lg rounded-lg p-6 space-y-4 w-full"
+        className="bg-white shadow-lg rounded-lg p-4 space-y-4 w-full"
       >
         {/* College Name and City */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">

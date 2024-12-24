@@ -1,4 +1,3 @@
-
 "use client"; // For Next.js app directory support
 
 import React, { useState } from "react";
@@ -99,10 +98,10 @@ function AddAccomodation() {
   return (
     <div className="container p-4">
   <ToastContainer />
-  <h1 className="text-2xl font-bold mb-4 text-start">Add New Accommodation</h1>
+  <h1 className="text-2xl font-bold mb-4 text-start px-4">Add New Accommodation</h1>
   <form
     onSubmit={handleSubmit}
-    className="bg-white shadow-lg rounded-lg p-6 space-y-4 w-full"
+    className="bg-white shadow-lg rounded-lg p-4 space-y-4 w-full"
   >
     {/* Name */}
     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
