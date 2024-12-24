@@ -10,8 +10,8 @@ const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL
 function AddAffiliation() {
   const [formData, setFormData] = useState({
     name: "",
-    short_name:"",
-    description:"",
+    short_name: "",
+    description: "",
   });
 
   // Handle input changes
@@ -87,59 +87,59 @@ function AddAffiliation() {
 
   return (
     <div className="container p-4">
-  <ToastContainer />
-  <h1 className="text-xl font-semibold mb-6  text-[#1c2333]">Add New Affiliation - </h1>
-  <form
-    onSubmit={handleSubmit}
-    className="bg-white shadow-lg rounded-lg p-6 space-y-4 w-full"
-  >
-    {/* Affiliation Name */}
-    <div className="grid grid-cols-1 gap-4">
-      <div>
-        <label className="block text-sm mb-2 font-medium text-gray-700">Affiliation Name</label>
-        <input
-          type="text"
-          name="name"
-          onChange={handleChange}
-          className="w-full p-2 text-xs border border-gray-300 rounded text-base placeholder-gray-400"
-          placeholder="Enter Affiliation name"
-          required
-        />
-      </div>
-      <div>
-        <label className="block text-sm mb-2 font-medium text-gray-700">Short Name</label>
-        <input
-          type="text"
-          name="short_name"
-          onChange={handleChange}
-          className="w-full p-2 text-xs border border-gray-300 rounded text-base placeholder-gray-400"
-          placeholder="Enter Short Name"
-          required
-        />
-      </div>
-      <div>
-        <label className="block text-sm mb-2 font-medium text-gray-700">Description</label>
-        <input
-          type="text"
-          name="description"
-          onChange={handleChange}
-          className="w-full p-2 text-xs border border-gray-300 rounded text-base placeholder-gray-400"
-          placeholder="Enter Description"
-        />
-      </div>
-    </div>
-
-    {/* Submit Button */}
-    <div className="text-center">
-      <button
-        type="submit"
-        className="bg-[#1c2333] hover:bg-opacity-90 text-white font-semibold py-2 px-6 rounded shadow-md"
+      <ToastContainer />
+      <h1 className="text-xl font-semibold mb-6  text-[#1c2333]">Add New Affiliation</h1>
+      <form
+        onSubmit={handleSubmit}
+        className="bg-white shadow-lg rounded-lg p-6 space-y-4 w-full"
       >
-        Submit
-      </button>
+        {/* Affiliation Name */}
+        <div className="grid grid-cols-1 gap-4">
+          <div>
+            <label className="block text-sm mb-2 font-medium text-gray-700">Affiliation Name</label>
+            <input
+              type="text"
+              name="name"
+              onChange={handleChange}
+              className="w-full p-2 text-xs border border-gray-300 rounded placeholder-gray-400"
+              placeholder="Enter Affiliation name"
+              required
+            />
+          </div>
+          <div>
+            <label className="block text-sm mb-2 font-medium text-gray-700">Short Name</label>
+            <input
+              type="text"
+              name="short_name"
+              onChange={handleChange}
+              className="w-full p-2 text-xs border border-gray-300 rounded placeholder-gray-400"
+              placeholder="Enter Short Name"
+              required
+            />
+          </div>
+          <div>
+            <label className="block text-sm mb-2 font-medium text-gray-700">Description</label>
+            <input
+              type="text"
+              name="description"
+              onChange={handleChange}
+              className="w-full p-2 text-xs border border-gray-300 rounded placeholder-gray-400"
+              placeholder="Enter Description"
+            />
+          </div>
+        </div>
+
+        {/* Submit Button */}
+        <div className="text-center">
+          <a
+            href="#"
+            className="bg-[#1c2333] hover:bg-opacity-90 text-white font-semibold py-2 px-6 rounded shadow-md"
+          >
+            Submit
+          </a>
+        </div>
+      </form>
     </div>
-  </form>
-</div>
 
   );
 }

@@ -10,8 +10,8 @@ const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL
 function AddStream() {
   const [formData, setFormData] = useState({
     name: "",
-    short_name:"",
-    description:"",
+    short_name: "",
+    description: "",
   });
 
   // Handle input changes
@@ -87,60 +87,60 @@ function AddStream() {
 
   return (
     <div className="container p-4">
-    <ToastContainer />
-    <h1 className="text-2xl font-bold mb-4 text-start">Add New Stream -</h1>
-    <form
-      onSubmit={handleSubmit}
-      className="bg-white shadow-lg rounded-lg p-6 space-y-4 w-full"
-    >
-      {/* Stream Details */}
-      <div className="grid grid-cols-1 gap-4">
-        <div>
-          <label className="block text-sm mb-2 font-medium text-gray-700">Name</label>
-          <input
-            type="text"
-            name="name"
-            onChange={handleChange}
-            className="w-full p-2 border border-gray-300 text-xs rounded-lg focus:ring focus:ring-blue-300 text-base placeholder-gray-400"
-            placeholder="Enter Stream name"
-            required
-          />
+      <ToastContainer />
+      <h1 className="text-2xl font-bold mb-4 text-start">Add New Stream</h1>
+      <form
+        onSubmit={handleSubmit}
+        className="bg-white shadow-lg rounded-lg p-6 space-y-4 w-full"
+      >
+        {/* Stream Details */}
+        <div className="grid grid-cols-1 gap-4">
+          <div>
+            <label className="block text-sm mb-2 font-medium text-gray-700">Name</label>
+            <input
+              type="text"
+              name="name"
+              onChange={handleChange}
+              className="w-full p-2 border border-gray-300 text-xs rounded-lg focus:ring focus:ring-blue-300 placeholder-gray-400"
+              placeholder="Enter Stream name"
+              required
+            />
+          </div>
+          <div>
+            <label className="block text-sm mb-2 font-medium text-gray-700">Short Name</label>
+            <input
+              type="text"
+              name="short_name"
+              onChange={handleChange}
+              className="w-full p-2 border border-gray-300 text-xs rounded-lg focus:ring focus:ring-blue-300 placeholder-gray-400"
+              placeholder="Enter Short Name"
+              required
+            />
+          </div>
+          <div>
+            <label className="block text-sm mb-2 font-medium text-gray-700">Description</label>
+            <input
+              type="text"
+              name="description"
+              onChange={handleChange}
+              className="w-full p-2 border border-gray-300 text-xs rounded-lg focus:ring focus:ring-blue-300 placeholder-gray-400"
+              placeholder="Enter Description"
+            />
+          </div>
         </div>
-        <div>
-          <label className="block text-sm mb-2 font-medium text-gray-700">Short Name</label>
-          <input
-            type="text"
-            name="short_name"
-            onChange={handleChange}
-            className="w-full p-2 border border-gray-300 text-xs rounded-lg focus:ring focus:ring-blue-300 text-base placeholder-gray-400"
-            placeholder="Enter Short Name"
-            required
-          />
+
+        {/* Submit Button */}
+        <div className="text-center">
+          <a
+            href="#"
+            className="bg-[#1c2333] hover:bg-opacity-90 text-white font-semibold py-2 px-6 rounded-lg shadow-md"
+          >
+            Submit
+          </a>
         </div>
-        <div>
-          <label className="block text-sm mb-2 font-medium text-gray-700">Description</label>
-          <input
-            type="text"
-            name="description"
-            onChange={handleChange}
-            className="w-full p-2 border border-gray-300 text-xs rounded-lg focus:ring focus:ring-blue-300 text-base placeholder-gray-400"
-            placeholder="Enter Description"
-          />
-        </div>
-      </div>
-  
-      {/* Submit Button */}
-      <div className="text-center">
-        <button
-          type="submit"
-          className="bg-[#1c2333] hover:bg-opacity-90 text-white font-semibold py-2 px-6 rounded shadow-md"
-        >
-          Submit
-        </button>
-      </div>
-    </form>
-  </div>
-  
+      </form>
+    </div>
+
   );
 }
 
