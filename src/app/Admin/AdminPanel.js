@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { toast, ToastContainer } from "react-toastify";
-import Link from "next/link"; // Import Link from Next.js
+import Link from "next/link";
 import "react-toastify/dist/ReactToastify.css";
 
 const AdminPanel = () => {
@@ -38,18 +38,14 @@ const AdminPanel = () => {
         console.log("Form Data being sent:", formData);
         let apiEndpoint = "";
 
-        // Determine the API endpoint based on email (Admin vs User)
         if (isLogin) {
             if (formData.email.includes("admin.com")) {
-                // Assuming admins have email like 'admin@admin.com'
                 apiEndpoint = "https://college-portal-backend-y8d9.onrender.com/api/admin/login";
             } else {
-                // For regular users
                 apiEndpoint = "https://college-portal-backend-y8d9.onrender.com/api/user/login";
             }
         } else {
             if (formData.email.includes("admin.com")) {
-                // For registration, admins' email follows a similar rule
                 apiEndpoint = "https://college-portal-backend-y8d9.onrender.com/api/admin/register";
             } else {
                 apiEndpoint = "https://college-portal-backend-y8d9.onrender.com/api/user/register";
@@ -167,7 +163,7 @@ const AdminPanel = () => {
                                         <option value="portalSuperAdmin">Portal Super Admin</option>
                                         <option value="portalDataEntry">Portal Data Entry</option>
                                         <option value="collegeSuperAdmin">College Super Admin</option>
-                                        <option value="user">User</option> {/* New Role */}
+                                        <option value="user">User</option>
                                     </select>
                                 </div>
                                 <div>
@@ -207,7 +203,6 @@ const AdminPanel = () => {
                         </>
                     )}
                     <div className="text-center">
-                        {/* Direct Link to admin-dashboard */}
                         <Link href="Admin/dashboard">
                             <button
                                 type="submit"
