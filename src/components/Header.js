@@ -44,7 +44,7 @@ const Header = () => {
 
           {/* Login Button */}
           <Link
-            href="/login"
+            href="/admin"
             className="bg-yellow-400 text-blue-900 px-4 py-2 rounded-lg text-lg font-semibold hover:bg-yellow-300 transition duration-300"
           >
             Login
@@ -93,7 +93,7 @@ const Header = () => {
               Contact
             </a>
             <Link
-              href="/login"
+              href="/admin"
               className="bg-yellow-400 text-blue-900 px-4 py-2 rounded-lg text-lg font-semibold hover:bg-yellow-300 transition duration-300"
               onClick={() => setIsMenuOpen(false)}
             >
