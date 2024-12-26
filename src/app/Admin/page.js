@@ -1,9 +1,9 @@
 "use client";
 import '../../styles/globals.css'
-import Admin from "./Admin";
+import AdminPanel from './AdminPanel';
 
 export default function Home() {
   return (
-    <Admin />
+    <AdminPanel />
   );
 }

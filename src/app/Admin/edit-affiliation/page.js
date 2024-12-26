@@ -1,8 +1,7 @@
-
-import EditStream from "./EditStream";
+import EditAffiliation from "./EditAffiliation";
 
 export default function Home() {
   return (
-    <EditStream />
+    <EditAffiliation />
   );
 }
