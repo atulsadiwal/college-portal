@@ -4,13 +4,15 @@ import React, { useState, useEffect } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-function AdminRegisterLogin() {
+function UserRegisterLogin() {
   const [formData, setFormData] = useState({
-    username: "",
-    password: "",
+    name: "",
     email: "",
+    password: "",
     mobile: "",
     pincode: "",
+    course: "",
+    enrollmentYear: "",
     role: "",
   });
 
@@ -35,13 +37,13 @@ function AdminRegisterLogin() {
     // Log the form data to ensure it's correct
     console.log("Form Data being sent:", formData);
 
-    // Determine the API endpoint based on action (login/register) and role
+    // Determine the API endpoint based on action (login/register) for user
     let apiEndpoint = "";
 
     if (isLogin) {
-      apiEndpoint = "https://college-portal-backend-y8d9.onrender.com/api/admin/login";
+      apiEndpoint = "https://college-portal-backend-y8d9.onrender.com/api/user/login";
     } else {
-      apiEndpoint = "https://college-portal-backend-y8d9.onrender.com/api/admin/register";
+      apiEndpoint = "https://college-portal-backend-y8d9.onrender.com/api/user/register";
     }
 
     console.log("API Endpoint:", apiEndpoint);
@@ -72,9 +74,6 @@ function AdminRegisterLogin() {
               autoClose: 3000,
             });
           }
-
-          // Use window.location for redirection (client-side redirection)
-          window.location.href = "../../app/Admin/AdminDashboard.js";  
         } else {
           toast.error(parsedResult.message || "Error during authentication.", {
             position: "top-right",
@@ -104,7 +103,7 @@ function AdminRegisterLogin() {
         {/* Only render ToastContainer after the component has mounted on the client */}
         {isClient && <ToastContainer />}
         <h1 className="text-2xl font-bold mb-4 text-center text-gray-800">
-          Admin {isLogin ? "Login" : "Register"}
+          User {isLogin ? "Login" : "Register"}
         </h1>
 
         {/* Toggle between login and registration forms */}
@@ -120,16 +119,16 @@ function AdminRegisterLogin() {
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-6">
-          {/* Only show "Username" field for both login and register */}
+          {/* Only show "Name" and other registration fields for register form */}
           {!isLogin && (
             <div className="mb-4">
-              <label className="block mb-1 font-semibold text-gray-700">Username</label>
+              <label className="block mb-1 font-semibold text-gray-700">Name</label>
               <input
                 type="text"
-                name="username"
+                name="name"
                 onChange={handleChange}
                 className="w-full p-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-green-500"
-                placeholder="Enter username"
+                placeholder="Enter full name"
                 required
               />
             </div>
@@ -172,6 +171,7 @@ function AdminRegisterLogin() {
                   onChange={handleChange}
                   className="w-full p-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-green-500"
                   placeholder="Enter mobile number"
+                  required
                 />
               </div>
 
@@ -180,15 +180,11 @@ function AdminRegisterLogin() {
                 <select
                   name="role"
                   onChange={handleChange}
-                  className="w-full p-3 border border-gray-300  text-gray-700rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-green-500"
+                  className="w-full p-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-green-500"
                   required
                 >
-                  <option value=""></option>
-                  <option value="superAdmin">Super Admin</option>
-                  <option value="portalSuperAdmin">Portal Super Admin</option>
-                  <option value="portalDataEntry">Portal Data Entry</option>
-                  <option value="collegeSuperAdmin">College Super Admin</option>
-                  <option value="admin">Admin</option>
+                  <option value="">Select Role</option>
+                  <option value="user">User</option>
                 </select>
               </div>
             </div>
@@ -199,26 +195,39 @@ function AdminRegisterLogin() {
             <>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <label className="block mb-1 font-semibold text-gray-700">Pincode</label>
+                  <label className="block mb-1 font-semibold text-gray-700">Course</label>
                   <input
                     type="text"
-                    name="pincode"
+                    name="course"
                     onChange={handleChange}
                     className="w-full p-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-green-500"
-                    placeholder="Enter pincode"
+                    placeholder="Enter course"
+                    required
                   />
                 </div>
 
                 <div>
-                  <label className="block mb-1 font-semibold text-gray-700">Type</label>
+                  <label className="block mb-1 font-semibold text-gray-700">Enrollment Year</label>
                   <input
-                    type="text"
-                    name="type"
+                    type="number"
+                    name="enrollmentYear"
                     onChange={handleChange}
                     className="w-full p-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-green-500"
-                    placeholder="Enter type"
+                    placeholder="Enter enrollment year"
+                    required
                   />
                 </div>
+              </div>
+
+              <div className="mb-4">
+                <label className="block mb-1 font-semibold text-gray-700">Pincode</label>
+                <input
+                  type="text"
+                  name="pincode"
+                  onChange={handleChange}
+                  className="w-full p-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-green-500"
+                  placeholder="Enter pincode"
+                />
               </div>
             </>
           )}
@@ -238,4 +247,4 @@ function AdminRegisterLogin() {
   );
 }
 
-export default AdminRegisterLogin;
+export default UserRegisterLogin;
