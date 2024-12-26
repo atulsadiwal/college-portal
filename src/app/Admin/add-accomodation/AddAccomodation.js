@@ -1,4 +1,3 @@
-
 "use client"; // For Next.js app directory support
 
 import React, { useState } from "react";
@@ -99,10 +98,10 @@ function AddAccomodation() {
   return (
     <div className="container p-4">
   <ToastContainer />
-  <h1 className="text-2xl font-bold mb-4 text-start">Add New Accommodation</h1>
+  <h1 className="text-2xl font-bold mb-4 text-start px-4">Add New Accommodation</h1>
   <form
     onSubmit={handleSubmit}
-    className="bg-white shadow-lg rounded-lg p-6 space-y-4 w-full"
+    className="bg-white shadow-lg rounded-lg p-4 space-y-4 w-full"
   >
     {/* Name */}
     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -114,7 +113,7 @@ function AddAccomodation() {
           type="text"
           name="name"
           onChange={handleChange}
-          className="w-full p-2 border border-gray-300 text-xs rounded-lg focus:ring focus:ring-blue-300 text-base placeholder-gray-400"
+          className="w-full p-2 border border-gray-300 text-xs rounded-lg focus:ring focus:ring-blue-300 placeholder-gray-400"
           placeholder="Enter Accommodation name"
           required
         />
@@ -124,7 +123,7 @@ function AddAccomodation() {
         <select
           name="type"
           onChange={handleChange}
-          className="w-full p-2 border border-gray-300 text-xs rounded-lg focus:ring focus:ring-blue-300 text-base placeholder-gray-400"
+          className="w-full p-2 border border-gray-300 text-xs rounded-lg focus:ring focus:ring-blue-300 placeholder-gray-400"
           required
         >
           <option value="Hostel">Hostel</option>
@@ -142,7 +141,7 @@ function AddAccomodation() {
           type="text"
           name="address"
           onChange={handleChange}
-          className="w-full p-2 border border-gray-300 text-xs rounded-lg focus:ring focus:ring-blue-300 text-base placeholder-gray-400"
+          className="w-full p-2 border border-gray-300 text-xs rounded-lg focus:ring focus:ring-blue-300 placeholder-gray-400"
           placeholder="Enter Address"
           required
         />
@@ -153,7 +152,7 @@ function AddAccomodation() {
           type="text"
           name="city"
           onChange={handleChange}
-          className="w-full p-2 border border-gray-300 text-xs rounded-lg focus:ring focus:ring-blue-300 text-base placeholder-gray-400"
+          className="w-full p-2 border border-gray-300 text-xs rounded-lg focus:ring focus:ring-blue-300 placeholder-gray-400"
           placeholder="Enter City"
           required
         />
@@ -168,7 +167,7 @@ function AddAccomodation() {
           type="text"
           name="country"
           onChange={handleChange}
-          className="w-full p-2 border border-gray-300 text-xs rounded-lg focus:ring focus:ring-blue-300 text-base placeholder-gray-400"
+          className="w-full p-2 border border-gray-300 text-xs rounded-lg focus:ring focus:ring-blue-300 placeholder-gray-400"
           placeholder="Enter Country Name"
           required
         />
@@ -179,7 +178,7 @@ function AddAccomodation() {
           type="text"
           name="pincode"
           onChange={handleChange}
-          className="w-full p-2 border border-gray-300 text-xs rounded-lg focus:ring focus:ring-blue-300 text-base placeholder-gray-400"
+          className="w-full p-2 border border-gray-300 text-xs rounded-lg focus:ring focus:ring-blue-300 placeholder-gray-400"
           placeholder="Enter Pincode"
           required
         />
@@ -194,7 +193,7 @@ function AddAccomodation() {
           type="number"
           name="latitude"
           onChange={handleChange}
-          className="w-full p-2 border border-gray-300 text-xs rounded-lg focus:ring focus:ring-blue-300 text-base placeholder-gray-400"
+          className="w-full p-2 border border-gray-300 text-xs rounded-lg focus:ring focus:ring-blue-300 placeholder-gray-400"
           placeholder="Enter Latitude"
         />
       </div>
@@ -204,7 +203,7 @@ function AddAccomodation() {
           type="number"
           name="longitude"
           onChange={handleChange}
-          className="w-full p-2 border border-gray-300 text-xs rounded-lg focus:ring focus:ring-blue-300 text-base placeholder-gray-400"
+          className="w-full p-2 border border-gray-300 text-xs rounded-lg focus:ring focus:ring-blue-300 placeholder-gray-400"
           placeholder="Enter Longitude"
         />
       </div>
@@ -218,7 +217,7 @@ function AddAccomodation() {
           type="text"
           name="price"
           onChange={handleChange}
-          className="w-full p-2 border border-gray-300 text-xs rounded-lg focus:ring focus:ring-blue-300 text-base placeholder-gray-400"
+          className="w-full p-2 border border-gray-300 text-xs rounded-lg focus:ring focus:ring-blue-300 placeholder-gray-400"
           placeholder="Enter Price"
           required
         />
@@ -229,7 +228,7 @@ function AddAccomodation() {
           type="text"
           name="amenities"
           onChange={handleChange}
-          className="w-full p-2 border border-gray-300 text-xs rounded-lg focus:ring focus:ring-blue-300 text-base placeholder-gray-400"
+          className="w-full p-2 border border-gray-300 text-xs rounded-lg focus:ring focus:ring-blue-300 placeholder-gray-400"
           placeholder="Enter Amenities"
           required
         />
@@ -244,7 +243,7 @@ function AddAccomodation() {
           type="text"
           name="phone"
           onChange={handleChange}
-          className="w-full p-2 border border-gray-300 text-xs rounded-lg focus:ring focus:ring-blue-300 text-base placeholder-gray-400"
+          className="w-full p-2 border border-gray-300 text-xs rounded-lg focus:ring focus:ring-blue-300 placeholder-gray-400"
           placeholder="Enter phone number"
           required
         />
@@ -255,7 +254,7 @@ function AddAccomodation() {
           type="email"
           name="email"
           onChange={handleChange}
-          className="w-full p-2 border border-gray-300 text-xs rounded-lg focus:ring focus:ring-blue-300 text-base placeholder-gray-400"
+          className="w-full p-2 border border-gray-300 text-xs rounded-lg focus:ring focus:ring-blue-300 placeholder-gray-400"
           placeholder="Enter email"
           required
         />
@@ -266,7 +265,7 @@ function AddAccomodation() {
           type="text"
           name="images"
           onChange={handleChange}
-          className="w-full p-2 border border-gray-300 text-xs rounded-lg focus:ring focus:ring-blue-300 text-base placeholder-gray-400"
+          className="w-full p-2 border border-gray-300 text-xs rounded-lg focus:ring focus:ring-blue-300 placeholder-gray-400"
           placeholder="Enter Image URL"
           required
         />

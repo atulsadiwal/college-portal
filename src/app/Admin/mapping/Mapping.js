@@ -71,47 +71,47 @@ export default function Mapping() {
 
   return (
     <>
-  <h1 className="text-2xl font-bold mb-4 text-start">Select Items For Mapping</h1>
-    <div className="w-full mx-auto mt-10 p-4 border border-gray-300 rounded-lg shadow-md bg-white">
-  <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-6">
-    {Object.keys(fields).map((fieldKey, index) => (
-      <div key={index} className="mb-4">
-        <label
-          htmlFor={fieldKey}
-          className="block text-sm font-medium text-gray-700 mb-2"
-        >
-          {fieldMappings[fieldKey].label}
-        </label>
-        <select
-          id={fieldKey}
-          name={fieldKey}
-          value={selectedValues[fieldKey]}
-          onChange={handleChange}
-          className="w-full p-2 border border-gray-300 text-xs rounded-lg focus:ring focus:ring-blue-300 text-base placeholder-gray-400"
-        >
-          <option value="" disabled>
-            {fieldMappings[fieldKey].placeholder}
-          </option>
-          {(fields[fieldKey] || []).map((option) => (
-            <option key={option._id} value={option._id}>
-              {option.name}
-            </option>
+      <h1 className="text-2xl font-bold px-4 mb-4 text-start max-md:text-xl max-sm:text-lg">Select Items For Mapping</h1>
+      <div className="w-full mx-auto mt-5 p-4 border border-gray-300 rounded-lg shadow-md bg-white">
+        <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {Object.keys(fields).map((fieldKey, index) => (
+            <div key={index} className="mb-2">
+              <label
+                htmlFor={fieldKey}
+                className="block text-sm font-medium text-gray-700 mb-2"
+              >
+                {fieldMappings[fieldKey].label}
+              </label>
+              <select
+                id={fieldKey}
+                name={fieldKey}
+                value={selectedValues[fieldKey]}
+                onChange={handleChange}
+                className="w-full p-2 border border-gray-300 text-xs rounded-lg focus:ring focus:ring-blue-300 placeholder-gray-400"
+              >
+                <option value="" disabled>
+                  {fieldMappings[fieldKey].placeholder}
+                </option>
+                {(fields[fieldKey] || []).map((option) => (
+                  <option key={option._id} value={option._id}>
+                    {option.name}
+                  </option>
+                ))}
+              </select>
+            </div>
           ))}
-        </select>
+          <div className="col-span-2 text-center">
+            <button
+              type="submit"
+              className="bg-[#1c2333] text-white py-2 px-6 rounded-lg shadow-md hover:bg-opacity-90"
+            >
+              Submit
+            </button>
+          </div>
+        </form>
       </div>
-    ))}
-    <div className="col-span-2 text-center">
-    <button
-  type="submit"
-  className="bg-[#1c2333] text-white py-2 px-6 rounded-lg shadow-md hover:bg-opacity-90"
->
-  Submit
-</button>
-    </div>
-  </form>
-</div>
 
-</>
+    </>
 
   );
 }
