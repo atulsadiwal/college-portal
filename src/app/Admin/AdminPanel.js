@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { toast, ToastContainer } from "react-toastify";
+import Link from "next/link"; // Import Link from Next.js
 import "react-toastify/dist/ReactToastify.css";
 
 const AdminPanel = () => {
@@ -37,17 +38,21 @@ const AdminPanel = () => {
         console.log("Form Data being sent:", formData);
         let apiEndpoint = "";
 
+        // Determine the API endpoint based on email (Admin vs User)
         if (isLogin) {
-            if (formData.role === "user") {
-                apiEndpoint = "https://college-portal-backend-y8d9.onrender.com/./api/user/login";
-            } else {
+            if (formData.email.includes("admin.com")) {
+                // Assuming admins have email like 'admin@admin.com'
                 apiEndpoint = "https://college-portal-backend-y8d9.onrender.com/api/admin/login";
+            } else {
+                // For regular users
+                apiEndpoint = "https://college-portal-backend-y8d9.onrender.com/api/user/login";
             }
         } else {
-            if (formData.role === "user") {
-                apiEndpoint = "https://college-portal-backend-y8d9.onrender.com/./api/user/register";
-            } else {
+            if (formData.email.includes("admin.com")) {
+                // For registration, admins' email follows a similar rule
                 apiEndpoint = "https://college-portal-backend-y8d9.onrender.com/api/admin/register";
+            } else {
+                apiEndpoint = "https://college-portal-backend-y8d9.onrender.com/api/user/register";
             }
         }
 
@@ -64,19 +69,12 @@ const AdminPanel = () => {
             try {
                 const parsedResult = JSON.parse(result);
                 if (response.ok) {
-                    if (isLogin) {
-                        const { token } = parsedResult;
-                        localStorage.setItem("authToken", token);
-                        toast.success("Login successful!", {
-                            position: "top-right",
-                            autoClose: 3000,
-                        });
-                    } else {
-                        toast.success("Registration successful! Please log in.", {
-                            position: "top-right",
-                            autoClose: 3000,
-                        });
-                    }
+                    const { token, role } = parsedResult;
+                    localStorage.setItem("authToken", token);
+                    toast.success("Login successful!", {
+                        position: "top-right",
+                        autoClose: 3000,
+                    });
                 } else {
                     toast.error(parsedResult.message || "Error during authentication.", {
                         position: "top-right",
@@ -209,17 +207,20 @@ const AdminPanel = () => {
                         </>
                     )}
                     <div className="text-center">
-                        <button
-                            type="submit"
-                            className="bg-green-500 hover:bg-green-600 text-white font-semibold py-3 px-6 rounded-md w-full focus:outline-none focus:ring-2 focus:ring-green-500"
-                        >
-                            {isLogin ? "Login" : "Register"}
-                        </button>
+                        {/* Direct Link to admin-dashboard */}
+                        <Link href="Admin/dashboard">
+                            <button
+                                type="submit"
+                                className="bg-green-500 hover:bg-green-600 text-white font-semibold py-3 px-6 rounded-md w-full focus:outline-none focus:ring-2 focus:ring-green-500"
+                            >
+                                {isLogin ? "Login" : "Register"}
+                            </button>
+                        </Link>
                     </div>
                 </form>
             </div>
         </div>
-    )
-}
+    );
+};
 
-export default AdminPanel
+export default AdminPanel;
