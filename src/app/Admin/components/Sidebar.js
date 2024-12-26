@@ -16,56 +16,56 @@ const Sidebar = ({ isOpen }) => {
 
   // Data for list items and their sublists
   const menuItems = [
-    { title: "Dashboard", icon: <MdDashboard />, route: "/Admin", subList: [] },
+    { title: "Dashboard", icon: <MdDashboard />, route: "/admin", subList: [] },
     {
       title: "College",
       icon: <MdOutlineAccountBalance />,
       subList: [
-        { name: "Add College", route: "/Admin/add-college" },
-        { name: "List Of Colleges", route: "/Admin/list-of-colleges" },
+        { name: "Add College", route: "/admin/add-college" },
+        { name: "List Of Colleges", route: "/admin/list-of-colleges" },
       ],
     },
     {
       title: "Accommodation",
       icon: <FaBuilding />,
       subList: [
-        { name: "Add Accommodations", route: "/Admin/add-accomodation" },
-        { name: "List Of Accommodations", route: "/Admin/list-of-accomodations" },
+        { name: "Add Accommodations", route: "/admin/add-accomodation" },
+        { name: "List Of Accommodations", route: "/admin/list-of-accomodations" },
       ],
     },
     {
       title: "Department",
       icon: <FaSection />,
       subList: [
-        { name: "Add Department", route: "/Admin/add-department" },
-        { name: "List Of Departments", route: "/Admin/list-of-departments" },
+        { name: "Add Department", route: "/admin/add-department" },
+        { name: "List Of Departments", route: "/admin/list-of-departments" },
       ],
     },
     {
       title: "Program",
       icon: <FiBook />,
       subList: [
-        { name: "Add Program", route: "/Admin/add-program" },
-        { name: "List Of Programs", route: "/Admin/list-of-programmes" },
+        { name: "Add Program", route: "/admin/add-program" },
+        { name: "List Of Programs", route: "/admin/list-of-programmes" },
       ],
     },
     {
       title: "Stream",
       icon: <FaStream />,
       subList: [
-        { name: "Add Stream", route: "/Admin/add-stream" },
-        { name: "List Of Streams", route: "/Admin/list-of-streams" },
+        { name: "Add Stream", route: "/admin/add-stream" },
+        { name: "List Of Streams", route: "/admin/list-of-streams" },
       ],
     },
     {
       title: "Affiliation",
       icon: <MdOutlineAppRegistration />,
       subList: [
-        { name: "Add Affiliation", route: "/Admin/add-affiliation" },
-        { name: "List Of Affiliations", route: "/Admin/list-of-affiliations" },
+        { name: "Add Affiliation", route: "/admin/add-affiliation" },
+        { name: "List Of Affiliations", route: "/admin/list-of-affiliations" },
       ],
     },
-    { title: "Mapping", icon: <PiMapPinSimpleBold />, route: "/Admin/mapping", subList: [] },
+    { title: "Mapping", icon: <PiMapPinSimpleBold />, route: "/admin/mapping", subList: [] },
   ];
 
   const toggleSublist = (index) => {
