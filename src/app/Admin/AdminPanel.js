@@ -59,7 +59,6 @@ const AdminPanel = () => {
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(formData),
             });
-
             const result = await response.text();
 
             try {
