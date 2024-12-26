@@ -88,7 +88,7 @@ function AddDepartment() {
   return (
     <div className="container p-4">
   <ToastContainer />
-  <h1 className="text-2xl text[#1c2333] font-bold mb-4 text-start">Add New Department -</h1>
+  <h1 className="text-2xl font-bold mb-4 text-start">Add New Department </h1>
   <form
     onSubmit={handleSubmit}
     className="bg-white shadow-lg rounded-lg p-6 space-y-4 w-full"

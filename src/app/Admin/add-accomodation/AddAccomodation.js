@@ -12,15 +12,16 @@ function AddAccomodation() {
   const [formData, setFormData] = useState({
     name: "",
     type: "",
+    state: "", // Add this line
     address: "",
     city: "",
     country: "",
-    pincode: "Public",
+    pincode: "",
     latitude: "",
     longitude: "",
     price: "",
     amenities: "",
-    phone:"",
+    phone: "",
     email: "",
     images: "",
   });
@@ -60,7 +61,7 @@ function AddAccomodation() {
 
     try {
       const response = await fetch(
-        `${BASE_URL}/accommodation/add-accomodation`,
+        `${BASE_URL}/accommodation/add-accommodation`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -122,20 +123,37 @@ function AddAccomodation() {
       <div>
         <label className="block text-sm mb-2 font-medium text-gray-700">Type</label>
         <select
-          name="type"
-          onChange={handleChange}
-          className="w-full p-2 border border-gray-300 text-xs rounded-lg focus:ring focus:ring-blue-300 text-base placeholder-gray-400"
-          required
-        >
-          <option value="Hostel">Hostel</option>
-          <option value="Pg">Pg</option>
-          <option value="Apartment">Apartment</option>
-        </select>
+  name="type"
+  value={formData.type} // Bind the value to formData
+  onChange={handleChange}
+  className="w-full p-2 border border-gray-300 text-xs rounded-lg focus:ring focus:ring-blue-300 text-base placeholder-gray-400"
+  required
+>
+  <option value="">Select Type</option> {/* Add this option as a placeholder */}
+  <option value="Hostel">Hostel</option>
+  <option value="Pg">Pg</option>
+  <option value="Apartment">Apartment</option>
+</select>
+
       </div>
+
+      
+
     </div>
 
     {/* Address and City */}
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+    <div>
+  <label className="block text-sm mb-2 font-medium text-gray-700">State</label>
+  <input
+    type="text"
+    name="state"
+    onChange={handleChange}
+    className="w-full p-2 border border-gray-300 text-xs rounded-lg focus:ring focus:ring-blue-300 text-base placeholder-gray-400"
+    placeholder="Enter State"
+    required
+  />
+</div>
       <div>
         <label className="block text-sm mb-2 font-medium text-gray-700">Address</label>
         <input

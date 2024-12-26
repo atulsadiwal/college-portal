@@ -60,7 +60,7 @@ function AddProgram() {
       const result = await response.json();
 
       if (response.ok) {
-        toast.success("College data uploaded successfully!", {
+        toast.success("Program uploaded successfully!", {
           position: "top-right",
           autoClose: 3000,
           hideProgressBar: false,
@@ -88,7 +88,7 @@ function AddProgram() {
   return (
     <div className="container p-4">
   <ToastContainer />
-  <h1 className="text-2xl font-bold mb-4 text-start">Add New Program -</h1>
+  <h1 className="text-2xl font-bold mb-4 text-start">Add New Program </h1>
   <form
     onSubmit={handleSubmit}
     className="bg-white shadow-lg rounded-lg p-6 space-y-4 w-full"

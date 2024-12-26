@@ -3,6 +3,8 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { use } from "react"; // Import use() to unwrap the params Promise
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
@@ -64,9 +66,10 @@ const EditDepartment = ({ params }) => {
   };
 
   return (
-    <div className="w-full max-w-xl mx-auto mt-8 p-6 bg-white rounded shadow">
-      <h1 className="text-xl font-semibold text-center text-[#1c2333]">Edit Department</h1>
-      <form onSubmit={handleSubmit}>
+    <div className="container p-4">
+      <ToastContainer />
+      <h1 className="text-2xl font-bold mb-4 text-start">Edit Department</h1>
+      <form onSubmit={handleSubmit} className="bg-white shadow-lg rounded-lg p-6 space-y-4 w-full">
         <div className="mb-4">
           <label className="block text-sm font-medium text-gray-700">Name</label>
           <input
@@ -74,7 +77,7 @@ const EditDepartment = ({ params }) => {
             name="name"
             value={formData.name}
             onChange={handleChange}
-            className="w-full px-3 py-2 border rounded"
+            className="w-full px-3 py-2 border rounded-lg"
             required
           />
         </div>
@@ -85,7 +88,7 @@ const EditDepartment = ({ params }) => {
             name="short_name"
             value={formData.short_name}
             onChange={handleChange}
-            className="w-full px-3 py-2 border rounded"
+            className="w-full px-3 py-2 border rounded-lg"
             required
           />
         </div>
@@ -95,16 +98,18 @@ const EditDepartment = ({ params }) => {
             name="description"
             value={formData.description}
             onChange={handleChange}
-            className="w-full px-3 py-2 border rounded"
+            className="w-full px-3 py-2 border rounded-lg"
             required
           />
         </div>
+        <div className="text-center">
         <button
           type="submit"
-          className="w-full bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600"
+          className="bg-[#1c2333] hover:bg-opacity-90 text-white font-semibold py-2 px-6 rounded shadow-md"
         >
           Update
         </button>
+        </div>
       </form>
     </div>
   );

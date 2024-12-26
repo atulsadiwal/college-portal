@@ -1,7 +1,9 @@
 "use client"; // Add this directive at the top of the file
-import Link from "next/link";  
+
 import { useState, useEffect } from "react";
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL
+import { FaEdit } from "react-icons/fa";
+import Link from "next/link";
 
 
 const ListOfAccomodations = () => {
@@ -10,16 +12,16 @@ const ListOfAccomodations = () => {
   const [filteredData, setFilteredData] = useState([]);
 
   useEffect(() => {
-    // Fetch data from API
     const fetchData = async () => {
       try {
         const response = await fetch(
-          `${BASE_URL}/accommodation/all-accommodations`,
+          `${BASE_URL}/accommodation/all-accommodations`
         );
         const result = await response.json();
-        if (Array.isArray(result)) {
-          setData(result);
-          setFilteredData(result);
+  
+        if (result.status && Array.isArray(result.data)) {
+          setData(result.data);
+          setFilteredData(result.data);
         } else {
           console.error("Unexpected response format:", result);
           setData([]);
@@ -31,9 +33,10 @@ const ListOfAccomodations = () => {
         setFilteredData([]);
       }
     };
-  fetchData();
-
+  
+    fetchData();
   }, []);
+  
 
   const handleSearch = () => {
     // Filter data based on the search term
@@ -54,8 +57,8 @@ const ListOfAccomodations = () => {
     <div className="w-full">
       <h1 className="text-lg font-semibold mb-4 text-center text-[#1c2333]">List Of Accommodations</h1>
   {/* Table */}
-  <div className="overflow-x-auto bg-white shadow-md rounded-lg">
-    <table className="min-w-[900px] w-full table-auto border-collapse">
+  <div className="w-[75vw] overflow-x-scroll bg-white shadow-md rounded-lg">
+    <table className=" w-full table-auto border-collapse">
       <thead className="bg-[#1c2333] text-white">
         <tr>
           <th className="px-2 py-1 text-left border border-gray-300">Name</th>
@@ -73,68 +76,72 @@ const ListOfAccomodations = () => {
         </tr>
       </thead>
       <tbody>
-        {Array.isArray(filteredData) && filteredData.length > 0 ? (
-          filteredData.map((Accomo, index) => (
-            <tr
-              key={Accomo.id}
-              className={`border-t ${
-                index % 2 === 0 ? "bg-gray-50" : "bg-white"
-              }`}
-            >
-              <td className="px-4 py-2 text-sm font-medium text-gray-700 truncate">
-                {Accomo.name}
-              </td>
-              <td className="px-4 py-2 text-sm text-gray-600 truncate">
-                {Accomo.type}
-              </td>
-              <td className="px-4 py-2 text-sm text-gray-600 truncate">
-                {Accomo.address}
-              </td>
-              <td className="px-4 py-2 text-sm text-gray-600 truncate">
-                {Accomo.city}
-              </td>
-              <td className="px-4 py-2 text-sm text-gray-600 truncate">
-                {Accomo.country}
-              </td>
-              <td className="px-4 py-2 text-sm text-gray-600 truncate">
-                {Accomo.pincode}
-              </td>
-              <td className="px-4 py-2 text-sm text-gray-600 truncate">
-                {Accomo.price}
-              </td>
-              <td className="px-4 py-2 text-sm text-gray-600 truncate">
-                {Accomo.phone}
-              </td>
-              <td className="px-4 py-2 text-sm text-gray-600 truncate">
-                {Accomo.email}
-              </td>
-              <td className="px-4 py-2 text-sm text-gray-600">
-                <img
-                  src={Accomo.image}
-                  alt={Accomo.name}
-                  className="w-16 h-16 object-cover rounded"
-                />
-              </td>
-              <td className="px-4 py-2 text-sm text-center">
-              <Link href={`/Admin/edit-accomodation/${Accomo.id}`}>
-                      <button className="bg-blue-500 text-white px-2 py-1 mx-auto rounded-lg flex items-center">
-                        <span className="material-icons"><FaEdit/></span>
-                      </button>
-                    </Link>
-              </td>
-            </tr>
-          ))
-        ) : (
-          <tr>
-            <td
-              colSpan="12"
-              className="text-center py-4 text-sm text-gray-500"
-            >
-              No Accommodation found.
-            </td>
-          </tr>
-        )}
-      </tbody>
+  {Array.isArray(filteredData) && filteredData.length > 0 ? (
+    filteredData.map((Accomo, index) => (
+      <tr
+        key={Accomo._id} // Use the correct unique identifier
+        className={`border-t ${
+          index % 2 === 0 ? "bg-gray-50" : "bg-white"
+        }`}
+      >
+        <td className="px-4 py-1 text-sm font-medium text-gray-700 truncate">
+          {Accomo.name}
+        </td>
+        <td className="px-4 py-1 text-sm text-gray-600 truncate">
+          {Accomo.type}
+        </td>
+        <td className="px-4 py-1 text-sm text-gray-600 truncate">
+          {Accomo.address}
+        </td>
+        <td className="px-4 py-1 text-sm text-gray-600 truncate">
+          {Accomo.city}
+        </td>
+        <td className="px-4 py-1 text-sm text-gray-600 truncate">
+          {Accomo.country}
+        </td>
+        <td className="px-4 py-1 text-sm text-gray-600 truncate">
+          {Accomo.pincode}
+        </td>
+        <td className="px-4 py-1 text-sm text-gray-600 truncate">
+          {Accomo.price}
+        </td>
+        <td className="px-4 py-1 text-sm text-gray-600 truncate">
+          {Accomo.amenities.join(", ")} {/* Convert array to string */}
+        </td>
+        <td className="px-4 py-1 text-sm text-gray-600 truncate">
+          {Accomo.phone}
+        </td>
+        <td className="px-4 py-1 text-sm text-gray-600 truncate">
+          {Accomo.email}
+        </td>
+        <td className="px-4 py-1 text-sm text-gray-600">
+          <img
+            src={Accomo.images && Accomo.images[0]} // Display the first image
+            alt={Accomo.name}
+            className="w-12 h-12 object-cover rounded"
+          />
+        </td>
+        <td className="px-4 py-1 text-sm text-center">
+        <Link href={`/Admin/edit-accomodation/${Accomo._id}`}>
+  <button className="bg-blue-500 text-white px-2 py-1 mx-auto rounded-lg flex items-center">
+    <span className="material-icons"><FaEdit /></span>
+  </button>
+</Link>
+        </td>
+      </tr>
+    ))
+  ) : (
+    <tr>
+      <td
+        colSpan="12"
+        className="text-center py-4 text-sm text-gray-500"
+      >
+        No Accommodation found.
+      </td>
+    </tr>
+  )}
+</tbody>
+
     </table>
   </div>
 </div>

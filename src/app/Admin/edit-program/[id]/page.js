@@ -60,16 +60,16 @@ const EditProgramPage = () => {
   };
 
   return (
-<div className="w-full max-w-xl mx-auto mt-8 p-6 bg-white rounded-lg shadow-lg">
-  <h1 className="text-2xl font-semibold text-start text-[#1c2333] mb-4">
+<div className="container p-4">
+  <h1 className="text-2xl font-bold mb-4 text-start">
     Edit Program - {id}
   </h1>
   <form
     onSubmit={handleSubmit}
-    className="space-y-4 w-full"
+    className="bg-white shadow-lg rounded-lg p-6 space-y-4 w-full"
   >
     {/* Program Details */}
-    <div className="grid grid-cols-1 gap-4">
+    <div className="grid grid-cols-1 gap-6">
       {/* Name Field */}
       <div>
         <label className="block text-sm mb-2 font-medium text-gray-700">
@@ -81,7 +81,7 @@ const EditProgramPage = () => {
           onChange={(e) =>
             setFormData({ ...formData, name: e.target.value })
           }
-          className="w-full p-3 border border-gray-300 rounded-lg text-base placeholder-gray-400 focus:ring-2 focus:ring-blue-500"
+          className="w-full p-2 border border-gray-300 rounded-lg text-xs placeholder-gray-400 focus:ring-2 focus:ring-blue-500"
           placeholder="Enter Program Name"
           required
         />
@@ -120,13 +120,13 @@ const EditProgramPage = () => {
 
     {/* Submit Button */}
     <div className="text-center">
-      <button
-        type="submit"
-        className="w-full bg-[#1c2333] text-white font-semibold py-2 px-6 rounded-lg hover:bg-opacity-90 shadow-md"
-      >
-        Update Program
-      </button>
-    </div>
+        <button
+          type="submit"
+          className="bg-[#1c2333] hover:bg-opacity-90 text-white font-semibold py-2 px-6 rounded shadow-md"
+        >
+          Update Program
+        </button>
+        </div>
   </form>
 </div>
 

@@ -15,14 +15,25 @@ const ListOfProgrammes = () => {
   useEffect(() => {
     const fetchPrograms = async () => {
       try {
-        const response = await fetch(`${BASE_URL}/program`);
+        const response = await fetch(`${BASE_URL}/program/get/all-programs`);
         if (!response.ok) {
           console.error(`API Error: ${response.status} - ${response.statusText}`);
+          return;
         }
+
         const programData = await response.json();
-        setData(programData);
+        if (Array.isArray(programData.data)) {
+          setData(programData.data); // Assuming data is inside programData.data
+          setFilteredData(programData.data); // Set initial filtered data
+        } else {
+          console.error("Unexpected API response format:", programData);
+          setData([]);
+          setFilteredData([]);
+        }
       } catch (error) {
         console.error("Failed to fetch programs:", error);
+        setData([]);
+        setFilteredData([]);
       }
     };
     fetchPrograms();
@@ -57,10 +68,10 @@ const ListOfProgrammes = () => {
             </tr>
           </thead>
           <tbody>
-            {Array.isArray(filteredData) && filteredData.length > 0 ? (
+            {filteredData.length > 0 ? (
               filteredData.map((program, index) => (
                 <tr
-                  key={program.id}
+                  key={program._id}
                   className={`border-t ${index % 2 === 0 ? "bg-gray-50" : "bg-white"}`}
                 >
                   <td className="px-4 py-1 text-xs font-medium text-gray-700 truncate">
@@ -74,7 +85,7 @@ const ListOfProgrammes = () => {
                   </td>
                   <td className="px-4 py-1 text-xs text-center">
                     <button
-                      onClick={() => handleEdit(program.id)}
+                      onClick={() => handleEdit(program._id)}
                       className="bg-blue-500 text-white px-2 py-1.5 mx-auto rounded-lg flex items-center"
                     >
                       <FaEdit />

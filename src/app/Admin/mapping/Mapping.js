@@ -42,12 +42,12 @@ export default function Mapping() {
       }
     };
 
-    fetchFieldData("field1", "college/all-colleges");
-    fetchFieldData("field2", "departments/all-departments");
-    fetchFieldData("field3", "accommodation/all-accommodations");
-    fetchFieldData("field4", "program/all-programs");
-    fetchFieldData("field5", "stream/all-streams");
-    fetchFieldData("field6", "affiliation/all-affiliation");
+    fetchFieldData("field1", "/college/all-colleges");
+    fetchFieldData("field2", "/departments/all-departments");
+    fetchFieldData("field3", "/accommodation/all-accommodations");
+    fetchFieldData("field4", "/program/get/all-programs");
+    fetchFieldData("field5", "/stream/all-streams");
+    fetchFieldData("field6", "/affiliation/all-affilaition");
   }, [BASE_URL]);
 
   const handleChange = (e) => {

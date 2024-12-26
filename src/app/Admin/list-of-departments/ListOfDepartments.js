@@ -14,7 +14,7 @@ const ListOfDepartments = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(`${BASE_URL}/department/departments`);
+        const response = await fetch(`${BASE_URL}/departments/all-departments`);
         const result = await response.json();
         
         if (result.status && Array.isArray(result.data)) {
@@ -78,8 +78,8 @@ const ListOfDepartments = () => {
                     {dept.description}
                   </td>
                   <td className="px-4 py-2 text-sm text-center">
-                    <Link href={`/Admin/edit-department/${dept.id}`}>
-                      <button className="bg-blue-500 text-white px-2 py-1 rounded-lg flex items-center">
+                    <Link href={`/Admin/edit-department/${dept._id}`}>
+                      <button className="bg-blue-500 text-white px-2 py-1 mx-auto rounded-lg flex items-center">
                         <span className="material-icons"><FaEdit/></span>
                       </button>
                     </Link>

@@ -88,7 +88,7 @@ function AddStream() {
   return (
     <div className="container p-4">
     <ToastContainer />
-    <h1 className="text-2xl font-bold mb-4 text-start">Add New Stream -</h1>
+    <h1 className="text-2xl font-bold mb-4 text-start">Add New Stream </h1>
     <form
       onSubmit={handleSubmit}
       className="bg-white shadow-lg rounded-lg p-6 space-y-4 w-full"

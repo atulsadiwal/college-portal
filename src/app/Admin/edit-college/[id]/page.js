@@ -3,6 +3,9 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { use } from "react"; 
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
@@ -41,7 +44,7 @@ const EditCollege = ({ params }) => {
   useEffect(() => {
     const fetchCollege = async () => {
       try {
-        const response = await fetch(`${BASE_URL}/college/get-by-id/${id}`);
+        const response = await fetch(`${BASE_URL}/college/colleges/${id}`);
         const result = await response.json();
 
         if (result.status && result.data) {
@@ -65,7 +68,7 @@ const EditCollege = ({ params }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch(`${BASE_URL}/college/update/${id}`, {
+      const response = await fetch(`${BASE_URL}/college/colleges/${id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
@@ -84,10 +87,11 @@ const EditCollege = ({ params }) => {
   };
 
   return (
-    <div className="w-full mx-auto mt-8 p-6 bg-white rounded shadow">
-      <h1 className="text-xl font-semibold text-center text-[#1c2333]">Edit College</h1>
-      <form onSubmit={handleSubmit} bg-white shadow-lg rounded-xl p-10 space-y-4>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+    <div className="container p-4">
+      <ToastContainer />
+      <h1 className="text-2xl font-bold mb-4 text-start">Edit College</h1>
+      <form onSubmit={handleSubmit} className="bg-white shadow-lg rounded-lg p-6 space-y-4 w-full ">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div>
           <label className="block text-sm mb-2 font-medium text-gray-700">College Name</label>
           <input
@@ -96,6 +100,7 @@ const EditCollege = ({ params }) => {
             onChange={handleChange}
             className="w-full p-2  border border-gray-300 text-xs rounded-lg focus:ring focus:ring-blue-300 text-base placeholder-gray-400"
             value={formData.name}
+            placeholder="Enter College Name"
             required
           />
         </div>
@@ -112,7 +117,7 @@ const EditCollege = ({ params }) => {
       </div>
   
       {/* State and Established Year */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div>
           <label className="block text-sm mb-2 font-medium text-gray-700">State</label>
           <input
@@ -136,7 +141,7 @@ const EditCollege = ({ params }) => {
       </div>
   
       {/* Affiliated University and College Type */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div>
           <label className="block text-sm mb-2 font-medium text-gray-700">Affiliated University Name</label>
           <input
@@ -162,7 +167,7 @@ const EditCollege = ({ params }) => {
       </div>
   
       {/* Ranking and Accreditation */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div>
           <label className="block text-sm mb-2 font-medium text-gray-700">Ranking</label>
           <input
@@ -187,7 +192,7 @@ const EditCollege = ({ params }) => {
   
       {/* Placement Details */}
       <h6 className="text-2xl font-semibold text-gray-800 mt-6">Placement Details</h6>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div>
           <label className="block text-sm mb-2 font-medium text-gray-700">Highest Package</label>
           <input
@@ -236,7 +241,7 @@ const EditCollege = ({ params }) => {
       </div>
   
       {/* Phone and Email */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div>
           <label className="block text-sm mb-2 font-medium text-gray-700">Phone</label>
           <input
@@ -260,7 +265,7 @@ const EditCollege = ({ params }) => {
       </div>
   
       {/* Location */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div>
           <label className="block text-sm mb-2 font-medium text-gray-700">Latitude</label>
           <input
@@ -284,7 +289,7 @@ const EditCollege = ({ params }) => {
       </div>
 
         {/* Image, Datasheet, and Website URLs */}
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
       <div>
         <label className="block mb-1 font-semibold text-sm mb-2">Image URL</label>
         <input
@@ -316,12 +321,14 @@ const EditCollege = ({ params }) => {
         />
       </div>
     </div>
+    <div className="text-center">
         <button
           type="submit"
-          className="w-full bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600"
+          className="bg-[#1c2333] hover:bg-opacity-90 text-white font-semibold py-2 px-6 rounded shadow-md"
         >
           Update
         </button>
+        </div>
       </form>
     </div>
   );
