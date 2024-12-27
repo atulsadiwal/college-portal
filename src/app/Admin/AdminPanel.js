@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { toast, ToastContainer } from "react-toastify";
+import Link from "next/link";
 import "react-toastify/dist/ReactToastify.css";
 
 const AdminPanel = () => {
@@ -38,16 +39,16 @@ const AdminPanel = () => {
         let apiEndpoint = "";
 
         if (isLogin) {
-            if (formData.role === "user") {
-                apiEndpoint = "https://college-portal-backend-y8d9.onrender.com/./api/user/login";
-            } else {
+            if (formData.email.includes("admin.com")) {
                 apiEndpoint = "https://college-portal-backend-y8d9.onrender.com/api/admin/login";
+            } else {
+                apiEndpoint = "https://college-portal-backend-y8d9.onrender.com/api/user/login";
             }
         } else {
-            if (formData.role === "user") {
-                apiEndpoint = "https://college-portal-backend-y8d9.onrender.com/./api/user/register";
-            } else {
+            if (formData.email.includes("admin.com")) {
                 apiEndpoint = "https://college-portal-backend-y8d9.onrender.com/api/admin/register";
+            } else {
+                apiEndpoint = "https://college-portal-backend-y8d9.onrender.com/api/user/register";
             }
         }
 
@@ -64,19 +65,12 @@ const AdminPanel = () => {
             try {
                 const parsedResult = JSON.parse(result);
                 if (response.ok) {
-                    if (isLogin) {
-                        const { token } = parsedResult;
-                        localStorage.setItem("authToken", token);
-                        toast.success("Login successful!", {
-                            position: "top-right",
-                            autoClose: 3000,
-                        });
-                    } else {
-                        toast.success("Registration successful! Please log in.", {
-                            position: "top-right",
-                            autoClose: 3000,
-                        });
-                    }
+                    const { token, role } = parsedResult;
+                    localStorage.setItem("authToken", token);
+                    toast.success("Login successful!", {
+                        position: "top-right",
+                        autoClose: 3000,
+                    });
                 } else {
                     toast.error(parsedResult.message || "Error during authentication.", {
                         position: "top-right",
@@ -169,7 +163,7 @@ const AdminPanel = () => {
                                         <option value="portalSuperAdmin">Portal Super Admin</option>
                                         <option value="portalDataEntry">Portal Data Entry</option>
                                         <option value="collegeSuperAdmin">College Super Admin</option>
-                                        <option value="user">User</option> {/* New Role */}
+                                        <option value="user">User</option>
                                     </select>
                                 </div>
                                 <div>
@@ -209,17 +203,19 @@ const AdminPanel = () => {
                         </>
                     )}
                     <div className="text-center">
-                        <button
-                            type="submit"
-                            className="bg-green-500 hover:bg-green-600 text-white font-semibold py-3 px-6 rounded-md w-full focus:outline-none focus:ring-2 focus:ring-green-500"
-                        >
-                            {isLogin ? "Login" : "Register"}
-                        </button>
+                        <Link href="Admin/dashboard">
+                            <button
+                                type="submit"
+                                className="bg-green-500 hover:bg-green-600 text-white font-semibold py-3 px-6 rounded-md w-full focus:outline-none focus:ring-2 focus:ring-green-500"
+                            >
+                                {isLogin ? "Login" : "Register"}
+                            </button>
+                        </Link>
                     </div>
                 </form>
             </div>
         </div>
-    )
-}
+    );
+};
 
-export default AdminPanel
+export default AdminPanel;

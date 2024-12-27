@@ -7,7 +7,7 @@ const stats = [
   { title: 'Placement Rate', value: 95, suffix: '%', description: 'Students successfully placed in top companies.' },
   { title: 'Alumni Worldwide', value: 20000, suffix: '+', description: 'Proud graduates making an impact globally.' },
   { title: 'Programs Offered', value: 150, suffix: '+', description: 'Diverse programs across disciplines.' },
-//   { title: 'Ranking', value: 10, suffix: '', description: 'Top 10 College for Engineering in 2023.' },
+  // { title: 'Ranking', value: 10, suffix: '', description: 'Top 10 College for Engineering in 2023.' },
 ];
 
 const achievements = [
@@ -15,19 +15,19 @@ const achievements = [
     title: 'Best Engineering College',
     description:
       'Awarded "Best Engineering College" in 2023 by the National Education Board.',
-    icon: '/award-icon.png', // Example icon (replace with actual asset)
+    icon: '/image/student1.png',
   },
   {
     title: 'Innovation Hub Recognition',
     description:
       'Recognized as a hub for innovation and research by Global Innovation Forum.',
-    icon: '/innovation-icon.png',
+    icon: '/image/student5.png',
   },
   {
     title: 'Outstanding Alumni Network',
     description:
       '20,000+ alumni across the globe, with many in Fortune 500 companies.',
-    icon: '/alumni-icon.png',
+    icon: '/image/student6.png',
   },
 ];
 

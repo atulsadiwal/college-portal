@@ -12,12 +12,8 @@ const AdminLayout = ({ children }) => {
   };
 
   return (
-    <div className="flex">
-      <Sidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
-      <div className="flex-1 min-h-screen bg-gray-100">
-        <Header toggleSidebar={toggleSidebar} />
-        <main className="p-4 md:ml-64">{children}</main>
-      </div>
+    <div className="flex-1 min-h-screen bg-gray-100">
+      <main className="">{children}</main>
     </div>
   );
 };

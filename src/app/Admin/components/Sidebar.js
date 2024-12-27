@@ -16,7 +16,7 @@ const Sidebar = ({ isOpen }) => {
 
   // Data for list items and their sublists
   const menuItems = [
-    { title: "Dashboard", icon: <MdDashboard />, route: "/admin", subList: [] },
+    { title: "Dashboard", icon: <MdDashboard />, route: "/admin/dashboard", subList: [] },
     {
       title: "College",
       icon: <MdOutlineAccountBalance />,
