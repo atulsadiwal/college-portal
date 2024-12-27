@@ -1,4 +1,4 @@
-"use client"; // For Next.js app directory support
+"use client";
 
 import React, { useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
@@ -19,12 +19,11 @@ function AddAccomodation() {
     longitude: "",
     price: "",
     amenities: "",
-    phone:"",
+    phone: "",
     email: "",
     images: "",
   });
 
-  // Handle input changes
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
 
@@ -53,7 +52,6 @@ function AddAccomodation() {
     }
   };
 
-  // Submit form data
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -97,192 +95,185 @@ function AddAccomodation() {
 
   return (
     <div className="container p-4">
-  <ToastContainer />
-  <h1 className="text-2xl font-bold mb-4 text-start px-4">Add New Accommodation</h1>
-  <form
-    onSubmit={handleSubmit}
-    className="bg-white shadow-lg rounded-lg p-4 space-y-4 w-full"
-  >
-    {/* Name */}
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-      <div>
-        <label className="block text-sm mb-2 font-medium text-gray-700">
-          Accommodation Name
-        </label>
-        <input
-          type="text"
-          name="name"
-          onChange={handleChange}
-          className="w-full p-2 border border-gray-300 text-xs rounded-lg focus:ring focus:ring-blue-300 placeholder-gray-400"
-          placeholder="Enter Accommodation name"
-          required
-        />
-      </div>
-      <div>
-        <label className="block text-sm mb-2 font-medium text-gray-700">Type</label>
-        <select
-          name="type"
-          onChange={handleChange}
-          className="w-full p-2 border border-gray-300 text-xs rounded-lg focus:ring focus:ring-blue-300 placeholder-gray-400"
-          required
-        >
-          <option value="Hostel">Hostel</option>
-          <option value="Pg">Pg</option>
-          <option value="Apartment">Apartment</option>
-        </select>
-      </div>
-    </div>
-
-    {/* Address and City */}
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-      <div>
-        <label className="block text-sm mb-2 font-medium text-gray-700">Address</label>
-        <input
-          type="text"
-          name="address"
-          onChange={handleChange}
-          className="w-full p-2 border border-gray-300 text-xs rounded-lg focus:ring focus:ring-blue-300 placeholder-gray-400"
-          placeholder="Enter Address"
-          required
-        />
-      </div>
-      <div>
-        <label className="block text-sm mb-2 font-medium text-gray-700">City</label>
-        <input
-          type="text"
-          name="city"
-          onChange={handleChange}
-          className="w-full p-2 border border-gray-300 text-xs rounded-lg focus:ring focus:ring-blue-300 placeholder-gray-400"
-          placeholder="Enter City"
-          required
-        />
-      </div>
-    </div>
-
-    {/* Country and Pincode */}
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-      <div>
-        <label className="block text-sm mb-2 font-medium text-gray-700">Country</label>
-        <input
-          type="text"
-          name="country"
-          onChange={handleChange}
-          className="w-full p-2 border border-gray-300 text-xs rounded-lg focus:ring focus:ring-blue-300 placeholder-gray-400"
-          placeholder="Enter Country Name"
-          required
-        />
-      </div>
-      <div>
-        <label className="block text-sm mb-2 font-medium text-gray-700">Pincode</label>
-        <input
-          type="text"
-          name="pincode"
-          onChange={handleChange}
-          className="w-full p-2 border border-gray-300 text-xs rounded-lg focus:ring focus:ring-blue-300 placeholder-gray-400"
-          placeholder="Enter Pincode"
-          required
-        />
-      </div>
-    </div>
-
-    {/* Latitude and Longitude */}
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-      <div>
-        <label className="block text-sm mb-2 font-medium text-gray-700">Latitude</label>
-        <input
-          type="number"
-          name="latitude"
-          onChange={handleChange}
-          className="w-full p-2 border border-gray-300 text-xs rounded-lg focus:ring focus:ring-blue-300 placeholder-gray-400"
-          placeholder="Enter Latitude"
-        />
-      </div>
-      <div>
-        <label className="block text-sm mb-2 font-medium text-gray-700">Longitude</label>
-        <input
-          type="number"
-          name="longitude"
-          onChange={handleChange}
-          className="w-full p-2 border border-gray-300 text-xs rounded-lg focus:ring focus:ring-blue-300 placeholder-gray-400"
-          placeholder="Enter Longitude"
-        />
-      </div>
-    </div>
-
-    {/* Price and Amenities */}
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-      <div>
-        <label className="block text-sm mb-2 font-medium text-gray-700">Price</label>
-        <input
-          type="text"
-          name="price"
-          onChange={handleChange}
-          className="w-full p-2 border border-gray-300 text-xs rounded-lg focus:ring focus:ring-blue-300 placeholder-gray-400"
-          placeholder="Enter Price"
-          required
-        />
-      </div>
-      <div>
-        <label className="block text-sm mb-2 font-medium text-gray-700">Amenities</label>
-        <input
-          type="text"
-          name="amenities"
-          onChange={handleChange}
-          className="w-full p-2 border border-gray-300 text-xs rounded-lg focus:ring focus:ring-blue-300 placeholder-gray-400"
-          placeholder="Enter Amenities"
-          required
-        />
-      </div>
-    </div>
-
-    {/* Phone, Email, and Images */}
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-      <div>
-        <label className="block text-sm mb-2 font-medium text-gray-700">Phone</label>
-        <input
-          type="text"
-          name="phone"
-          onChange={handleChange}
-          className="w-full p-2 border border-gray-300 text-xs rounded-lg focus:ring focus:ring-blue-300 placeholder-gray-400"
-          placeholder="Enter phone number"
-          required
-        />
-      </div>
-      <div>
-        <label className="block text-sm mb-2 font-medium text-gray-700">Email</label>
-        <input
-          type="email"
-          name="email"
-          onChange={handleChange}
-          className="w-full p-2 border border-gray-300 text-xs rounded-lg focus:ring focus:ring-blue-300 placeholder-gray-400"
-          placeholder="Enter email"
-          required
-        />
-      </div>
-      <div>
-        <label className="block text-sm mb-2 font-medium text-gray-700">Image URL</label>
-        <input
-          type="text"
-          name="images"
-          onChange={handleChange}
-          className="w-full p-2 border border-gray-300 text-xs rounded-lg focus:ring focus:ring-blue-300 placeholder-gray-400"
-          placeholder="Enter Image URL"
-          required
-        />
-      </div>
-    </div>
-
-    {/* Submit Button */}
-    <div className="text-center">
-      <button
-        type="submit"
-        className="bg-[#1c2333] hover:bg-opacity-90 text-white font-semibold py-2 px-6 rounded shadow-md"
+      <ToastContainer />
+      <h1 className="text-2xl font-bold mb-4 text-start px-4">Add New Accommodation</h1>
+      <form
+        onSubmit={handleSubmit}
+        className="bg-white shadow-lg rounded-lg p-4 space-y-4 w-full"
       >
-        Submit
-      </button>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <label className="block text-sm mb-2 font-medium text-gray-700">
+              Accommodation Name
+            </label>
+            <input
+              type="text"
+              name="name"
+              onChange={handleChange}
+              className="w-full p-2 border border-gray-300 text-xs rounded-lg focus:ring focus:ring-blue-300 placeholder-gray-400"
+              placeholder="Enter Accommodation name"
+              required
+            />
+          </div>
+          <div>
+            <label className="block text-sm mb-2 font-medium text-gray-700">Type</label>
+            <select
+              name="type"
+              onChange={handleChange}
+              className="w-full p-2 border border-gray-300 text-xs rounded-lg focus:ring focus:ring-blue-300 placeholder-gray-400"
+              required
+            >
+              <option value="Hostel">Hostel</option>
+              <option value="Pg">Pg</option>
+              <option value="Apartment">Apartment</option>
+            </select>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <label className="block text-sm mb-2 font-medium text-gray-700">Address</label>
+            <input
+              type="text"
+              name="address"
+              onChange={handleChange}
+              className="w-full p-2 border border-gray-300 text-xs rounded-lg focus:ring focus:ring-blue-300 placeholder-gray-400"
+              placeholder="Enter Address"
+              required
+            />
+          </div>
+          <div>
+            <label className="block text-sm mb-2 font-medium text-gray-700">City</label>
+            <input
+              type="text"
+              name="city"
+              onChange={handleChange}
+              className="w-full p-2 border border-gray-300 text-xs rounded-lg focus:ring focus:ring-blue-300 placeholder-gray-400"
+              placeholder="Enter City"
+              required
+            />
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <label className="block text-sm mb-2 font-medium text-gray-700">Country</label>
+            <input
+              type="text"
+              name="country"
+              onChange={handleChange}
+              className="w-full p-2 border border-gray-300 text-xs rounded-lg focus:ring focus:ring-blue-300 placeholder-gray-400"
+              placeholder="Enter Country Name"
+              required
+            />
+          </div>
+          <div>
+            <label className="block text-sm mb-2 font-medium text-gray-700">Pincode</label>
+            <input
+              type="text"
+              name="pincode"
+              onChange={handleChange}
+              className="w-full p-2 border border-gray-300 text-xs rounded-lg focus:ring focus:ring-blue-300 placeholder-gray-400"
+              placeholder="Enter Pincode"
+              required
+            />
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <label className="block text-sm mb-2 font-medium text-gray-700">Latitude</label>
+            <input
+              type="number"
+              name="latitude"
+              onChange={handleChange}
+              className="w-full p-2 border border-gray-300 text-xs rounded-lg focus:ring focus:ring-blue-300 placeholder-gray-400"
+              placeholder="Enter Latitude"
+            />
+          </div>
+          <div>
+            <label className="block text-sm mb-2 font-medium text-gray-700">Longitude</label>
+            <input
+              type="number"
+              name="longitude"
+              onChange={handleChange}
+              className="w-full p-2 border border-gray-300 text-xs rounded-lg focus:ring focus:ring-blue-300 placeholder-gray-400"
+              placeholder="Enter Longitude"
+            />
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <label className="block text-sm mb-2 font-medium text-gray-700">Price</label>
+            <input
+              type="text"
+              name="price"
+              onChange={handleChange}
+              className="w-full p-2 border border-gray-300 text-xs rounded-lg focus:ring focus:ring-blue-300 placeholder-gray-400"
+              placeholder="Enter Price"
+              required
+            />
+          </div>
+          <div>
+            <label className="block text-sm mb-2 font-medium text-gray-700">Amenities</label>
+            <input
+              type="text"
+              name="amenities"
+              onChange={handleChange}
+              className="w-full p-2 border border-gray-300 text-xs rounded-lg focus:ring focus:ring-blue-300 placeholder-gray-400"
+              placeholder="Enter Amenities"
+              required
+            />
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div>
+            <label className="block text-sm mb-2 font-medium text-gray-700">Phone</label>
+            <input
+              type="text"
+              name="phone"
+              onChange={handleChange}
+              className="w-full p-2 border border-gray-300 text-xs rounded-lg focus:ring focus:ring-blue-300 placeholder-gray-400"
+              placeholder="Enter phone number"
+              required
+            />
+          </div>
+          <div>
+            <label className="block text-sm mb-2 font-medium text-gray-700">Email</label>
+            <input
+              type="email"
+              name="email"
+              onChange={handleChange}
+              className="w-full p-2 border border-gray-300 text-xs rounded-lg focus:ring focus:ring-blue-300 placeholder-gray-400"
+              placeholder="Enter email"
+              required
+            />
+          </div>
+          <div>
+            <label className="block text-sm mb-2 font-medium text-gray-700">Image URL</label>
+            <input
+              type="text"
+              name="images"
+              onChange={handleChange}
+              className="w-full p-2 border border-gray-300 text-xs rounded-lg focus:ring focus:ring-blue-300 placeholder-gray-400"
+              placeholder="Enter Image URL"
+              required
+            />
+          </div>
+        </div>
+
+        <div className="text-center">
+          <button
+            type="submit"
+            className="bg-[#1c2333] hover:bg-opacity-90 text-white font-semibold py-2 px-6 rounded shadow-md"
+          >
+            Submit
+          </button>
+        </div>
+      </form>
     </div>
-  </form>
-</div>
 
   );
 }
