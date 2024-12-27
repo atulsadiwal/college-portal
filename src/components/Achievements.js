@@ -15,19 +15,19 @@ const achievements = [
     title: 'Best Engineering College',
     description:
       'Awarded "Best Engineering College" in 2023 by the National Education Board.',
-    icon: '/image/student1.png',
+    icon: '/image/student/student1.png',
   },
   {
     title: 'Innovation Hub Recognition',
     description:
       'Recognized as a hub for innovation and research by Global Innovation Forum.',
-    icon: '/image/student5.png',
+    icon: '/image/student/student5.png',
   },
   {
     title: 'Outstanding Alumni Network',
     description:
       '20,000+ alumni across the globe, with many in Fortune 500 companies.',
-    icon: '/image/student6.png',
+    icon: '/image/student/student6.png',
   },
 ];
 

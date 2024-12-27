@@ -11,7 +11,7 @@ const testimonials = [
     category: 'Alumni',
     testimonial:
       '“The college transformed my career trajectory. The world-class faculty and vibrant community gave me opportunities I never imagined!”',
-    image: '/image/student1.png',
+    image: '/image/student/student1.png',
   },
   {
     name: 'Jane Smith',
@@ -19,7 +19,7 @@ const testimonials = [
     category: 'Students',
     testimonial:
       '“Being part of this college is an experience of a lifetime. The state-of-the-art infrastructure and mentorship are unmatched.”',
-    image: '/image/student2.png',
+    image: '/image/student/student2.png',
   },
   {
     name: 'Emily Davis',
@@ -27,7 +27,7 @@ const testimonials = [
     category: 'Alumni',
     testimonial:
       '“This institution laid the foundation for my successful career. I owe everything to the incredible support I received here.”',
-    image: '/image/student3.png',
+    image: '/image/student/student3.png',
   },
   {
     name: 'Michael Brown',
@@ -35,7 +35,7 @@ const testimonials = [
     category: 'Students',
     testimonial:
       '“As a parent, I couldn’t be happier. My son has gained skills and confidence that I couldn’t have imagined.”',
-    image: '/image/student4.png',
+    image: '/image/student/student4.png',
   },
 ];
 
