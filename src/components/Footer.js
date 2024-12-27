@@ -6,9 +6,7 @@ const Footer = () => {
   return (
     <footer className="bg-[#002855] text-white py-10">
       <div className="container mx-auto px-5">
-        {/* Top Section */}
         <div className="grid grid-cols-1 md:grid-cols-5 gap-8 mb-10">
-          {/* College Logo and About */}
           <div>
             <h3 className="text-2xl font-bold mb-4 flex items-center">
               <FaGraduationCap className="mr-2" />
@@ -20,7 +18,6 @@ const Footer = () => {
             </p>
           </div>
 
-          {/* Academic Resources */}
           <div>
             <h3 className="text-xl font-semibold mb-4 hover:text-gray-300 transition duration-200">Academic Resources</h3>
             <ul className="space-y-2">
@@ -47,7 +44,6 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Alumni & Career */}
           <div>
             <h3 className="text-xl font-semibold mb-4 hover:text-gray-300 transition duration-200">Alumni & Career</h3>
             <ul className="space-y-2">
@@ -74,7 +70,6 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Accessibility & Support */}
           <div>
             <h3 className="text-xl font-semibold mb-4 hover:text-gray-300 transition duration-200">Accessibility & Support</h3>
             <ul className="space-y-2">
@@ -101,7 +96,6 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Social Media */}
           <div>
             <h3 className="text-xl font-semibold mb-4">Connect With Us</h3>
             <div className="flex space-x-4">
@@ -149,7 +143,6 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* Newsletter */}
         <div className="text-center mb-8">
           <h3 className="text-xl font-semibold mb-4">Subscribe to Our Newsletter</h3>
           <form className="flex items-center justify-center">
@@ -164,7 +157,6 @@ const Footer = () => {
           </form>
         </div>
 
-        {/* Bottom Section */}
         <div className="border-t border-gray-700 pt-6 text-center text-sm">
           <p>&copy; {new Date().getFullYear()} College Portal. All rights reserved.</p>
         </div>

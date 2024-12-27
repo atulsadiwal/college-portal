@@ -39,12 +39,12 @@ const events = [
 const EventsSection = () => {
   const infiniteScrollVariants = {
     animate: {
-      x: ['0%', '-100%'], // Moves the container to the left infinitely
+      x: ['0%', '-100%'],
       transition: {
         x: {
           repeat: Infinity,
           repeatType: 'loop',
-          duration: 20, // Total duration of the scroll
+          duration: 20,
           ease: 'linear',
         },
       },
@@ -54,7 +54,6 @@ const EventsSection = () => {
   return (
     <section className="py-16 bg-gradient-to-b from-gray-50 to-gray-100 relative overflow-hidden">
       <div className="container mx-auto text-center">
-        {/* Heading */}
         <motion.h2
           className="text-4xl font-extrabold text-blue-900 mb-6"
           initial={{ opacity: 0, y: -50 }}
@@ -72,14 +71,12 @@ const EventsSection = () => {
           Stay updated with the latest events and happenings at our college.
         </motion.p>
 
-        {/* Infinite Scrollable Events Section */}
         <div className="relative overflow-hidden">
           <motion.div
             className="flex gap-8"
             variants={infiniteScrollVariants}
             animate="animate"
           >
-            {/* Duplicate events array for seamless infinite scroll */}
             {[...events, ...events].map((event, index) => (
               <div
                 key={index}

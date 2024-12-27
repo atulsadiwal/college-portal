@@ -6,13 +6,11 @@ import { motion } from 'framer-motion';
 const AboutSection = () => {
   return (
     <section className="relative bg-gradient-to-br from-blue-100 via-indigo-50 to-purple-100 text-gray-800 py-20 px-6 overflow-hidden">
-      {/* Background Animation */}
       <div className="absolute inset-0 z-0 opacity-20">
         <div className="w-72 h-72 bg-gradient-to-br from-blue-300 to-indigo-300 rounded-full blur-3xl absolute top-20 left-10 animate-pulse"></div>
         <div className="w-96 h-96 bg-gradient-to-br from-yellow-200 to-orange-300 rounded-full blur-3xl absolute bottom-20 right-10 animate-pulse"></div>
       </div>
 
-      {/* Content */}
       <div className="container mx-auto relative z-10 text-center">
         <motion.h2
           className="text-4xl md:text-5xl font-extrabold tracking-tight mb-6 text-blue-800"
