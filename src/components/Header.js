@@ -30,7 +30,7 @@ const Header = () => {
             About
           </a>
           <a
-            href="#programs"
+            href="/program"
             className="text-white text-lg py-2 hover:text-yellow-400 transition duration-300"
           >
             Programs
