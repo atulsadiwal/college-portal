@@ -1,42 +1,42 @@
 'use client';
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import { API_NODE_URL } from '@/app/config/config';
 
-const events = [
-  {
-    title: 'Tech Fest 2024',
-    date: 'Jan 15, 2024',
-    description: 'Explore innovative technologies and connect with peers.',
-  },
-  {
-    title: 'Cultural Night',
-    date: 'Feb 20, 2024',
-    description: 'Celebrate the diverse culture of our college community.',
-  },
-  {
-    title: 'Sports Week',
-    date: 'Mar 10-15, 2024',
-    description: 'Unleash your athletic spirit and join the exciting sports events.',
-  },
-  {
-    title: 'Alumni Meet',
-    date: 'Apr 25, 2024',
-    description: 'Reconnect with alumni and strengthen professional networks.',
-  },
-  {
-    title: 'Entrepreneurship Summit',
-    date: 'May 5, 2024',
-    description: 'Learn from industry leaders and pitch your innovative ideas.',
-  },
-  {
-    title: 'Art & Design Exhibition',
-    date: 'June 12, 2024',
-    description: 'Witness the creative works of our talented students.',
-  },
-];
+const EventCard = ({ event }) => (
+  <div className="min-w-[300px] md:min-w-[350px] lg:min-w-[400px] p-6 bg-white rounded-lg shadow-lg hover:shadow-2xl transition duration-300 transform hover:scale-105">
+    <h3 className="text-xl font-bold text-blue-900 mb-2">{event.title}</h3>
+    <p className="text-blue-700 font-semibold mb-1">Date: {event.date}</p>
+    <p className="text-gray-600">{event.description}</p>
+  </div>
+);
 
 const EventsSection = () => {
+  const [events, setEvents] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchEvents = async () => {
+      try {
+        const response = await fetch(`${API_NODE_URL}events/all-events`);
+        if (!response.ok) {
+          throw new Error('Failed to fetch events');
+        }
+        const data = await response.json();
+        setEvents(data);
+        setLoading(false);
+      } catch (err) {
+        console.error(err);
+        setError('Could not fetch events. Please try again later.');
+        setLoading(false);
+      }
+    };
+
+    fetchEvents();
+  }, []);
+
   const infiniteScrollVariants = {
     animate: {
       x: ['0%', '-100%'],
@@ -71,27 +71,27 @@ const EventsSection = () => {
           Stay updated with the latest events and happenings at our college.
         </motion.p>
 
-        <div className="relative overflow-hidden">
-          <motion.div
-            className="flex gap-8"
-            variants={infiniteScrollVariants}
-            animate="animate"
-          >
-            {[...events, ...events].map((event, index) => (
-              <div
-                key={index}
-                className="min-w-[300px] md:min-w-[350px] lg:min-w-[400px] p-6 bg-white rounded-lg shadow-lg hover:shadow-2xl transition duration-300 transform hover:scale-105"
-              >
-                <h3 className="text-xl font-bold text-blue-900 mb-2">{event.title}</h3>
-                <p className="text-blue-700 font-semibold mb-1">Date: {event.date}</p>
-                <p className="text-gray-600">{event.description}</p>
-              </div>
-            ))}
-          </motion.div>
-        </div>
+        {loading ? (
+          <p className="text-gray-600">Loading upcoming events. Please wait...</p>
+        ) : error ? (
+          <p className="text-red-500">Unable to load events. Please try again later.</p>
+        ) : (
+          <div className="relative overflow-hidden">
+            <motion.div
+              className="flex gap-8"
+              variants={infiniteScrollVariants}
+              animate="animate"
+            >
+              {[...events, ...events].map((event, index) => (
+                <EventCard key={index} event={event} />
+              ))}
+            </motion.div>
+          </div>
+        )}
       </div>
     </section>
   );
 };
 
 export default EventsSection;
+

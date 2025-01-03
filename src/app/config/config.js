@@ -1,0 +1,1 @@
+export const API_NODE_URL = "https://college-portal-backend-y8d9.onrender.com/api/";

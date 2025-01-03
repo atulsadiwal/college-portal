@@ -119,10 +119,11 @@ const Testimonial = () => {
           {['All', 'Alumni', 'Students'].map((category) => (
             <button
               key={category}
-              className={`px-4 py-2 rounded-full font-medium ${categoryFilter === category
+              className={`px-4 py-2 rounded-full font-medium ${
+                categoryFilter === category
                   ? 'bg-yellow-600 text-white'
                   : 'bg-white text-yellow-600 hover:bg-yellow-300'
-                }`}
+              }`}
               onClick={() => setCategoryFilter(category)}
             >
               {category}
