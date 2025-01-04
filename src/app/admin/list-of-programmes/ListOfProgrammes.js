@@ -2,6 +2,7 @@
 import { FaEdit } from "react-icons/fa";
 import { useState, useEffect } from "react";
 import { useRouter, useParams } from "next/navigation";
+import { API_NODE_URL } from "../../../../config/config";
 
 const ListOfProgrammes = () => {
   const [data, setData] = useState([]);

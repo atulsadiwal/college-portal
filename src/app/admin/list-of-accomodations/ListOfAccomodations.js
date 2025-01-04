@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { API_NODE_URL } from "../../../../config/config";
 
 const ListOfAccomodations = () => {
   const [data, setData] = useState([]);

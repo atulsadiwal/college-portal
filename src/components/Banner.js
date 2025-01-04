@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import { API_NODE_URL } from "../../config/config";
 
 const Banner = () => {
 

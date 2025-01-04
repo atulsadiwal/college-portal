@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { API_NODE_URL } from "../../../../config/config";
 
 const ListOfDepartments = () => {
   const [data, setData] = useState([]);
