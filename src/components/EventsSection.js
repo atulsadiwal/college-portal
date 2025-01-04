@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { API_NODE_URL } from '@/app/config/config';
+import { API_NODE_URL } from '../../config/config';
 
 const EventCard = ({ event }) => (
   <div className="min-w-[300px] md:min-w-[350px] lg:min-w-[400px] p-6 bg-white rounded-lg shadow-lg hover:shadow-2xl transition duration-300 transform hover:scale-105">

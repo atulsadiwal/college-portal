@@ -8,6 +8,10 @@ import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import Image from "next/image";
 import { FaGraduationCap, FaBook, FaUsers, FaChalkboardTeacher } from "react-icons/fa";
 import "../../styles/globals.css";
+import Faqs from "@/components/Faqs";
+import TeamComponent from "@/components/TeamComponent";
+import WhyChooseUs from "@/components/WhyChooseUs";
+
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -107,79 +111,80 @@ const About = () => {
             <main className="bg-gray-100 text-gray-800">
                 {/* Hero Section */}
                 <section
-                    ref={heroRef}
-                    className="relative h-screen bg-gradient-to-b from-blue-500 via-blue-300 to-yellow-400 text-yellow-100 overflow-hidden flex items-center"
-                >
-                    {/* Background Image */}
-                    <div
-                        ref={heroImageRef}
-                        className="absolute inset-0 z-0 scale-0 origin-center"
-                    >
-                        <Image
-                            src="/image/about/collegecampus.jpg"
-                            alt="College Campus"
-                            layout="fill"
-                            objectFit="cover"
-                            quality={100}
-                            priority
-                        />
-                    </div>
+    ref={heroRef}
+    className="relative h-screen bg-gradient-to-b from-blue-500 via-blue-300 to-yellow-400 text-yellow-100 overflow-hidden flex items-center"
+>
+    {/* Background Image */}
+    <div
+        ref={heroImageRef}
+        className="absolute inset-0 z-0 scale-0 origin-center"
+    >
+        <Image
+            src="/image/about/collegecampus.jpg"
+            alt="College Campus"
+            layout="fill"
+            objectFit="cover"
+            quality={100}
+            priority
+        />
+    </div>
 
-                    {/* Content */}
-                    <div className="relative z-10 container mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-                        {/* Left Section: Text */}
-                        <div
-                            ref={heroTextRef}
-                            className="text-center md:text-left"
-                        >
-                            <h1 className="text-4xl md:text-6xl font-extrabold text-yellow-50">
-                                About Our College
-                            </h1>
-                            <p className="mt-4 text-lg md:text-xl text-yellow-100">
-                                Empowering students with excellence in education and innovation.
-                            </p>
-                        </div>
+    {/* Content */}
+    <div className="relative z-10 container mx-auto px-6 flex flex-col md:grid md:grid-cols-2 gap-8 items-center">
+        {/* Left Section: Text */}
+        <div
+            ref={heroTextRef}
+            className="text-center md:text-left order-2 md:order-1"
+        >
+            <h1 className="text-4xl md:text-6xl font-extrabold text-yellow-50">
+                About Our College
+            </h1>
+            <p className="mt-4 text-lg md:text-xl text-yellow-100">
+                Empowering students with excellence in education and innovation.
+            </p>
+        </div>
 
-                        {/* Right Section: Images */}
-                        <div className="flex-1 relative flex items-center justify-center h-full">
-                            {/* Top Left Image */}
-                            <motion.div
-                                ref={(el) => (imageRefs.current[0] = el)}
-                                className="absolute top-1/4 left-1/4 transform hover:scale-105 transition-transform duration-500"
-                                whileHover={{ scale: 1.1 }}
-                                style={{ zIndex: zIndex[0] }}
-                                onHoverStart={() => handleHoverStart(0)}
-                                onHoverEnd={handleHoverEnd}
-                            >
-                                <Image
-                                    src="/image/about/hero1.jpg"
-                                    alt="Campus View"
-                                    width={200}
-                                    height={200}
-                                    className="rounded-lg shadow-lg"
-                                />
-                            </motion.div>
+        {/* Right Section: Images */}
+        <div className="flex-1 relative flex items-center justify-center h-full order-1 md:order-2">
+            {/* Top Left Image */}
+            <motion.div
+                ref={(el) => (imageRefs.current[0] = el)}
+                className="absolute top-1/4 left-1/4 md:top-auto md:left-auto md:relative transform hover:scale-105 transition-transform duration-500"
+                whileHover={{ scale: 1.1 }}
+                style={{ zIndex: zIndex[0] }}
+                onHoverStart={() => handleHoverStart(0)}
+                onHoverEnd={handleHoverEnd}
+            >
+                <Image
+                    src="/image/about/hero1.jpg"
+                    alt="Campus View"
+                    width={200}
+                    height={200}
+                    className="rounded-lg shadow-lg"
+                />
+            </motion.div>
 
-                            {/* Bottom Right Image */}
-                            <motion.div
-                                ref={(el) => (imageRefs.current[1] = el)}
-                                className="absolute bottom-1/4 right-1/4 transform hover:scale-105 transition-transform duration-500"
-                                whileHover={{ scale: 1.1 }}
-                                style={{ zIndex: zIndex[1] }}
-                                onHoverStart={() => handleHoverStart(1)}
-                                onHoverEnd={handleHoverEnd}
-                            >
-                                <Image
-                                    src="/image/about/hero2.jpg"
-                                    alt="Student Activities"
-                                    width={200}
-                                    height={200}
-                                    className="rounded-lg shadow-lg"
-                                />
-                            </motion.div>
-                        </div>
-                    </div>
-                </section>
+            {/* Bottom Right Image */}
+            <motion.div
+                ref={(el) => (imageRefs.current[1] = el)}
+                className="absolute bottom-1/4 right-1/4 md:bottom-auto md:right-auto md:relative transform hover:scale-105 transition-transform duration-500 mt-4"
+                whileHover={{ scale: 1.1 }}
+                style={{ zIndex: zIndex[1] }}
+                onHoverStart={() => handleHoverStart(1)}
+                onHoverEnd={handleHoverEnd}
+            >
+                <Image
+                    src="/image/about/hero2.jpg"
+                    alt="Student Activities"
+                    width={200}
+                    height={200}
+                    className="rounded-lg shadow-lg"
+                />
+            </motion.div>
+        </div>
+    </div>
+</section>
+
 
                 {/* Vision, Mission, Values */}
                 <section ref={visionRef} className="py-16 bg-gradient-to-r from-gray-100 via-gray-200 to-gray-300">
@@ -302,6 +307,8 @@ const About = () => {
                         </div>
                     </div>
                 </section>
+                <WhyChooseUs />
+                <TeamComponent/>
 
                 {/* Testimonials */}
                 <section ref={testimonialsRef} className="py-16">
@@ -344,6 +351,7 @@ const About = () => {
                     </div>
                 </section>
             </main>
+            <Faqs/>
             <Footer />
         </>
     );
