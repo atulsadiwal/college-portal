@@ -8,6 +8,9 @@ import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import Image from "next/image";
 import { FaGraduationCap, FaBook, FaUsers, FaChalkboardTeacher } from "react-icons/fa";
 import "../../styles/globals.css";
+// import Faqs from "@/components/Faqs";
+// import TeamComponent from "@/components/TeamComponent";
+// import WhyChooseUs from "@/components/WhyChooseUs";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -119,10 +122,10 @@ const About = () => {
                         />
                     </div>
 
-                    <div className="relative z-10 container mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    <div className="relative z-10 container mx-auto px-6 flex flex-col md:grid md:grid-cols-2 gap-8 items-center">
                         <div
                             ref={heroTextRef}
-                            className="text-center md:text-left"
+                            className="text-center md:text-left order-2 md:order-1"
                         >
                             <h1 className="text-4xl md:text-6xl font-extrabold text-yellow-50">
                                 About Our College
@@ -132,10 +135,10 @@ const About = () => {
                             </p>
                         </div>
 
-                        <div className="flex-1 relative flex items-center justify-center h-full">
+                        <div className="flex-1 relative flex items-center justify-center h-full order-1 md:order-2">
                             <motion.div
                                 ref={(el) => (imageRefs.current[0] = el)}
-                                className="absolute top-1/4 left-1/4 transform hover:scale-105 transition-transform duration-500"
+                                className="absolute top-1/4 left-1/4 md:top-auto md:left-auto md:relative transform hover:scale-105 transition-transform duration-500"
                                 whileHover={{ scale: 1.1 }}
                                 style={{ zIndex: zIndex[0] }}
                                 onHoverStart={() => handleHoverStart(0)}
@@ -152,7 +155,7 @@ const About = () => {
 
                             <motion.div
                                 ref={(el) => (imageRefs.current[1] = el)}
-                                className="absolute bottom-1/4 right-1/4 transform hover:scale-105 transition-transform duration-500"
+                                className="absolute bottom-1/4 right-1/4 md:bottom-auto md:right-auto md:relative transform hover:scale-105 transition-transform duration-500 mt-4"
                                 whileHover={{ scale: 1.1 }}
                                 style={{ zIndex: zIndex[1] }}
                                 onHoverStart={() => handleHoverStart(1)}
@@ -286,6 +289,8 @@ const About = () => {
                         </div>
                     </div>
                 </section>
+                {/* <WhyChooseUs />
+                <TeamComponent /> */}
 
                 <section ref={testimonialsRef} className="py-16">
                     <div className="container mx-auto px-6 text-center">
@@ -327,9 +332,10 @@ const About = () => {
                     </div>
                 </section>
             </main>
+            {/* <Faqs /> */}
             <Footer />
         </>
     );
-};
+}
 
 export default About;
