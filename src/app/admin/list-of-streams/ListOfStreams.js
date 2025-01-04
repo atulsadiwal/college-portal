@@ -35,7 +35,7 @@ const ListOfStreams = () => {
   }, []);
 
   const handleEdit = (id) => {
-    router.push(`/Admin/edit-stream/${id}`);
+    router.push(`/admin/edit-stream/${id}`);
   };
 
   return (

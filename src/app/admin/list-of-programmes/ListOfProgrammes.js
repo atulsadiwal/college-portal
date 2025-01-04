@@ -39,7 +39,7 @@ const ListOfProgrammes = () => {
   }, [search, data]);
 
   const handleEdit = (id) => {
-    router.push(`/Admin/edit-program/${id}`);
+    router.push(`/admin/edit-program/${id}`);
   };
 
   return (

@@ -76,7 +76,7 @@ const ListOfDepartments = () => {
                     {dept.description}
                   </td>
                   <td className="px-4 py-2 text-sm text-center">
-                    <Link href={`/Admin/edit-department/${dept.id}`}>
+                    <Link href={`/admin/edit-department/${dept.id}`}>
                       <button className="bg-blue-500 text-white px-2 py-1 rounded-lg flex items-center">
                         <span className="material-icons">edit</span>
                       </button>
