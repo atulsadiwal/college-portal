@@ -8,51 +8,44 @@ import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import Image from "next/image";
 import { FaGraduationCap, FaBook, FaUsers, FaChalkboardTeacher } from "react-icons/fa";
 import "../../styles/globals.css";
-import Faqs from "@/components/Faqs";
-import TeamComponent from "@/components/TeamComponent";
-import WhyChooseUs from "@/components/WhyChooseUs";
-
 
 gsap.registerPlugin(ScrollTrigger);
 
 const About = () => {
-
     const heroRef = useRef(null);
     const heroTextRef = useRef(null);
     const heroImageRef = useRef(null);
     const imageRefs = useRef([]);
-    const [zIndex, setZIndex] = useState([1, 2]); // Default stacking order
+    const [zIndex, setZIndex] = useState([1, 2]);
 
     const handleHoverStart = (index) => {
         const updatedZIndex = [...zIndex];
-        updatedZIndex[index] = 2; // Bring hovered image to the front
-        updatedZIndex[1 - index] = 1; // Send the other image to the back
+        updatedZIndex[index] = 2;
+        updatedZIndex[1 - index] = 1;
         setZIndex(updatedZIndex);
     };
 
     const handleHoverEnd = () => {
-        setZIndex([1, 2]); // Reset to default order
+        setZIndex([1, 2]);
     };
     useEffect(() => {
         const tl = gsap.timeline({
             scrollTrigger: {
                 trigger: heroRef.current,
                 start: "top top",
-                end: "+=100%", // Section stays pinned until animation is done
+                end: "+=100%",
                 scrub: true,
                 pin: true,
                 anticipatePin: 1,
             },
         });
 
-        // Image grows to fill viewport
         tl.to(heroImageRef.current, {
             scale: 1,
             duration: 2,
             ease: "power3.inOut",
         });
 
-        // Text fades out
         tl.to(
             heroTextRef.current,
             {
@@ -61,10 +54,9 @@ const About = () => {
                 duration: 1,
                 ease: "power3.inOut",
             },
-            "<" // Synchronized with image animation
+            "<"
         );
 
-        // Images fade out
         imageRefs.current.forEach((imageRef) => {
             tl.to(
                 imageRef,
@@ -74,7 +66,7 @@ const About = () => {
                     duration: 1,
                     ease: "power3.inOut",
                 },
-                "<" // Synchronized with text animation
+                "<"
             );
         });
     }, []);
@@ -89,15 +81,15 @@ const About = () => {
         sections.forEach((sectionRef) => {
             gsap.fromTo(
                 sectionRef.current,
-                { opacity: 0, y: 50 }, // Start state
+                { opacity: 0, y: 50 },
                 {
                     opacity: 1,
-                    y: 0, // End state
+                    y: 0,
                     duration: 1.5,
                     ease: "power3.out",
                     scrollTrigger: {
                         trigger: sectionRef.current,
-                        start: "top 80%", // Triggers when section enters 80% of viewport
+                        start: "top 80%",
                         toggleActions: "play none none none",
                     },
                 }
@@ -109,84 +101,75 @@ const About = () => {
         <>
             <Header />
             <main className="bg-gray-100 text-gray-800">
-                {/* Hero Section */}
                 <section
-    ref={heroRef}
-    className="relative h-screen bg-gradient-to-b from-blue-500 via-blue-300 to-yellow-400 text-yellow-100 overflow-hidden flex items-center"
->
-    {/* Background Image */}
-    <div
-        ref={heroImageRef}
-        className="absolute inset-0 z-0 scale-0 origin-center"
-    >
-        <Image
-            src="/image/about/collegecampus.jpg"
-            alt="College Campus"
-            layout="fill"
-            objectFit="cover"
-            quality={100}
-            priority
-        />
-    </div>
+                    ref={heroRef}
+                    className="relative h-screen bg-gradient-to-b from-blue-500 via-blue-300 to-yellow-400 text-yellow-100 overflow-hidden flex items-center"
+                >
+                    <div
+                        ref={heroImageRef}
+                        className="absolute inset-0 z-0 scale-0 origin-center"
+                    >
+                        <Image
+                            src="/image/about/collegecampus.jpg"
+                            alt="College Campus"
+                            layout="fill"
+                            objectFit="cover"
+                            quality={100}
+                            priority
+                        />
+                    </div>
 
-    {/* Content */}
-    <div className="relative z-10 container mx-auto px-6 flex flex-col md:grid md:grid-cols-2 gap-8 items-center">
-        {/* Left Section: Text */}
-        <div
-            ref={heroTextRef}
-            className="text-center md:text-left order-2 md:order-1"
-        >
-            <h1 className="text-4xl md:text-6xl font-extrabold text-yellow-50">
-                About Our College
-            </h1>
-            <p className="mt-4 text-lg md:text-xl text-yellow-100">
-                Empowering students with excellence in education and innovation.
-            </p>
-        </div>
+                    <div className="relative z-10 container mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                        <div
+                            ref={heroTextRef}
+                            className="text-center md:text-left"
+                        >
+                            <h1 className="text-4xl md:text-6xl font-extrabold text-yellow-50">
+                                About Our College
+                            </h1>
+                            <p className="mt-4 text-lg md:text-xl text-yellow-100">
+                                Empowering students with excellence in education and innovation.
+                            </p>
+                        </div>
 
-        {/* Right Section: Images */}
-        <div className="flex-1 relative flex items-center justify-center h-full order-1 md:order-2">
-            {/* Top Left Image */}
-            <motion.div
-                ref={(el) => (imageRefs.current[0] = el)}
-                className="absolute top-1/4 left-1/4 md:top-auto md:left-auto md:relative transform hover:scale-105 transition-transform duration-500"
-                whileHover={{ scale: 1.1 }}
-                style={{ zIndex: zIndex[0] }}
-                onHoverStart={() => handleHoverStart(0)}
-                onHoverEnd={handleHoverEnd}
-            >
-                <Image
-                    src="/image/about/hero1.jpg"
-                    alt="Campus View"
-                    width={200}
-                    height={200}
-                    className="rounded-lg shadow-lg"
-                />
-            </motion.div>
+                        <div className="flex-1 relative flex items-center justify-center h-full">
+                            <motion.div
+                                ref={(el) => (imageRefs.current[0] = el)}
+                                className="absolute top-1/4 left-1/4 transform hover:scale-105 transition-transform duration-500"
+                                whileHover={{ scale: 1.1 }}
+                                style={{ zIndex: zIndex[0] }}
+                                onHoverStart={() => handleHoverStart(0)}
+                                onHoverEnd={handleHoverEnd}
+                            >
+                                <Image
+                                    src="/image/about/hero1.jpg"
+                                    alt="Campus View"
+                                    width={200}
+                                    height={200}
+                                    className="rounded-lg shadow-lg"
+                                />
+                            </motion.div>
 
-            {/* Bottom Right Image */}
-            <motion.div
-                ref={(el) => (imageRefs.current[1] = el)}
-                className="absolute bottom-1/4 right-1/4 md:bottom-auto md:right-auto md:relative transform hover:scale-105 transition-transform duration-500 mt-4"
-                whileHover={{ scale: 1.1 }}
-                style={{ zIndex: zIndex[1] }}
-                onHoverStart={() => handleHoverStart(1)}
-                onHoverEnd={handleHoverEnd}
-            >
-                <Image
-                    src="/image/about/hero2.jpg"
-                    alt="Student Activities"
-                    width={200}
-                    height={200}
-                    className="rounded-lg shadow-lg"
-                />
-            </motion.div>
-        </div>
-    </div>
-</section>
+                            <motion.div
+                                ref={(el) => (imageRefs.current[1] = el)}
+                                className="absolute bottom-1/4 right-1/4 transform hover:scale-105 transition-transform duration-500"
+                                whileHover={{ scale: 1.1 }}
+                                style={{ zIndex: zIndex[1] }}
+                                onHoverStart={() => handleHoverStart(1)}
+                                onHoverEnd={handleHoverEnd}
+                            >
+                                <Image
+                                    src="/image/about/hero2.jpg"
+                                    alt="Student Activities"
+                                    width={200}
+                                    height={200}
+                                    className="rounded-lg shadow-lg"
+                                />
+                            </motion.div>
+                        </div>
+                    </div>
+                </section>
 
-
-                {/* Vision, Mission, Values */}
                 <section ref={visionRef} className="py-16 bg-gradient-to-r from-gray-100 via-gray-200 to-gray-300">
                     <div className="container mx-auto px-6">
                         <h2 className="text-2xl md:text-4xl font-extrabold text-center mb-12 text-gray-800">
@@ -238,7 +221,6 @@ const About = () => {
                     </div>
                 </section>
 
-                {/* Highlights */}
                 <section ref={highlightsRef} className="py-20 bg-gray-50">
                     <div className="container mx-auto px-6">
                         <h2 className="text-2xl md:text-4xl font-extrabold text-center mb-16 text-gray-800">
@@ -280,7 +262,6 @@ const About = () => {
                                     className="relative overflow-hidden rounded-lg shadow-lg bg-white group transform transition-all duration-500 hover:scale-105"
                                     whileHover={{ translateY: -5 }}
                                 >
-                                    {/* Background Image */}
                                     <div className="absolute inset-0">
                                         <Image
                                             src={item.image}
@@ -290,9 +271,7 @@ const About = () => {
                                             className="opacity-85 group-hover:opacity-50 transition-opacity duration-500"
                                         />
                                     </div>
-                                    {/* Overlay */}
                                     <div className="absolute inset-0 bg-gradient-to-b from-transparent to-gray-800 opacity-75 group-hover:opacity-90 transition-opacity duration-500"></div>
-                                    {/* Content */}
                                     <div className="relative p-8 flex flex-col items-center text-center text-yellow-200">
                                         <div className="w-16 h-16 flex items-center justify-center bg-gray-50 opacity-90 rounded-full shadow-md mb-6">
                                             {item.icon}
@@ -307,10 +286,7 @@ const About = () => {
                         </div>
                     </div>
                 </section>
-                <WhyChooseUs />
-                <TeamComponent/>
 
-                {/* Testimonials */}
                 <section ref={testimonialsRef} className="py-16">
                     <div className="container mx-auto px-6 text-center">
                         <h2 className="text-2xl md:text-3xl font-extrabold mb-12">What Our Students Say</h2>
@@ -351,10 +327,9 @@ const About = () => {
                     </div>
                 </section>
             </main>
-            <Faqs/>
             <Footer />
         </>
     );
-}
+};
 
 export default About;
