@@ -7,7 +7,7 @@ const programs = [
   {
     title: 'Engineering',
     description: 'Shape the future with cutting-edge engineering programs.',
-    icon: '⚙️', // Replace with relevant icon paths
+    icon: '⚙️',
   },
   {
     title: 'Business',
@@ -40,7 +40,6 @@ const ProgramsSection = () => {
   return (
     <section className="py-20 bg-gradient-to-b from-gray-50 to-gray-100">
       <div className="container mx-auto text-center">
-        {/* Heading */}
         <motion.h2
           className="text-5xl font-extrabold text-blue-900 mb-6 tracking-tight"
           initial={{ opacity: 0, y: -50 }}
@@ -58,7 +57,6 @@ const ProgramsSection = () => {
           Select from a wide range of professionally crafted programs designed to align with your aspirations.
         </motion.p>
 
-        {/* Program Cards */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
           {programs.map((program, index) => (
             <motion.div
@@ -69,23 +67,19 @@ const ProgramsSection = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
             >
-              {/* Card Background Effects */}
               <div
                 className="absolute inset-0 bg-gradient-to-br from-blue-50 to-transparent opacity-50 rounded-2xl pointer-events-none"
                 style={{ zIndex: -1 }}
               ></div>
 
-              {/* Icon */}
               <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center text-white text-3xl group-hover:scale-110 transition-transform duration-300">
               {program.icon}
               </div>
 
-              {/* Title */}
               <h3 className="text-xl font-semibold text-blue-900 group-hover:text-blue-700 transition-colors duration-300 mb-2">
                 {program.title}
               </h3>
 
-              {/* Description */}
               <p className="text-gray-600 group-hover:text-gray-800 transition-colors duration-300">
                 {program.description}
               </p>

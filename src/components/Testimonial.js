@@ -11,7 +11,7 @@ const testimonials = [
     category: 'Alumni',
     testimonial:
       '“The college transformed my career trajectory. The world-class faculty and vibrant community gave me opportunities I never imagined!”',
-    image: '/image/student1.png',
+    image: '/image/student/student1.png',
   },
   {
     name: 'Jane Smith',
@@ -19,7 +19,7 @@ const testimonials = [
     category: 'Students',
     testimonial:
       '“Being part of this college is an experience of a lifetime. The state-of-the-art infrastructure and mentorship are unmatched.”',
-    image: '/image/student2.png',
+    image: '/image/student/student2.png',
   },
   {
     name: 'Emily Davis',
@@ -27,7 +27,7 @@ const testimonials = [
     category: 'Alumni',
     testimonial:
       '“This institution laid the foundation for my successful career. I owe everything to the incredible support I received here.”',
-    image: '/image/student3.png',
+    image: '/image/student/student3.png',
   },
   {
     name: 'Michael Brown',
@@ -35,7 +35,7 @@ const testimonials = [
     category: 'Students',
     testimonial:
       '“As a parent, I couldn’t be happier. My son has gained skills and confidence that I couldn’t have imagined.”',
-    image: '/image/student4.png',
+    image: '/image/student/student4.png',
   },
 ];
 
@@ -45,13 +45,12 @@ const Testimonial = () => {
   const [categoryFilter, setCategoryFilter] = useState('All');
   const [isAutoplaying, setIsAutoplaying] = useState(true);
 
-  // Determine number of slides based on screen size
   const getVisibleSlides = () => {
     if (typeof window === 'undefined') return 1;
     const width = window.innerWidth;
-    if (width >= 1024) return 3; // Desktop
-    if (width >= 768) return 2; // Tablet
-    return 1; // Mobile
+    if (width >= 1024) return 3;
+    if (width >= 768) return 2;
+    return 1;
   };
 
   useEffect(() => {
@@ -61,7 +60,6 @@ const Testimonial = () => {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  // Filter testimonials based on category
   const filteredTestimonials =
     categoryFilter === 'All'
       ? testimonials
@@ -69,7 +67,6 @@ const Testimonial = () => {
 
   const totalTestimonials = filteredTestimonials.length;
 
-  // Carousel Navigation Handlers
   const handleNext = () => {
     setCurrentIndex((prevIndex) => (prevIndex + 1) % totalTestimonials);
   };
@@ -80,7 +77,6 @@ const Testimonial = () => {
     );
   };
 
-  // Get Visible Testimonials for Infinite Looping
   const getVisibleTestimonials = () => {
     if (totalTestimonials <= visibleSlides) {
       return filteredTestimonials;
@@ -101,17 +97,15 @@ const Testimonial = () => {
 
   const visibleTestimonials = getVisibleTestimonials();
 
-  // Autoplay Logic
   useEffect(() => {
     if (!isAutoplaying) return;
-    const interval = setInterval(() => handleNext(), 5000); // Change every 5 seconds
+    const interval = setInterval(() => handleNext(), 5000);
     return () => clearInterval(interval);
   }, [isAutoplaying, currentIndex, visibleSlides]);
 
   return (
     <section className="relative py-20 bg-gradient-to-r from-indigo-100 via-purple-300 to-blue-300 text-white">
       <div className="container mx-auto px-6 text-center">
-        {/* Heading */}
         <motion.h2
           className="text-4xl font-extrabold mb-8 text-black"
           initial={{ opacity: 0, y: -50 }}
@@ -121,15 +115,15 @@ const Testimonial = () => {
           What Our Community Says
         </motion.h2>
 
-        {/* Category Filter */}
         <div className="mb-8 flex justify-center gap-4">
           {['All', 'Alumni', 'Students'].map((category) => (
             <button
               key={category}
-              className={`px-4 py-2 rounded-full font-medium ${categoryFilter === category
+              className={`px-4 py-2 rounded-full font-medium ${
+                categoryFilter === category
                   ? 'bg-yellow-600 text-white'
                   : 'bg-white text-yellow-600 hover:bg-yellow-300'
-                }`}
+              }`}
               onClick={() => setCategoryFilter(category)}
             >
               {category}
@@ -137,7 +131,6 @@ const Testimonial = () => {
           ))}
         </div>
 
-        {/* Testimonial Slider */}
         <div
           className="relative w-[75%] mx-auto bg-gray-300 p-5 rounded-lg"
           onMouseEnter={() => setIsAutoplaying(false)}
@@ -165,7 +158,6 @@ const Testimonial = () => {
             ))}
           </div>
 
-          {/* Navigation Arrows */}
           <button
             onClick={handlePrev}
             className="absolute top-1/2 -left-8 transform -translate-y-1/2 bg-gray-300 text-indigo-600 p-3 rounded-full shadow-md hover:bg-indigo-900 transition"

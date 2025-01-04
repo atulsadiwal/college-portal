@@ -11,6 +11,9 @@ export default {
         background: "var(--background)",
         foreground: "var(--foreground)",
       },
+      backgroundImage:{
+        'BG1': "url('/image/contact-us/contact-bg.jpg')",
+      }
     },
   },
   plugins: [],

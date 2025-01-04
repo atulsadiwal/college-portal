@@ -15,26 +15,25 @@ const achievements = [
     title: 'Best Engineering College',
     description:
       'Awarded "Best Engineering College" in 2023 by the National Education Board.',
-    icon: '/image/student1.png',
+    icon: '/image/student/student5.png',
   },
   {
     title: 'Innovation Hub Recognition',
     description:
       'Recognized as a hub for innovation and research by Global Innovation Forum.',
-    icon: '/image/student5.png',
+    icon: '/image/student/student6.png',
   },
   {
     title: 'Outstanding Alumni Network',
     description:
       '20,000+ alumni across the globe, with many in Fortune 500 companies.',
-    icon: '/image/student6.png',
+    icon: '/image/student/student1.png',
   },
 ];
 
 const Achievements = () => {
   const [counters, setCounters] = useState(stats.map(() => 0));
 
-  // Animate counters on component mount
   useEffect(() => {
     const intervalId = setInterval(() => {
       setCounters((prevCounters) =>
@@ -53,7 +52,6 @@ const Achievements = () => {
   return (
     <section className="py-20 bg-gradient-to-r from-blue-50 via-purple-100 to-indigo-200">
       <div className="container mx-auto px-6">
-        {/* Heading */}
         <motion.h2
           className="text-4xl font-extrabold text-center mb-12 text-indigo-900"
           initial={{ opacity: 0, y: -50 }}
@@ -63,14 +61,12 @@ const Achievements = () => {
           Achievements & Statistics
         </motion.h2>
 
-        {/* Two-column Layout */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          {/* Statistics (Left) */}
           <div className="space-y-6 lg:pr-10">
             {stats.map((stat, index) => (
               <motion.div
                 key={index}
-                className="bg-white text-center p-6 rounded-xl shadow-lg w-full sm:w-[90%] lg:w-[85%] mx-auto"  // Adjusted width
+                className="bg-white text-center p-6 rounded-xl shadow-lg w-full sm:w-[90%] lg:w-[85%] mx-auto"
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.5, delay: index * 0.2 }}
@@ -85,7 +81,6 @@ const Achievements = () => {
             ))}
           </div>
 
-          {/* Achievements (Right) */}
           <div className="space-y-16">
             {achievements.map((achievement, index) => (
               <motion.div

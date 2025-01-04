@@ -10,12 +10,10 @@ const Header = () => {
   return (
     <header className="bg-gradient-to-r from-blue-900 via-blue-700 to-blue-500 shadow-lg">
       <div className="container mx-auto px-6 py-4 flex justify-between items-center">
-        {/* Logo */}
         <a href="/" className="text-white text-3xl font-bold tracking-wide hover:opacity-90">
           College<span className="text-yellow-400">Portal</span>
         </a>
 
-        {/* Desktop Navigation */}
         <nav className="hidden md:flex space-x-8">
           <a
             href="#"
@@ -24,34 +22,32 @@ const Header = () => {
             Home
           </a>
           <a
-            href="#about"
+            href="/about"
             className="text-white text-lg py-2 hover:text-yellow-400 transition duration-300"
           >
             About
           </a>
           <a
-            href="#programs"
+            href="/program"
             className="text-white text-lg py-2 hover:text-yellow-400 transition duration-300"
           >
             Programs
           </a>
           <a
-            href="#contact"
+            href="/contact"
             className="text-white text-lg py-2 hover:text-yellow-400 transition duration-300"
           >
             Contact
           </a>
 
-          {/* Login Button */}
           <Link
-            href="/admin"
+            href="/login"
             className="bg-yellow-400 text-blue-900 px-4 py-2 rounded-lg text-lg font-semibold hover:bg-yellow-300 transition duration-300"
           >
             Login
           </Link>
         </nav>
 
-        {/* Mobile Menu Button */}
         <button
           className="md:hidden text-white text-2xl"
           onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -60,7 +56,6 @@ const Header = () => {
         </button>
       </div>
 
-      {/* Mobile Menu */}
       {isMenuOpen && (
         <div className="bg-blue-800 md:hidden">
           <nav className="flex flex-col items-center space-y-4 py-4">
@@ -93,7 +88,7 @@ const Header = () => {
               Contact
             </a>
             <Link
-              href="/admin"
+              href="/login"
               className="bg-yellow-400 text-blue-900 px-4 py-2 rounded-lg text-lg font-semibold hover:bg-yellow-300 transition duration-300"
               onClick={() => setIsMenuOpen(false)}
             >

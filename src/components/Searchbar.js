@@ -7,7 +7,6 @@ const Searchbar = () => {
   return (
     <section className="bg-gradient-to-r from-blue-50 via-white to-blue-50 py-16 px-6">
       <div className="container mx-auto text-center">
-        {/* Heading and Description */}
         <h2 className="text-4xl font-extrabold text-blue-900 mb-4">
           Find Your Path at <span className="text-yellow-500">College Portal</span>
         </h2>
@@ -15,7 +14,6 @@ const Searchbar = () => {
           Explore courses, programs, and events. Begin your journey today with a simple search.
         </p>
 
-        {/* Search Bar */}
         <div className="relative w-full max-w-2xl mx-auto">
           <input
             type="text"
