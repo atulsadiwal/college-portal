@@ -1,8 +1,6 @@
-"use client"; // Add this directive at the top of the file
+"use client";
 
 import { useState, useEffect } from "react";
-const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL
-
 
 const ListOfAccomodations = () => {
   const [data, setData] = useState([]);
@@ -10,11 +8,10 @@ const ListOfAccomodations = () => {
   const [filteredData, setFilteredData] = useState([]);
 
   useEffect(() => {
-    // Fetch data from API
     const fetchData = async () => {
       try {
         const response = await fetch(
-          `${BASE_URL}/accommodation/all-accommodations`,
+          `${API_NODE_URL}accommodation/all-accommodations`,
         );
         const result = await response.json();
         if (Array.isArray(result)) {
@@ -36,7 +33,6 @@ const ListOfAccomodations = () => {
   }, []);
 
   const handleSearch = () => {
-    // Filter data based on the search term
     const filter = search.toLowerCase();
     const filtered = data.filter(
       (item) =>
@@ -53,7 +49,6 @@ const ListOfAccomodations = () => {
   return (
     <div className="w-full">
       <h1 className="text-lg font-semibold mb-4 text-center text-[#1c2333]">List Of Accommodations</h1>
-  {/* Table */}
   <div className="overflow-x-auto bg-white shadow-md rounded-lg">
     <table className="min-w-[900px] w-full table-auto border-collapse">
       <thead className="bg-[#1c2333] text-white">
