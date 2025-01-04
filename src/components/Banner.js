@@ -14,7 +14,7 @@ const Banner = () => {
     useEffect(() => {
         const fetchAdvertisement = async () => {
             try {
-                const response = await fetch(`${API_NODE_URL}/advertisement/1`);
+                const response = await fetch(`${API_NODE_URL}/advertisement/1`);                
                 if (!response.ok) {
                     throw new Error("Failed to fetch advertisement");
                 }

@@ -77,15 +77,19 @@ const EventsSection = () => {
           <p className="text-red-500">Unable to load events. Please try again later.</p>
         ) : (
           <div className="relative overflow-hidden">
-            <motion.div
-              className="flex gap-8"
-              variants={infiniteScrollVariants}
-              animate="animate"
-            >
-              {[...events, ...events].map((event, index) => (
-                <EventCard key={index} event={event} />
-              ))}
-            </motion.div>
+            {Array.isArray(events) && events.length > 0 ? (
+              <motion.div
+                className="flex gap-8"
+                variants={infiniteScrollVariants}
+                animate="animate"
+              >
+                {[...events, ...events].map((event, index) => (
+                  <EventCard key={index} event={event} />
+                ))}
+              </motion.div>
+            ) : (
+              <p className="text-gray-600">No events to display.</p>
+            )}
           </div>
         )}
       </div>
