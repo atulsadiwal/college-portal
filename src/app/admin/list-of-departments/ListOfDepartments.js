@@ -1,8 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Link from "next/link";  // Import Link for file-based navigation
-const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
+import Link from "next/link";
 
 const ListOfDepartments = () => {
   const [data, setData] = useState([]);
@@ -12,7 +11,7 @@ const ListOfDepartments = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(`${BASE_URL}/department/departments`);
+        const response = await fetch(`${API_NODE_URL}department/departments`);
         const result = await response.json();
         
         if (result.status && Array.isArray(result.data)) {

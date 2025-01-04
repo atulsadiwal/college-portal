@@ -3,19 +3,17 @@ import { FaEdit } from "react-icons/fa";
 import { useState, useEffect } from "react";
 import { useRouter, useParams } from "next/navigation";
 
-const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
-
 const ListOfProgrammes = () => {
   const [data, setData] = useState([]);
   const [search, setSearch] = useState("");
   const [filteredData, setFilteredData] = useState([]);
   const router = useRouter();
-  const { id } = useParams(); // Use useParams to get the dynamic parameter
+  const { id } = useParams();
 
   useEffect(() => {
     const fetchPrograms = async () => {
       try {
-        const response = await fetch(`${BASE_URL}/program`);
+        const response = await fetch(`${API_NODE_URL}program`);
         if (!response.ok) {
           console.error(`API Error: ${response.status} - ${response.statusText}`);
         }
