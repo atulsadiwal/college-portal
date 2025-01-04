@@ -7,7 +7,7 @@ import { API_NODE_URL } from '../../config/config';
 const EventCard = ({ event }) => (
   <div className="min-w-[300px] md:min-w-[350px] lg:min-w-[400px] p-6 bg-white rounded-lg shadow-lg hover:shadow-2xl transition duration-300 transform hover:scale-105">
     <h3 className="text-xl font-bold text-blue-900 mb-2">{event.title}</h3>
-    <p className="text-blue-700 font-semibold mb-1">Date: {event.date}</p>
+    <p className="text-blue-700 font-semibold mb-1">Date: {event?.date.split('T')[0]}</p>
     <p className="text-gray-600">{event.description}</p>
   </div>
 );
@@ -25,7 +25,7 @@ const EventsSection = () => {
           throw new Error('Failed to fetch events');
         }
         const data = await response.json();
-        setEvents(data);
+        setEvents(data?.data);
         setLoading(false);
       } catch (err) {
         console.error(err);
