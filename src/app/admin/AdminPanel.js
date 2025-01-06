@@ -203,7 +203,7 @@ const AdminPanel = () => {
                         </>
                     )}
                     <div className="text-center">
-                        <Link href="Admin/dashboard">
+                        <Link href="admin/dashboard">
                             <button
                                 type="submit"
                                 className="bg-green-500 hover:bg-green-600 text-white font-semibold py-3 px-6 rounded-md w-full focus:outline-none focus:ring-2 focus:ring-green-500"

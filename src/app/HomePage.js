@@ -9,6 +9,8 @@ import EventsSection from '@/components/EventsSection';
 import Testimonial from '@/components/Testimonial';
 import Achievements from '@/components/Achievements';
 import Footer from '@/components/Footer';
+import Banner from '@/components/Banner';
+import LogoSlider from '@/components/LogoSlider';
 
 const HomePage = () => {
   return (
@@ -17,8 +19,10 @@ const HomePage = () => {
       <SearchBar />
       <AboutSection />
       <ProgramsSection />
+      <Banner />
       <EventsSection />
       <Testimonial />
+      <LogoSlider />
       <Achievements />
       <Footer />
     </div>

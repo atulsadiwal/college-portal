@@ -1,20 +1,19 @@
 "use client";
 import { FaEdit } from "react-icons/fa";
 import { useState, useEffect } from "react";
-import { useRouter } from "next/navigation"; // Correct import for App Router
-
-const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
+import { useRouter } from "next/navigation";
+import { API_NODE_URL } from "../../../../config/config";
 
 const ListOfStreams = () => {
   const [data, setData] = useState([]);
   const [search, setSearch] = useState("");
   const [filteredData, setFilteredData] = useState([]);
-  const router = useRouter(); // Works with App Router
+  const router = useRouter();
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(`${BASE_URL}/stream/all-streams`);
+        const response = await fetch(`${API_NODE_URL}stream/all-streams`);
         const result = await response.json();
 
         if (result.status && Array.isArray(result.data)) {
@@ -36,7 +35,7 @@ const ListOfStreams = () => {
   }, []);
 
   const handleEdit = (id) => {
-    router.push(`/Admin/edit-stream/${id}`); // Fix the URL
+    router.push(`/admin/edit-stream/${id}`);
   };
 
   return (
@@ -56,7 +55,7 @@ const ListOfStreams = () => {
   {Array.isArray(filteredData) && filteredData.length > 0 ? (
     filteredData.map((stream, index) => (
       <tr
-        key={stream.id || stream._id} // Ensure the unique key is used
+        key={stream.id || stream._id}
         className={`border-t ${
           index % 2 === 0 ? "bg-gray-50" : "bg-white"
         }`}
@@ -72,7 +71,7 @@ const ListOfStreams = () => {
         </td>
         <td className="px-4 py-1 text-sm text-center">
           <button
-            onClick={() => handleEdit(stream.id || stream._id)} // Pass the correct ID
+            onClick={() => handleEdit(stream.id || stream._id)}
             className="bg-blue-500 text-white px-2 py-1 rounded-lg mx-auto flex items-center"
           >
             <span className="material-icons"><FaEdit/></span>

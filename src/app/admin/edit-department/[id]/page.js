@@ -53,7 +53,7 @@ const EditDepartment = ({ params }) => {
 
       if (response.ok) {
         alert("Department updated successfully!");
-        router.push("/Admin/list-of-Departments"); // Redirect to list of Departments
+        router.push("/admin/list-of-Departments"); // Redirect to list of Departments
       } else {
         const error = await response.json();
         alert(`Failed to update: ${error.message}`);

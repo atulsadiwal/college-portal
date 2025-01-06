@@ -50,7 +50,7 @@ const EditStream = ({ params }) => {
 
       if (response.ok) {
         alert("Stream updated successfully!");
-        router.push("/Admin/list-of-streams"); // Redirect to list of streams
+        router.push("/admin/list-of-streams"); // Redirect to list of streams
       } else {
         const error = await response.json();
         alert(`Failed to update: ${error.message}`);

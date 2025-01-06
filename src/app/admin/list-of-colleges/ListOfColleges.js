@@ -92,7 +92,7 @@ const ListOfColleges = () => {
                     <img src={college.image} alt={college.name} className="w-12 h-12 object-cover rounded-md" />
                   </td>
                   <td className="px-4 py-3 text-center text-sm text-gray-700 align-middle truncate">
-                    <Link href={`/Admin/edit-college/${college.id}`}>
+                    <Link href={`/admin/edit-college/${college.id}`}>
                       <button className="bg-blue-500 text-white px-2 py-1 mx-auto rounded-lg flex items-center">
                         <FaEdit />
                       </button>
