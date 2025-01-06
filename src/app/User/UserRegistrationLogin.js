@@ -1,4 +1,4 @@
-"use client"; // For Next.js app directory support
+'use client'; // For Next.js app directory support
 
 import React, { useState, useEffect } from "react";
 import { toast, ToastContainer } from "react-toastify";
@@ -18,6 +18,7 @@ function UserRegisterLogin() {
 
   const [isLogin, setIsLogin] = useState(true); // State to toggle between login and register form
   const [isClient, setIsClient] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false); // Added state for controlling form submission
 
   // Use useEffect to set the client-side flag
   useEffect(() => {
@@ -33,6 +34,12 @@ function UserRegisterLogin() {
   // Submit form data
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // Prevent form submission if already submitting
+    if (isSubmitting) return;
+
+    // Set the submitting flag to true to prevent multiple submissions
+    setIsSubmitting(true);
 
     // Log the form data to ensure it's correct
     console.log("Form Data being sent:", formData);
@@ -62,12 +69,17 @@ function UserRegisterLogin() {
         const parsedResult = JSON.parse(result);
         if (response.ok) {
           if (isLogin) {
-            const { token } = parsedResult;
+            const { token, user } = parsedResult;
+            // Store user info and token in localStorage
             localStorage.setItem("authToken", token);
+            localStorage.setItem("user", JSON.stringify(user)); // Store the user profile info
             toast.success("Login successful!", {
               position: "top-right",
               autoClose: 3000,
             });
+
+            // Automatically redirect to Home page after successful login
+            window.location.href = "/home"; // This will redirect the user to the home page immediately
           } else {
             toast.success("Registration successful! Please log in.", {
               position: "top-right",
@@ -94,6 +106,9 @@ function UserRegisterLogin() {
         position: "top-right",
         autoClose: 3000,
       });
+    } finally {
+      // Reset submitting state
+      setIsSubmitting(false);
     }
   };
 
@@ -237,6 +252,7 @@ function UserRegisterLogin() {
             <button
               type="submit"
               className="bg-green-500 hover:bg-green-600 text-white font-semibold py-3 px-6 rounded-md w-full focus:outline-none focus:ring-2 focus:ring-green-500"
+              disabled={isSubmitting} // Disable the button while submitting
             >
               {isLogin ? "Login" : "Register"}
             </button>
