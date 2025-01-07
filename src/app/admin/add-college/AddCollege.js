@@ -1,10 +1,12 @@
-"use client"; // For Next.js app directory support
+"use client";
 
 import React, { useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL
+import { API_KEY } from '../../../../config/config';
+
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
 function AddCollege() {
   const [formData, setFormData] = useState({
@@ -33,7 +35,6 @@ function AddCollege() {
     website_url: "",
   });
 
-  // Handle input changes
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
 
@@ -62,16 +63,18 @@ function AddCollege() {
     }
   };
 
-  // Submit form data
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
       const response = await fetch(
-        `${BASE_URL}/college/add-college`,
+        `${BASE_URL}college/add-college`,
         {
           method: "POST",
-          headers: { "Content-Type": "application/json" },
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${API_KEY}`,
+          },
           body: JSON.stringify(formData),
         }
       );
@@ -88,7 +91,6 @@ function AddCollege() {
           draggable: true,
           progress: undefined,
         });
-        console.log(result);
       } else {
         toast.error(result.message || "Error uploading data.", {
           position: "top-right",
@@ -112,7 +114,6 @@ function AddCollege() {
         onSubmit={handleSubmit}
         className="bg-white shadow-lg rounded-lg p-4 space-y-4 w-full"
       >
-        {/* College Name and City */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           <div>
             <label className="block text-sm mb-2 font-medium text-gray-700">College Name</label>
@@ -137,7 +138,6 @@ function AddCollege() {
           </div>
         </div>
 
-        {/* State and Established Year */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           <div>
             <label className="block text-sm mb-2 font-medium text-gray-700">State</label>
@@ -161,7 +161,6 @@ function AddCollege() {
           </div>
         </div>
 
-        {/* Affiliated University and College Type */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           <div>
             <label className="block text-sm mb-2 font-medium text-gray-700">Affiliated University Name</label>
@@ -187,7 +186,6 @@ function AddCollege() {
           </div>
         </div>
 
-        {/* Ranking and Accreditation */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           <div>
             <label className="block text-sm mb-2 font-medium text-gray-700">Ranking</label>
@@ -211,7 +209,6 @@ function AddCollege() {
           </div>
         </div>
 
-        {/* Placement Details */}
         <h6 className="text-2xl font-semibold text-gray-800 mt-6">Placement Details</h6>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           <div>
@@ -236,7 +233,6 @@ function AddCollege() {
           </div>
         </div>
 
-        {/* Hostel Availability */}
         <div>
           <label className="flex items-center text-sm mb-2 font-medium text-gray-700">
             <input
@@ -249,7 +245,6 @@ function AddCollege() {
           </label>
         </div>
 
-        {/* Scholarship Details */}
         <div>
           <label className="block text-sm mb-2 font-medium text-gray-700">Scholarship Details</label>
           <input
@@ -261,7 +256,6 @@ function AddCollege() {
           />
         </div>
 
-        {/* Phone and Email */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           <div>
             <label className="block text-sm mb-2 font-medium text-gray-700">Phone</label>
@@ -285,7 +279,6 @@ function AddCollege() {
           </div>
         </div>
 
-        {/* Location */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           <div>
             <label className="block text-sm mb-2 font-medium text-gray-700">Latitude</label>
@@ -309,7 +302,6 @@ function AddCollege() {
           </div>
         </div>
 
-        {/* Image, Datasheet, and Website URLs */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-2.5">
           <div>
             <label className="block font-semibold text-sm mb-2">Image URL</label>
@@ -343,7 +335,6 @@ function AddCollege() {
           </div>
         </div>
 
-        {/* Submit Button */}
         <div className="text-center">
           <button
             type="submit"

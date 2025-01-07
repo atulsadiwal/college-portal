@@ -3,9 +3,9 @@
 import React, { useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { API_KEY } from '../../../../config/config';
 
-const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL
-
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
 function AddAccomodation() {
   const [formData, setFormData] = useState({
@@ -57,10 +57,13 @@ function AddAccomodation() {
 
     try {
       const response = await fetch(
-        `${BASE_URL}/accommodation/add-accomodation`,
+        `${BASE_URL}accommodation/add-accomodation`,
         {
           method: "POST",
-          headers: { "Content-Type": "application/json" },
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${API_KEY}`
+          },
           body: JSON.stringify(formData),
         }
       );
@@ -77,7 +80,6 @@ function AddAccomodation() {
           draggable: true,
           progress: undefined,
         });
-        console.log(result);
       } else {
         toast.error(result.message || "Error uploading data.", {
           position: "top-right",
@@ -274,7 +276,6 @@ function AddAccomodation() {
         </div>
       </form>
     </div>
-
   );
 }
 
