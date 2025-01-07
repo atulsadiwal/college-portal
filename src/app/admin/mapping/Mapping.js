@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { API_NODE_URL } from "../../../../config/config";
+import { API_NODE_URL, API_KEY } from "../../../../config/config";
 
 const Mapping = () => {
   const [fields, setFields] = useState({
@@ -22,10 +22,19 @@ const Mapping = () => {
     field6: "",
   });
 
+  const BASE_URL = API_NODE_URL;
+
   useEffect(() => {
     const fetchFieldData = async (fieldName, endpoint) => {
       try {
-        const response = await fetch(`${API_NODE_URL}${endpoint}`);
+        const response = await fetch(`${BASE_URL}${endpoint}`, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${API_KEY}`,
+          },
+        });
+
         const { status, data } = await response.json();
 
         if (status && Array.isArray(data)) {
@@ -108,7 +117,6 @@ const Mapping = () => {
         </form>
       </div>
     </>
-
   );
 }
 
