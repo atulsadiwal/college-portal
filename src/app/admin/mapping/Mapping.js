@@ -1,8 +1,9 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { API_NODE_URL } from "../../../../config/config";
 
-export default function Mapping() {
+const Mapping = () => {
   const [fields, setFields] = useState({
     field1: [],
     field2: [],
@@ -21,13 +22,10 @@ export default function Mapping() {
     field6: "",
   });
 
-  // Base URL imported from .env
-  const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
-
   useEffect(() => {
     const fetchFieldData = async (fieldName, endpoint) => {
       try {
-        const response = await fetch(`${BASE_URL}${endpoint}`);
+        const response = await fetch(`${API_NODE_URL}${endpoint}`);
         const { status, data } = await response.json();
 
         if (status && Array.isArray(data)) {
@@ -38,7 +36,7 @@ export default function Mapping() {
         }
       } catch (error) {
         console.error(`Error fetching data for ${fieldName}:`, error);
-        setFields((prev) => ({ ...prev, [fieldName]: [] })); // Set as an empty array on error
+        setFields((prev) => ({ ...prev, [fieldName]: [] }));
       }
     };
 
@@ -57,7 +55,6 @@ export default function Mapping() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Selected IDs:", selectedValues);
   };
 
   const fieldMappings = {
@@ -110,8 +107,9 @@ export default function Mapping() {
           </div>
         </form>
       </div>
-
     </>
 
   );
 }
+
+export default Mapping;

@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { API_NODE_URL } from "../../../../config/config";
+import { API_NODE_URL, API_KEY } from "../../../../config/config";
 
 const ListOfDepartments = () => {
   const [data, setData] = useState([]);
@@ -12,9 +12,16 @@ const ListOfDepartments = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(`${API_NODE_URL}department/departments`);
+        const response = await fetch(`${API_NODE_URL}department/departments`, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${API_KEY}`,
+          },
+        });
+
         const result = await response.json();
-        
+
         if (result.status && Array.isArray(result.data)) {
           setData(result.data);
           setFilteredData(result.data);
@@ -62,9 +69,7 @@ const ListOfDepartments = () => {
               filteredData.map((dept, index) => (
                 <tr
                   key={dept.id}
-                  className={`border-t ${
-                    index % 2 === 0 ? "bg-gray-50" : "bg-white"
-                  }`}
+                  className={`border-t ${index % 2 === 0 ? "bg-gray-50" : "bg-white"}`}
                 >
                   <td className="px-4 py-2 text-sm font-medium text-gray-700 truncate">
                     {dept.name}
@@ -95,6 +100,7 @@ const ListOfDepartments = () => {
         </table>
       </div>
     </div>
+
   );
 };
 
