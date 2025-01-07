@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { API_NODE_URL } from "../../../../config/config";
+import { API_KEY, API_NODE_URL } from "../../../../config/config";
 
 const ListOfAffiliations = () => {
   const [data, setData] = useState([]);
@@ -11,9 +11,14 @@ const ListOfAffiliations = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(
-          `${API_NODE_URL}affiliation/all-affilaition`,
-        );
+        const response = await fetch(`${API_NODE_URL}affiliation/all-affiliation`, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${API_KEY}`,
+          },
+        });
+
         const result = await response.json();
 
         if (result.status && result.data && Array.isArray(result.data.programs)) {
@@ -69,8 +74,7 @@ const ListOfAffiliations = () => {
               filteredData.map((affiliation, index) => (
                 <tr
                   key={affiliation.id}
-                  className={`border-t ${index % 2 === 0 ? "bg-gray-50" : "bg-white"
-                    }`}
+                  className={`border-t ${index % 2 === 0 ? "bg-gray-50" : "bg-white"}`}
                 >
                   <td className="px-4 py-2 text-sm font-medium text-gray-700 truncate">
                     {affiliation.name}
@@ -102,7 +106,6 @@ const ListOfAffiliations = () => {
         </table>
       </div>
     </div>
-
   );
 };
 

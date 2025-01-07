@@ -1,40 +1,45 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { FaEdit } from "react-icons/fa";
+import { API_KEY, API_NODE_URL } from "../../../../config/config";
 
 const ListOfColleges = () => {
-  const mockData = [
-    {
-      id: 1,
-      name: "Springfield College",
-      city: "Springfield",
-      state: "Illinois",
-      establishedYear: 1890,
-      university: "Springfield University",
-      type: "Public",
-      phone: "123-456-7890",
-      email: "info@springfield.edu",
-      image: "https://via.placeholder.com/150",
-    },
-    {
-      id: 2,
-      name: "Hill Valley College",
-      city: "Hill Valley",
-      state: "California",
-      establishedYear: 1955,
-      university: "Hill Valley University",
-      type: "Private",
-      phone: "987-654-3210",
-      email: "contact@hillvalley.edu",
-      image: "https://via.placeholder.com/150",
-    },
-  ];
-
-  const [data] = useState(mockData);
+  const [data, setData] = useState([]);
   const [search, setSearch] = useState("");
-  const [filteredData, setFilteredData] = useState(mockData);
+  const [filteredData, setFilteredData] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(`${API_NODE_URL}college/all-colleges`, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${API_KEY}`,
+          },
+        });
+
+        const result = await response.json();
+
+        if (result.status && result.data && Array.isArray(result.data)) {
+          setData(result.data);
+          setFilteredData(result.data);
+        } else {
+          console.error("Unexpected response format:", result);
+          setData([]);
+          setFilteredData([]);
+        }
+      } catch (error) {
+        console.error("Error fetching data:", error);
+        setData([]);
+        setFilteredData([]);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   const handleSearch = () => {
     const filter = search.toLowerCase();
@@ -51,12 +56,11 @@ const ListOfColleges = () => {
   };
 
   return (
-
     <div className="w-full">
       <h1 className="text-lg font-semibold mb-4 text-center text-[#1c2333]">
         List Of Colleges
       </h1>
-      <div className="bg-red-400">
+      <div className="overflow-x-auto bg-white shadow-md rounded-lg">
         <table className="table-auto border-collapse border border-gray-300 w-full">
           <thead className="bg-[#1c2333] text-white">
             <tr>
