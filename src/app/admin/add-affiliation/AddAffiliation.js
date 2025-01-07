@@ -1,11 +1,11 @@
-"use client"; // For Next.js app directory support
+"use client";
 
 import React, { useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { API_KEY } from '../../../../config/config';
 
-const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL
-
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
 function AddAffiliation() {
   const [formData, setFormData] = useState({
@@ -14,7 +14,6 @@ function AddAffiliation() {
     description: "",
   });
 
-  // Handle input changes
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
 
@@ -43,16 +42,18 @@ function AddAffiliation() {
     }
   };
 
-  // Submit form data
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
       const response = await fetch(
-        `${BASE_URL}/affiliation/add-affiliation`,
+        `${BASE_URL}affiliation/add-affiliation`,
         {
           method: "POST",
-          headers: { "Content-Type": "application/json" },
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${API_KEY}`,
+          },
           body: JSON.stringify(formData),
         }
       );
@@ -60,7 +61,7 @@ function AddAffiliation() {
       const result = await response.json();
 
       if (response.ok) {
-        toast.success("College data uploaded successfully!", {
+        toast.success("Affiliation data uploaded successfully!", {
           position: "top-right",
           autoClose: 3000,
           hideProgressBar: false,
@@ -69,7 +70,6 @@ function AddAffiliation() {
           draggable: true,
           progress: undefined,
         });
-        console.log(result);
       } else {
         toast.error(result.message || "Error uploading data.", {
           position: "top-right",
@@ -93,7 +93,6 @@ function AddAffiliation() {
         onSubmit={handleSubmit}
         className="bg-white shadow-lg rounded-lg p-4 space-y-4 w-full"
       >
-        {/* Affiliation Name */}
         <div className="grid grid-cols-1 gap-4">
           <div>
             <label className="block text-sm mb-2 font-medium text-gray-700">Affiliation Name</label>
@@ -129,18 +128,16 @@ function AddAffiliation() {
           </div>
         </div>
 
-        {/* Submit Button */}
         <div className="text-center">
-          <a
-            href="#"
+          <button
+            type="submit"
             className="bg-[#1c2333] hover:bg-opacity-90 text-white font-semibold py-2 px-6 rounded shadow-md"
           >
             Submit
-          </a>
+          </button>
         </div>
       </form>
     </div>
-
   );
 }
 

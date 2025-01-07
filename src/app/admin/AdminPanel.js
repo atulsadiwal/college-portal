@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import Link from "next/link";
 import "react-toastify/dist/ReactToastify.css";
+import { API_NODE_URL, API_KEY } from "../../../config/config";
 
 const AdminPanel = () => {
     const [formData, setFormData] = useState({
@@ -35,29 +36,29 @@ const AdminPanel = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log("Form Data being sent:", formData);
         let apiEndpoint = "";
 
         if (isLogin) {
             if (formData.email.includes("admin.com")) {
-                apiEndpoint = "https://college-portal-backend-y8d9.onrender.com/api/admin/login";
+                apiEndpoint = `${API_NODE_URL}admin/login`;
             } else {
-                apiEndpoint = "https://college-portal-backend-y8d9.onrender.com/api/user/login";
+                apiEndpoint = `${API_NODE_URL}user/login`;
             }
         } else {
             if (formData.email.includes("admin.com")) {
-                apiEndpoint = "https://college-portal-backend-y8d9.onrender.com/api/admin/register";
+                apiEndpoint = `${API_NODE_URL}admin/register`;
             } else {
-                apiEndpoint = "https://college-portal-backend-y8d9.onrender.com/api/user/register";
+                apiEndpoint = `${API_NODE_URL}user/register`;
             }
         }
-
-        console.log("API Endpoint:", apiEndpoint);
 
         try {
             const response = await fetch(apiEndpoint, {
                 method: "POST",
-                headers: { "Content-Type": "application/json" },
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${API_KEY}`,
+                },
                 body: JSON.stringify(formData),
             });
             const result = await response.text();

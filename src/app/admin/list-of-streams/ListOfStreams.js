@@ -2,7 +2,7 @@
 import { FaEdit } from "react-icons/fa";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { API_NODE_URL } from "../../../../config/config";
+import { API_NODE_URL, API_KEY } from "../../../../config/config";  
 
 const ListOfStreams = () => {
   const [data, setData] = useState([]);
@@ -13,7 +13,17 @@ const ListOfStreams = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(`${API_NODE_URL}stream/all-streams`);
+        const response = await fetch(`${API_NODE_URL}stream/all-streams`, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${API_KEY}`,
+          },
+        });
+
+        if (!response.ok) {
+          console.error(`API Error: ${response.status} - ${response.statusText}`);
+        }
         const result = await response.json();
 
         if (result.status && Array.isArray(result.data)) {
@@ -52,42 +62,39 @@ const ListOfStreams = () => {
             </tr>
           </thead>
           <tbody>
-  {Array.isArray(filteredData) && filteredData.length > 0 ? (
-    filteredData.map((stream, index) => (
-      <tr
-        key={stream.id || stream._id}
-        className={`border-t ${
-          index % 2 === 0 ? "bg-gray-50" : "bg-white"
-        }`}
-      >
-        <td className="px-4 py-1 text-sm font-medium text-gray-700 truncate">
-          {stream.name}
-        </td>
-        <td className="px-4 py-1 text-sm text-gray-600 truncate">
-          {stream.short_name}
-        </td>
-        <td className="px-4 py-1 text-sm text-gray-600 truncate">
-          {stream.description}
-        </td>
-        <td className="px-4 py-1 text-sm text-center">
-          <button
-            onClick={() => handleEdit(stream.id || stream._id)}
-            className="bg-blue-500 text-white px-2 py-1 rounded-lg mx-auto flex items-center"
-          >
-            <span className="material-icons"><FaEdit/></span>
-          </button>
-        </td>
-      </tr>
-    ))
-  ) : (
-    <tr>
-      <td colSpan="4" className="text-center py-4 text-sm text-gray-500">
-        No Stream found.
-      </td>
-    </tr>
-  )}
-</tbody>
-
+            {Array.isArray(filteredData) && filteredData.length > 0 ? (
+              filteredData.map((stream, index) => (
+                <tr
+                  key={stream.id || stream._id}
+                  className={`border-t ${index % 2 === 0 ? "bg-gray-50" : "bg-white"}`}
+                >
+                  <td className="px-4 py-1 text-sm font-medium text-gray-700 truncate">
+                    {stream.name}
+                  </td>
+                  <td className="px-4 py-1 text-sm text-gray-600 truncate">
+                    {stream.short_name}
+                  </td>
+                  <td className="px-4 py-1 text-sm text-gray-600 truncate">
+                    {stream.description}
+                  </td>
+                  <td className="px-4 py-1 text-sm text-center">
+                    <button
+                      onClick={() => handleEdit(stream.id || stream._id)}
+                      className="bg-blue-500 text-white px-2 py-1 rounded-lg mx-auto flex items-center"
+                    >
+                      <span className="material-icons"><FaEdit /></span>
+                    </button>
+                  </td>
+                </tr>
+              ))
+            ) : (
+              <tr>
+                <td colSpan="4" className="text-center py-4 text-sm text-gray-500">
+                  No Stream found.
+                </td>
+              </tr>
+            )}
+          </tbody>
         </table>
       </div>
     </div>

@@ -3,11 +3,11 @@
 import React, { useState, useEffect } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import Link from 'next/link';
-
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { API_NODE_URL, API_KEY } from "../../../config/config";
 
 const Login = () => {
-
     const [formData, setFormData] = useState({
         name: "",
         email: "",
@@ -23,6 +23,8 @@ const Login = () => {
     const [isClient, setIsClient] = useState(false);
     const [isSuccess, setIsSuccess] = useState(false);
 
+    const router = useRouter();
+
     useEffect(() => {
         setIsClient(true);
     }, []);
@@ -35,22 +37,24 @@ const Login = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        console.log("Form Data being sent:", formData);
 
         let apiEndpoint = "";
 
         if (isLogin) {
-            apiEndpoint = "https://college-portal-backend-y8d9.onrender.com/api/user/login";
+            apiEndpoint = `${API_NODE_URL}user/login`;
         } else {
-            apiEndpoint = "https://college-portal-backend-y8d9.onrender.com/api/user/register";
+            apiEndpoint = `${API_NODE_URL}user/register`;
         }
 
-        console.log("API Endpoint:", apiEndpoint);
+
 
         try {
             const response = await fetch(apiEndpoint, {
                 method: "POST",
-                headers: { "Content-Type": "application/json" },
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${API_KEY}`,
+                },
                 body: JSON.stringify(formData),
             });
 
@@ -66,27 +70,30 @@ const Login = () => {
                         localStorage.setItem("user", JSON.stringify(user));
                         toast.success("Login successful!", {
                             position: "top-right",
-                            autoClose: 3000,
+                            autoClose: 2000,
                         });
+
+                        setTimeout(() => {
+                            setIsSuccess(true);
+                            router.push("/");
+                        }, 2000);
                     } else {
                         toast.success("Registration successful! Please log in.", {
                             position: "top-right",
-                            autoClose: 3000,
+                            autoClose: 2000,
                         });
                     }
-
-                    setIsSuccess(true);
                 } else {
                     toast.error(parsedResult.message || "Error during authentication.", {
                         position: "top-right",
-                        autoClose: 3000,
+                        autoClose: 2000,
                     });
                 }
             } catch (error) {
                 console.error("Error parsing response as JSON:", error);
                 toast.error("Received an unexpected response. It might be an error page.", {
                     position: "top-right",
-                    autoClose: 3000,
+                    autoClose: 2000,
                 });
                 console.error("HTML Response:", result);
             }
@@ -94,7 +101,7 @@ const Login = () => {
             console.error("Error during fetch:", error);
             toast.error("An error occurred during the process.", {
                 position: "top-right",
-                autoClose: 3000,
+                autoClose: 2000,
             });
         }
     };
@@ -230,14 +237,12 @@ const Login = () => {
 
                         <div className="text-center">
                             {isSuccess ? (
-                                <Link href="/" className="w-full">
-                                    <button
-                                        type="button"
-                                        className="bg-green-500 hover:bg-green-600 text-white font-semibold py-3 px-6 rounded-md w-full focus:outline-none focus:ring-2 focus:ring-green-500"
-                                    >
-                                        Redirecting...
-                                    </button>
-                                </Link>
+                                <button
+                                    type="button"
+                                    className="bg-green-500 hover:bg-green-600 text-white font-semibold py-3 px-6 rounded-md w-full focus:outline-none focus:ring-2 focus:ring-green-500"
+                                >
+                                    Redirecting...
+                                </button>
                             ) : (
                                 <button
                                     type="submit"
@@ -252,6 +257,6 @@ const Login = () => {
             </div>
         </>
     );
-}
+};
 
 export default Login;

@@ -2,15 +2,14 @@
 
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { use } from "react"; // Import use() to unwrap the params Promise
+import { API_KEY } from "../../../../../config/config";
 
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
 const EditDepartment = ({ params }) => {
   const router = useRouter();
 
-  // Unwrap params using React.use()
-  const { id } = use(params); // Use `use()` to unwrap the `params` Promise
+  const { id } = use(params);
 
   const [formData, setFormData] = useState({
     name: "",
@@ -21,7 +20,13 @@ const EditDepartment = ({ params }) => {
   useEffect(() => {
     const fetchDepartment = async () => {
       try {
-        const response = await fetch(`${BASE_URL}/Departments/Departments/${id}`);
+        const response = await fetch(`${BASE_URL}/Departments/Departments/${id}`, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${API_KEY}`,
+          },
+        });
         const result = await response.json();
 
         if (result.status && result.data) {
@@ -45,15 +50,18 @@ const EditDepartment = ({ params }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch(`${BASE_URL}/Departments/Departments/${id}`, {
+      const response = await fetch(`${BASE_URL}Departments/Departments/${id}`, {
         method: "PUT",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${API_KEY}`,
+        },
         body: JSON.stringify(formData),
       });
 
       if (response.ok) {
         alert("Department updated successfully!");
-        router.push("/admin/list-of-Departments"); // Redirect to list of Departments
+        router.push("/admin/list-of-Departments");
       } else {
         const error = await response.json();
         alert(`Failed to update: ${error.message}`);

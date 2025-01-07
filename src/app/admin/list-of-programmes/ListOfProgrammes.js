@@ -2,7 +2,7 @@
 import { FaEdit } from "react-icons/fa";
 import { useState, useEffect } from "react";
 import { useRouter, useParams } from "next/navigation";
-import { API_NODE_URL } from "../../../../config/config";
+import { API_NODE_URL, API_KEY } from "../../../../config/config";
 
 const ListOfProgrammes = () => {
   const [data, setData] = useState([]);
@@ -14,7 +14,14 @@ const ListOfProgrammes = () => {
   useEffect(() => {
     const fetchPrograms = async () => {
       try {
-        const response = await fetch(`${API_NODE_URL}program`);
+        const response = await fetch(`${API_NODE_URL}program`, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${API_KEY}`,
+          },
+        });
+
         if (!response.ok) {
           console.error(`API Error: ${response.status} - ${response.statusText}`);
         }
@@ -24,6 +31,7 @@ const ListOfProgrammes = () => {
         console.error("Failed to fetch programs:", error);
       }
     };
+
     fetchPrograms();
   }, []);
 

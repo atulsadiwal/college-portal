@@ -1,14 +1,15 @@
-
 "use client";
 
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import { API_KEY } from "../../../../../config/config";
 
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
 const EditStream = ({ params }) => {
   const router = useRouter();
-  const { id } = params; // Extract the `id` from the dynamic route
+  const { id } = params;
+
   const [formData, setFormData] = useState({
     name: "",
     short_name: "",
@@ -18,7 +19,13 @@ const EditStream = ({ params }) => {
   useEffect(() => {
     const fetchStream = async () => {
       try {
-        const response = await fetch(`${BASE_URL}/stream/${id}`);
+        const response = await fetch(`${BASE_URL}/stream/${id}`, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${API_KEY}`,
+          },
+        });
         const result = await response.json();
 
         if (result.status && result.data) {
@@ -41,16 +48,20 @@ const EditStream = ({ params }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     try {
-      const response = await fetch(`${BASE_URL}/stream/${id}`, {
+      const response = await fetch(`${BASE_URL}stream/${id}`, {
         method: "PUT",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${API_KEY}`,
+        },
         body: JSON.stringify(formData),
       });
 
       if (response.ok) {
         alert("Stream updated successfully!");
-        router.push("/admin/list-of-streams"); // Redirect to list of streams
+        router.push("/admin/list-of-streams");
       } else {
         const error = await response.json();
         alert(`Failed to update: ${error.message}`);
