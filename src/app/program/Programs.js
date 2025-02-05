@@ -10,6 +10,18 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { motion } from "framer-motion";
+import { Icon } from '@iconify/react';
+// import { Button } from '@/components/ui/button';
+
+const categories = [
+    { icon: 'mdi:code-tags', title: 'Design & Development', courses: '250+', bg: 'bg-blue-100', text: 'text-blue-500' },
+    { icon: 'mdi:bullhorn', title: 'Marketing & Communication', courses: '300+', bg: 'bg-purple-100', text: 'text-purple-500' },
+    { icon: 'mdi:chart-line', title: 'Digital Marketing', courses: '150+', bg: 'bg-orange-100', text: 'text-orange-500' },
+    { icon: 'mdi:briefcase', title: 'Business & Consulting', courses: '170+', bg: 'bg-red-100', text: 'text-red-500' },
+    { icon: 'mdi:currency-usd', title: 'Finance Management', courses: '300+', bg: 'bg-pink-100', text: 'text-pink-500' },
+    { icon: 'mdi:account', title: 'Self Development', courses: '50+', bg: 'bg-green-100', text: 'text-green-500' },
+  ];
+  
 
 const programs = [
     {
@@ -217,6 +229,38 @@ const Programs = () => {
                         </motion.div>
                     </div>
                 </section>
+
+
+                <div className="container px-6 py-12 mx-auto ">
+      <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8">
+        <div>
+          <h2 className="text-3xl md:text-4xl font-bold">Explore courses by category</h2>
+          <p className="text-gray-500 mt-2 text-sm">Browse top class courses by browsing our category which will be more easy for you.</p>
+        </div>
+        <button className="mt-4 md:mt-0 px-4 py-1 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition">All Category</button>
+      </div>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {categories.map((category, index) => (
+          <div
+            key={index}
+            className="flex items-center p-6   transition-shadow duration-300 hover:shadow-2xl shadow-lg"
+          >
+            <div
+          key={index}
+          className={`w-16 h-16 flex items-center justify-center ${category.bg} ${index === 1 ? "px-6" : ""}`}
+        >
+          <Icon icon={category.icon} className={`text-2xl ${category.text}`} />
+        </div>
+            <div className="ml-4">
+              <h3 className="text-lg font-bold leading-tight mb-1">{category.title}</h3>
+              <p className="text-gray-400 text-sm">{category.courses} courses available</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+
+
                 <section className="relative bg-gradient-to-r from-blue-800 via-gray-900 to-blue-900 py-16 lg:py-24 overflow-hidden">
                     <div className="absolute inset-0 pointer-events-none">
                         <div className="absolute -top-20 -left-20 w-96 h-96 bg-yellow-300 opacity-20 rounded-full blur-3xl animate-pulse"></div>

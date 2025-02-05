@@ -8,9 +8,24 @@ import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import Image from "next/image";
 import { FaGraduationCap, FaBook, FaUsers, FaChalkboardTeacher } from "react-icons/fa";
 import "../../styles/globals.css";
+import CubeSlider from "../../components/CubeSlider.js"
 // import Faqs from "@/components/Faqs";
 // import TeamComponent from "@/components/TeamComponent";
 // import WhyChooseUs from "@/components/WhyChooseUs";
+
+
+
+const faqs = [
+    { question: 'What services does the hospital offer?', answer: 'We offer a wide range of medical services including emergency care, surgery, and specialized treatments.' },
+    { question: 'How can I book an appointment?', answer: 'You can book an appointment through our website or by calling our front desk.' },
+    { question: 'What are the visiting hours for patients?', answer: 'Visiting hours are from 9 AM to 8 PM daily, with special hours for critical care units.' },
+    { question: 'How can I contact a doctor or specialist?', answer: 'You can contact a doctor via our patient portal or by scheduling an appointment.' },
+    { question: 'What insurance plans do you accept?', answer: 'We accept a variety of insurance plans; please check with our billing department for details.' },
+    { question: 'What should I bring to my appointment?', answer: 'Please bring your ID, insurance card, and any relevant medical records.' },
+    { question: 'Is the hospital equipped with emergency care facilities?', answer: 'Yes, we have a fully equipped emergency department available 24/7.' },
+    { question: 'What measures are in place for patient safety and privacy?', answer: 'We follow strict safety protocols and privacy policies to ensure patient confidentiality and care.' },
+  ];
+
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -20,6 +35,13 @@ const About = () => {
     const heroImageRef = useRef(null);
     const imageRefs = useRef([]);
     const [zIndex, setZIndex] = useState([1, 2]);
+
+    const [openIndex, setOpenIndex] = useState(null);
+
+    const toggleFAQ = (index) => {
+      setOpenIndex(openIndex === index ? null : index);
+    };
+
 
     const handleHoverStart = (index) => {
         const updatedZIndex = [...zIndex];
@@ -100,6 +122,43 @@ const About = () => {
         });
     }, []);
 
+
+    const slideData = [
+        {
+            img: "/image/about/college-students1.webp",
+            title: "About 1",
+        },
+        {
+            img: "/image/about/college-students2.webp",
+            title: "About 2",
+        },
+        {
+            img: "/image/about/college-students3.webp",
+            title: "About 3",
+        },
+        {
+            img: "/image/about/college-students4.webp",
+            title: "About 4",
+        }
+    ]
+
+
+    const items = [
+        { title: 'Expert Faculty', desc: 'Learn from industry-leading professors and mentors committed to your success.', image: '/image/about/faculty.jpg' },
+        { title: 'Diverse Programs', desc: 'Choose from a wide range of courses designed to prepare you for the future.', image: '/image/about/programs.jpg' },
+        { title: 'Global Community', desc: 'Be part of a vibrant, diverse, and inclusive student body from across the globe.', image: '/image/about/community.jpg' },
+        { title: 'Career Opportunities', desc: 'Benefit from strong industry connections and personalized career support.', image: '/image/about/career2.jpeg' }
+      ];
+    
+      const quickLinks = [
+        "We provide top-tier education with expert faculty and a dynamic curriculum",
+        "Our campus is full of energy with events, clubs, and cultural activities.",
+        "Smart classrooms, advanced labs, and a digital library enhance learning."
+      ];
+
+
+
+
     return (
         <>
             <Header />
@@ -113,7 +172,7 @@ const About = () => {
                         className="absolute inset-0 z-0 scale-0 origin-center"
                     >
                         <Image
-                            src="/image/about/collegecampus.jpg"
+                            src="/image/about/collegecampus.webp"
                             alt="College Campus"
                             layout="fill"
                             objectFit="cover"
@@ -173,6 +232,31 @@ const About = () => {
                     </div>
                 </section>
 
+
+                <section className="container mx-auto h-auto md:h-[50vh] flex flex-col md:flex-row items-center my-16 gap-4">
+      {/* Left Column */}
+      <div className="w-full md:w-4/6 px-6 py-4">
+        <h4 className="text-sm text-gray-500 ">About us</h4>
+        <h2 className="text-2xl md:text-3xl font-bold mt-2">WELCOME TO College Portal</h2>
+        <p className="text-gray-600 mt-4 text-sm">
+          There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don&apos;t look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn&apos;t anything embarrassing hidden in the middle of text.
+        </p>
+        <p className="text-gray-600 mt-2 text-sm">
+          All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable.
+        </p>
+      </div>
+
+      {/* Right Column */}
+      <div className="w-full md:w-2/6 min-h-[300px] md:h-[50vh] relative">
+      <div className="w-full max-w-md mt-4">
+ <CubeSlider slides={slideData} width="w-full" />
+</div>
+        
+      </div>
+    </section>
+             
+
+
                 <section ref={visionRef} className="py-16 bg-gradient-to-r from-gray-100 via-gray-200 to-gray-300">
                     <div className="container mx-auto px-6">
                         <h2 className="text-2xl md:text-4xl font-extrabold text-center mb-12 text-gray-800">
@@ -224,7 +308,7 @@ const About = () => {
                     </div>
                 </section>
 
-                <section ref={highlightsRef} className="py-20 bg-gray-50">
+                {/* <section ref={highlightsRef} className="py-20 bg-gray-50">
                     <div className="container mx-auto px-6">
                         <h2 className="text-2xl md:text-4xl font-extrabold text-center mb-16 text-gray-800">
                             Why Choose Us?
@@ -288,9 +372,55 @@ const About = () => {
                             ))}
                         </div>
                     </div>
-                </section>
+                </section> */}
                 {/* <WhyChooseUs />
                 <TeamComponent /> */}
+
+<section className="w-full md:h-[70vh] h-full  my-20">
+  <h2 className="text-4xl text-center font-bold text-gray-800 mb-4">Why Choose Us</h2>
+      <div className="flex flex-col md:flex-row gap-6 p-6">
+      <div className="w-full md:w-4/6 ">
+  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+    {items.map((item, index) => (
+      <div key={index} className="bg-white shadow-lg rounded-lg overflow-hidden h-full flex flex-col">
+        
+        <div className="relative h-36"> 
+          <Image
+            src={item.image} 
+            alt="item Image"
+            layout="fill"
+            objectFit="cover" 
+            className="rounded-t-lg" 
+          />
+        </div>
+
+        
+        <div className="p-2 text-center flex-grow">
+          <h3 className="text-lg font-bold text-gray-800 leading-tight mb-1">{item.title}</h3>
+          <p className="text-sm text-gray-500">{item.desc}</p>
+        </div>
+      </div>
+    ))}
+  </div>
+</div>
+      
+      {/* Right Column */}
+      <div className="w-full md:w-2/6 bg-blue-900 text-white p-4 flex flex-col justify-between">
+        <h2 className="text-lg font-semibold -mb-[1rem]">QUICK LINK</h2>
+        <div className="space-y-3">
+          {quickLinks.map((link, index) => (
+            <p key={index} className="text-sm text-gray-300">
+              {link}
+            </p>
+          ))}
+        </div>
+        <button className="bg-white text-blue-900 px-4 py-1 rounded-lg self-end">View All</button>
+      </div>
+      </div>
+    </section>
+
+
+
 
                 <section ref={testimonialsRef} className="py-16">
                     <div className="container mx-auto px-6 text-center">
@@ -298,19 +428,19 @@ const About = () => {
                         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
                             {[
                                 {
-                                    name: "Jane Doe",
+                                    name: "Riya Malviya",
                                     feedback:
                                         "The professors here are amazing and the campus is beautiful. I’ve learned so much!",
                                     image: "/image/student/student1.png",
                                 },
                                 {
-                                    name: "John Smith",
+                                    name: "Mukund Agrawal",
                                     feedback:
                                         "The best decision of my life was to join this college. It’s an incredible experience.",
                                     image: "/image/student/student2.png",
                                 },
                                 {
-                                    name: "Emily Johnson",
+                                    name: "Raj Soni",
                                     feedback:
                                         "I’ve grown both academically and personally thanks to the supportive environment.",
                                     image: "/image/student/student3.png",
@@ -331,6 +461,35 @@ const About = () => {
                         </div>
                     </div>
                 </section>
+
+
+                <div className="container mx-auto px-4 py-12 text-center">
+      <h5 className="text-teal-500 font-medium">Frequently Asked Questions</h5>
+      <h2 className="text-2xl font-bold mt-1">Frequently Asked Topics</h2>
+      <p className="text-gray-600 mt-1 mb-12 text-sm max-w-4xl mx-auto">Explore answers to the most common questions about our services, facilities, and procedures.Explore answers to the most common questions about our services, facilities, and procedures. Explore answers to the most common questions about our services,</p>
+      
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 relative">
+        {faqs.map((faq, index) => (
+          <div key={index} className="border rounded-lg shadow-sm flex flex-col relative">
+            <button
+              className="w-full flex justify-between items-center px-4 py-2 text-left font-medium text-gray-800 hover:bg-gray-100"
+              onClick={() => toggleFAQ(index)}
+            >
+              {faq.question}
+              <span className="transition-transform duration-300  flex items-center justify-center text-green-500  font-bold rounded-md ms-2">
+  {openIndex === index ? '✕' : '+'}
+</span>
+
+
+
+            </button>
+            <div className={`absolute left-0 right-0 top-12 bg-white shadow-lg border rounded-lg transition-all duration-300 z-10 ${openIndex === index ? 'opacity-100 visible p-4' : 'opacity-0 invisible'}`}>
+              <div className="text-gray-700">{faq.answer}</div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
             </main>
             {/* <Faqs /> */}
             <Footer />
